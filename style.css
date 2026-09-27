@@ -1,0 +1,352 @@
+/* =====================================================
+   EduNova AI - Project Expo 2026
+   White + Light Blue Theme
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#F7FAFF;
+    color:#1E3A5F;
+}
+
+/* HEADER */
+
+.header{
+    background:#1565D8;
+    color:white;
+    padding:28px 40px;
+    border-radius:0 0 28px 28px;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+}
+
+.header p{
+    margin-top:6px;
+    font-size:15px;
+}
+
+/* WELCOME */
+
+.welcome{
+    padding:30px 40px 20px;
+}
+
+.welcome h1{
+    color:#1565D8;
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#60738B;
+}
+
+/* SEARCH BOX */
+
+.search-box{
+    width:100%;
+    padding:15px;
+    border:1px solid #D6E6FF;
+    border-radius:14px;
+    margin-top:20px;
+    outline:none;
+    background:white;
+}
+
+.search-box:focus{
+    border-color:#1565D8;
+}
+
+/* BUTTONS */
+
+button{
+    background:#1565D8;
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:12px 22px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0B57D0;
+}/* HOME DASHBOARD */
+
+.dashboard{
+    padding:20px 40px;
+}
+
+.dashboard h2{
+    color:#1565D8;
+    margin-bottom:20px;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.dashboard-card{
+    background:white;
+    border:1px solid #D6E6FF;
+    border-radius:22px;
+    padding:24px;
+    min-height:170px;
+    transition:.3s;
+    text-decoration:none;
+    color:#1E3A5F;
+}
+
+.dashboard-card:hover{
+    background:#F2F7FF;
+    transform:translateY(-4px);
+}
+
+.card-icon{
+    width:48px;
+    height:48px;
+    background:#EAF2FF;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.dashboard-card h3{
+    color:#1565D8;
+    margin-bottom:10px;
+}
+
+.dashboard-card p{
+    color:#60738B;
+    line-height:1.5;
+}/* STUDY DASHBOARD */
+
+.study-dashboard{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    padding:20px 40px;
+}
+
+.study-card{
+    background:#EAF2FF;
+    border:1px solid #D6E6FF;
+    border-radius:20px;
+    padding:22px;
+    min-height:180px;
+}
+
+.study-card h3{
+    color:#1565D8;
+    margin-bottom:12px;
+}
+
+.study-card p{
+    color:#60738B;
+    line-height:1.5;
+}
+
+/* Semester Subjects */
+
+.mini-subjects{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    margin-top:10px;
+}
+
+.mini-subjects span{
+    background:white;
+    border:1px solid #D6E6FF;
+    border-radius:10px;
+    padding:8px;
+    color:#1565D8;
+    font-size:12px;
+    text-align:center;
+}/* AI QUIZ */
+
+.quiz-options{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin:15px 0;
+}
+
+.quiz-btn{
+    background:white;
+    color:#1565D8;
+    border:1px solid #D6E6FF;
+}
+
+/* PROGRESS */
+
+.progress-bar{
+    width:100%;
+    height:10px;
+    background:#DCEBFF;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0;
+}
+
+.progress-fill{
+    width:45%;
+    height:100%;
+    background:#1565D8;
+}
+
+/* AI CHAT */
+
+.ai-chat-box{
+    margin:20px 40px;
+    background:white;
+    border:1px solid #D6E6FF;
+    border-radius:20px;
+    padding:22px;
+}
+
+.chat-input{
+    width:100%;
+    padding:12px;
+    border:1px solid #D6E6FF;
+    border-radius:12px;
+    margin:15px 0;
+    outline:none;
+}
+
+.chat-response{
+    margin-top:15px;
+    background:#F7FAFF;
+    border-left:4px solid #1565D8;
+    padding:15px;
+    border-radius:10px;
+}/* PLACEMENT / HEALTH / UPDATES */
+
+.placement-dashboard,
+.health-dashboard{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    padding:20px 40px;
+}
+
+.placement-dashboard-card,
+.health-card{
+    background:#EAF2FF;
+    border:1px solid #D6E6FF;
+    border-radius:20px;
+    padding:22px;
+    min-height:170px;
+}
+
+.updates-page{
+    padding:20px 40px;
+}
+
+.update-card{
+    background:#EAF2FF;
+    border-left:5px solid #1565D8;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:15px;
+}
+
+/* BACK BUTTON */
+
+.back-home{
+    display:flex;
+    justify-content:center;
+    margin:30px;
+}
+
+.back-dashboard-btn{
+    background:#1565D8;
+    color:white;
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+/* LOGIN PAGE */
+
+.login-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.login-container{
+    width:100%;
+    max-width:460px;
+    padding:20px;
+}
+
+.login-card{
+    background:white;
+    border:1px solid #D6E6FF;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 8px 20px rgba(21,101,216,.08);
+}
+
+.login-card input,
+.login-card select{
+    width:100%;
+    padding:14px;
+    border:1px solid #D6E6FF;
+    border-radius:12px;
+    margin-top:6px;
+    margin-bottom:15px;
+}
+
+.login-btn{
+    width:100%;
+    padding:15px;
+}/* MOBILE */
+
+@media (max-width:768px){
+
+.dashboard-grid,
+.study-dashboard,
+.placement-dashboard,
+.health-dashboard,
+.mini-subjects{
+    grid-template-columns:1fr;
+}
+
+.dashboard,
+.welcome,
+.study-dashboard,
+.ai-chat-box,
+.placement-dashboard,
+.health-dashboard,
+.updates-page{
+    padding:20px;
+}
+
+.header{
+    padding:22px;
+}
+
+.logo{
+    font-size:24px;
+}
+
+.welcome h1{
+    font-size:24px;
+}
+
+}

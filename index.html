@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNova AI - Project Expo 2026</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <div class="logo">EduNova AI</div>
+
+        <p>AI-Powered Smart Academic & Placement Companion</p>
+
+    </header>
+
+    <!-- Welcome -->
+
+    <h2 id="welcomeName"></h2>
+
+<script>
+const name = localStorage.getItem("studentName") || "Student";
+document.getElementById("welcomeName").innerHTML = "Welcome, " + name + " 👋";
+</script>
+    <!-- Dashboard -->
+
+    <section class="dashboard">
+
+        <h2>Quick Dashboard</h2>
+
+        <div class="dashboard-grid">
+
+            <!-- AI Study Mentor -->
+
+            <a href="study.html" class="dashboard-card">
+
+                <div class="card-icon"></div>
+
+                <h3>AI Study Mentor</h3>
+
+                <p>
+                    AI Chat, semester syllabus, notes, quizzes and progress tracker.
+                </p>
+
+            </a>
+
+            <!-- Placement AI -->
+
+            <a href="placement.html" class="dashboard-card">
+
+                <div class="card-icon"></div>
+
+                <h3>Placement AI</h3>
+
+                <p>
+                    Dream company roadmap, resume builder and interview preparation.
+                </p>
+
+            </a>
+
+            <!-- Health AI -->
+
+            <a href="health.html" class="dashboard-card">
+
+                <div class="card-icon"></div>
+
+                <h3>Health AI</h3>
+
+                <p>
+                    Study timer, focus tracker, hydration reminder and wellness tools.
+                </p>
+
+            </a>
+
+            <!-- College Updates -->
+
+            <a href="updates.html" class="dashboard-card">
+
+                <div class="card-icon"></div>
+
+                <h3>College Live Updates</h3>
+
+                <p>
+                    Symposiums, hackathons, workshops, placements and exam notifications.
+                </p>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Bottom Navigation -->
+
+    <nav class="bottom-nav">
+
+        <a href="index.html" class="active">Home</a>
+
+        <a href="study.html">Study Mentor</a>
+
+        <a href="placement.html">Placement AI</a>
+
+        <a href="updates.html">Updates</a>
+
+    </nav>
+
+</body>
+</html>

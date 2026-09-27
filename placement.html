@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNova AI - Placement AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">EduNova AI</div>
+    <p>Placement AI Dashboard</p>
+</header>
+<h2 id="companyTitle"></h2>
+
+<div class="update-card">
+    <h3>Live Updates</h3>
+    <p id="companyUpdate"></p>
+</div>
+
+<script>
+const company = localStorage.getItem("dreamCompany") || "TCS";
+
+document.getElementById("companyTitle").innerHTML =
+    "My Dream Company : " + company;
+
+const updates = {
+    "TCS":"TCS CodeVita • TCS NQT • TCS Smart Hiring (Prototype Updates)",
+    "Infosys":"Infosys Springboard • Infosys Hiring (Prototype Updates)",
+    "Google":"Google Internship • Google AI Workshop (Prototype Updates)",
+    "Microsoft":"Microsoft Learn • Internship Updates (Prototype Updates)",
+    "Amazon":"Amazon SDE Internship • Career Updates (Prototype Updates)",
+    "NVIDIA":"NVIDIA AI Internship • CUDA Workshop (Prototype Updates)",
+    "Zoho":"Zoho Campus Hiring • Coding Challenge (Prototype Updates)",
+    "Accenture":"Accenture Placement Drive (Prototype Updates)",
+    "Wipro":"Wipro TalentNext • Hiring Updates (Prototype Updates)",
+    "Cognizant":"Cognizant GenC Hiring (Prototype Updates)"
+};
+
+document.getElementById("companyUpdate").innerHTML = updates[company];
+</script>
+<section class="welcome">
+    <h1>Placement AI</h1>
+    <p>Prepare for your dream company with AI-powered placement guidance.</p>
+</section>
+
+<section class="placement-dashboard">
+
+    <!-- Dream Company -->
+    <a href="dreamcompany.html" class="placement-dashboard-card">
+        <div class="placement-icon"></div>
+        <h3>Dream Company</h3>
+        <p>Select your target company and get a complete preparation roadmap.</p>
+    </a>
+
+    <!-- Interview -->
+    <a href="mocktest.html" class="placement-dashboard-card">
+        <div class="placement-icon"></div>
+        <h3>Interview Mock Test</h3>
+        <p>Practice HR, Technical and Aptitude interview questions.</p>
+    </a>
+
+    <!-- Updates -->
+    <a href="placementupdates.html" class="placement-dashboard-card">
+        <div class="placement-icon"></div>
+        <h3>Live Placement Updates</h3>
+        <p>Latest internships, hiring drives, hackathons and certifications.</p>
+    </a>
+
+    <!-- Skills -->
+    <a href="skills.html" class="placement-dashboard-card">
+        <div class="placement-icon"></div>
+        <h3>Technical & Non-Technical Skills</h3>
+        <p>DSA, SQL, Java, Python, Communication and Resume skills.</p>
+    </a>
+
+</section>
+
+<div class="back-home">
+    <a href="index.html" class="back-btn">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

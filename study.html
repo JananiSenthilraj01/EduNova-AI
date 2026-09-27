@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNova AI - AI Study Mentor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">EduNova AI</div>
+        <p>AI Study Mentor</p>
+    </header>
+
+    <!-- Welcome -->
+    <section class="welcome">
+        <h1>AI Study Mentor</h1>
+        <p>Your semester learning dashboard powered by AI.</p>
+    </section>
+
+    <!-- Dashboard (Only One Dashboard) -->
+    <section class="study-dashboard">
+
+        <!-- Semester Subjects -->
+        <div class="study-card">
+            <h3>Semester Subjects</h3>
+
+            <div class="mini-subjects">
+                <span>Data Structures</span>
+                <span>Fundamentals of Data Science</span>
+                <span>Artificial Intelligence</span>
+                <span>Discrete Mathematics</span>
+                <span>Java Programming</span>
+                <span>DBMS</span>
+            </div>
+        </div>
+
+        <!-- Today's Mission -->
+        <div class="study-card">
+            <h3>Today's Mission</h3>
+
+            <ul class="mission-list">
+                <li>Complete DBMS Unit 4 Notes</li>
+                <li>Revise AI Unit 2</li>
+                <li>Practice Java OOP Questions</li>
+                <li>Read Data Structures Unit 3</li>
+            </ul>
+        </div>
+
+        <!-- Today's AI Quiz -->
+        <div class="study-card">
+            <h3>Today's AI Quiz</h3>
+
+            <p><strong>Q:</strong> Which SQL command retrieves data?</p>
+
+            <div class="quiz-options">
+                <button class="quiz-btn">INSERT</button>
+                <button class="quiz-btn">SELECT</button>
+                <button class="quiz-btn">UPDATE</button>
+                <button class="quiz-btn">DELETE</button>
+            </div>
+
+            <button class="study-btn">Submit Quiz</button>
+        </div>
+
+        <!-- Semester Progress -->
+        <div class="study-card">
+            <h3>Semester Progress</h3>
+
+            <p>12 / 30 Units Completed</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <p>Overall Progress : 45%</p>
+        </div>
+
+    </section>
+
+    <!-- AI Chat -->
+    <section class="ai-chat-box">
+
+        <h2>Ask EduNova AI</h2>
+
+        <input
+            type="text"
+            class="chat-input"
+            placeholder="Ask about DBMS, AI, Java, Data Structures..."
+        >
+
+        <button class="chat-btn">Ask AI</button>
+
+        <div class="chat-response">
+            <strong>AI Response</strong>
+            <p>Ask any semester subject question here. EduNova AI will answer with notes, summaries and quiz help.</p>
+        </div>
+
+    </section>
+
+    <!-- Back Button -->
+    <div class="back-home">
+        <a href="index.html" class="back-dashboard-btn">
+            Back to Dashboard
+        </a>
+    </div>
+
+</body>
+</html>
