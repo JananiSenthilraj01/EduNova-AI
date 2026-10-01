@@ -1,0 +1,1771 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --purple: #6d28d9;
+
+    --purple2: #8b5cf6;
+
+    --blue: #2563eb;
+
+    --dark: #172554;
+
+    --text: #334155;
+
+    --muted: #64748b;
+
+    --border: #e2e8f0;
+
+    --white: #ffffff;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--dark);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8faff 0%,
+            #f5f3ff 45%,
+            #eef4ff 100%
+        );
+
+    overflow-x: hidden;
+
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+}
+
+
+/* =====================================================
+   GLOWING ORBS
+===================================================== */
+
+.orb {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(3px);
+
+}
+
+
+.orb-1 {
+
+    width: 430px;
+
+    height: 430px;
+
+    top: -220px;
+
+    right: -120px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(124,58,237,0.16),
+            transparent 70%
+        );
+
+}
+
+
+.orb-2 {
+
+    width: 380px;
+
+    height: 380px;
+
+    bottom: -190px;
+
+    left: -130px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(37,99,235,0.13),
+            transparent 70%
+        );
+
+}
+
+
+.orb-3 {
+
+    width: 300px;
+
+    height: 300px;
+
+    top: 35%;
+
+    left: 38%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(168,85,247,0.08),
+            transparent 70%
+        );
+
+}
+
+
+/* =====================================================
+   FLOATING CARDS
+===================================================== */
+
+.floating-card {
+
+    position: absolute;
+
+    width: 56px;
+
+    height: 56px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background:
+        rgba(255,255,255,0.72);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.95);
+
+    box-shadow:
+        0 18px 40px
+        rgba(76,29,149,0.12);
+
+    backdrop-filter: blur(12px);
+
+    color: var(--purple);
+
+    font-size: 20px;
+
+    animation:
+        float 6s ease-in-out infinite;
+
+}
+
+
+/* Important:
+   Icons stay around the edges,
+   not over the form. */
+
+.float-1 {
+
+    top: 15%;
+
+    left: 3%;
+
+}
+
+
+.float-2 {
+
+    bottom: 17%;
+
+    left: 5%;
+
+    animation-delay: 1s;
+
+}
+
+
+.float-3 {
+
+    top: 7%;
+
+    right: 4%;
+
+    animation-delay: 2s;
+
+}
+
+
+.float-4 {
+
+    bottom: 10%;
+
+    right: 5%;
+
+    animation-delay: 3s;
+
+}
+
+
+.float-5 {
+
+    top: 44%;
+
+    left: 45%;
+
+    animation-delay: 1.5s;
+
+}
+
+
+.float-6 {
+
+    top: 34%;
+
+    right: 2%;
+
+    animation-delay: 2.5s;
+
+}
+
+
+.float-7 {
+
+    bottom: 4%;
+
+    left: 30%;
+
+    animation-delay: 3.5s;
+
+}
+
+
+.float-8 {
+
+    top: 3%;
+
+    left: 28%;
+
+    animation-delay: 4s;
+
+}
+
+
+@keyframes float {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-15px)
+            rotate(4deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particle {
+
+    position: absolute;
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #8b5cf6;
+
+    opacity: 0.35;
+
+    animation:
+        particleMove 7s linear infinite;
+
+}
+
+
+.p1 {
+    top: 20%;
+    left: 20%;
+}
+
+.p2 {
+    top: 70%;
+    left: 35%;
+    animation-delay: 2s;
+}
+
+.p3 {
+    top: 25%;
+    right: 25%;
+    animation-delay: 1s;
+}
+
+.p4 {
+    bottom: 20%;
+    right: 30%;
+    animation-delay: 3s;
+}
+
+.p5 {
+    top: 50%;
+    left: 15%;
+    animation-delay: 4s;
+}
+
+.p6 {
+    top: 80%;
+    right: 15%;
+    animation-delay: 2.5s;
+}
+
+
+@keyframes particleMove {
+
+    0% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-25px);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page {
+
+    position: relative;
+
+    z-index: 2;
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns:
+        0.95fr
+        1.05fr;
+
+    gap: 30px;
+
+    padding:
+        35px
+        55px;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero-section {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding:
+        20px
+        35px;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.brand-logo {
+
+    width: 47px;
+
+    height: 47px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 14px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--purple2)
+        );
+
+    box-shadow:
+        0 10px 25px
+        rgba(109,40,217,0.25);
+
+}
+
+
+.brand h2 {
+
+    font-size: 24px;
+
+}
+
+
+.brand span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.hero-content {
+
+    max-width: 600px;
+
+}
+
+
+.ai-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        9px
+        15px;
+
+    border-radius: 30px;
+
+    color: var(--purple);
+
+    background:
+        rgba(109,40,217,0.08);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 24px;
+
+}
+
+
+.pulse {
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(34,197,94,0.12);
+
+}
+
+
+.hero-content h1 {
+
+    font-size:
+        clamp(45px, 5vw, 68px);
+
+    line-height: 1.03;
+
+    letter-spacing: -2.5px;
+
+    margin-bottom: 24px;
+
+}
+
+
+.hero-content h1 span {
+
+    background:
+        linear-gradient(
+            90deg,
+            #6d28d9,
+            #8b5cf6,
+            #2563eb
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+}
+
+
+.hero-content > p {
+
+    max-width: 560px;
+
+    color: var(--muted);
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* =====================================================
+   MINI CARDS
+===================================================== */
+
+.mini-cards {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 11px;
+
+}
+
+
+.mini-card {
+
+    width: 390px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 11px 14px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,0.58);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.8);
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.mini-icon {
+
+    width: 39px;
+
+    height: 39px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+}
+
+
+.mini-icon.purple {
+
+    background: #ede9fe;
+
+    color: #6d28d9;
+
+}
+
+
+.mini-icon.blue {
+
+    background: #dbeafe;
+
+    color: #2563eb;
+
+}
+
+
+.mini-icon.green {
+
+    background: #dcfce7;
+
+    color: #16a34a;
+
+}
+
+
+.mini-card strong {
+
+    display: block;
+
+    font-size: 13px;
+
+}
+
+
+.mini-card small {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-top: 3px;
+
+}
+
+
+/* =====================================================
+   HERO FOOTER
+===================================================== */
+
+.hero-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+}
+
+
+.hero-bottom i {
+
+    color: #22c55e;
+
+}
+
+
+/* =====================================================
+   FORM SECTION
+===================================================== */
+
+.form-section {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+/* =====================================================
+   FORM CARD
+===================================================== */
+
+.form-card {
+
+    width: 100%;
+
+    max-width: 570px;
+
+    padding: 31px 35px;
+
+    border-radius: 27px;
+
+    background:
+        rgba(255,255,255,0.94);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.9);
+
+    box-shadow:
+        0 30px 80px
+        rgba(30,41,59,0.14);
+
+    backdrop-filter: blur(20px);
+
+}
+
+
+/* =====================================================
+   FORM HEADER
+===================================================== */
+
+.form-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 23px;
+
+}
+
+
+.welcome-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ede9fe,
+            #ddd6fe
+        );
+
+    color: var(--purple);
+
+    font-size: 19px;
+
+}
+
+
+.form-header h2 {
+
+    font-size: 25px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.form-header p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   MOBILE LOGO
+===================================================== */
+
+.mobile-logo {
+
+    display: none;
+
+}
+
+
+/* =====================================================
+   FORM ROW
+===================================================== */
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 13px;
+
+}
+
+
+.field {
+
+    margin-bottom: 14px;
+
+}
+
+
+.field label {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 6px;
+
+    color: #334155;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.optional {
+
+    color: #94a3b8;
+
+    font-weight: 400;
+
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.input {
+
+    position: relative;
+
+}
+
+
+.input > i {
+
+    position: absolute;
+
+    left: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    pointer-events: none;
+
+}
+
+
+.input input,
+.input select {
+
+    width: 100%;
+
+    height: 43px;
+
+    padding:
+        0 38px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #f8fafc;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+
+}
+
+
+.input select {
+
+    appearance: auto;
+
+    cursor: pointer;
+
+}
+
+
+.input input::placeholder {
+
+    color: #94a3b8;
+
+}
+
+
+.input input:focus,
+.input select:focus {
+
+    background: white;
+
+    border-color:
+        var(--purple2);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(109,40,217,0.08);
+
+}
+
+
+/* =====================================================
+   DREAM COMPANY
+===================================================== */
+
+.dream-company input {
+
+    padding-right: 42px;
+
+}
+
+
+.target-icon {
+
+    position: absolute;
+
+    right: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #f59e0b;
+
+}
+
+
+/* =====================================================
+   PASSWORD EYE
+===================================================== */
+
+.eye {
+
+    position: absolute;
+
+    right: 6px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 32px;
+
+    height: 32px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #94a3b8;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message {
+
+    display: none;
+
+    padding: 9px 11px;
+
+    margin-bottom: 12px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+}
+
+
+.message.error {
+
+    display: block;
+
+    background: #fef2f2;
+
+    color: #b91c1c;
+
+}
+
+
+.message.success {
+
+    display: block;
+
+    background: #f0fdf4;
+
+    color: #15803d;
+
+}
+
+
+.message.info {
+
+    display: block;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+}
+
+
+/* =====================================================
+   MAIN BUTTON
+===================================================== */
+
+.continue-button {
+
+    width: 100%;
+
+    height: 47px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6d28d9,
+            #7c3aed,
+            #2563eb
+        );
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px
+        rgba(109,40,217,0.22);
+
+    transition: 0.25s;
+
+}
+
+
+.continue-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 15px 30px
+        rgba(109,40,217,0.28);
+
+}
+
+
+/* =====================================================
+   DIVIDER
+===================================================== */
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin:
+        18px 0
+        13px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+}
+
+
+.divider::before,
+.divider::after {
+
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--border);
+
+}
+
+
+/* =====================================================
+   SOCIAL
+===================================================== */
+
+.social-buttons {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+}
+
+
+.social-buttons button {
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.social-buttons button:hover {
+
+    background: #f8fafc;
+
+    border-color:
+        #cbd5e1;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.social-buttons i {
+
+    font-size: 15px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.form-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    margin-top: 16px;
+
+}
+
+
+.form-footer i {
+
+    color: #22c55e;
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1050px) {
+
+    .page {
+
+        grid-template-columns: 1fr;
+
+        padding: 25px;
+
+    }
+
+
+    .hero-section {
+
+        min-height: 500px;
+
+    }
+
+
+    .form-section {
+
+        padding-bottom: 30px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    body {
+
+        overflow-y: auto;
+
+    }
+
+
+    .page {
+
+        display: block;
+
+        padding: 15px;
+
+    }
+
+
+    .hero-section {
+
+        min-height: auto;
+
+        padding: 15px 10px 25px;
+
+    }
+
+
+    .hero-content {
+
+        margin-top: 45px;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 42px;
+
+        letter-spacing: -1.5px;
+
+    }
+
+
+    .hero-content > p {
+
+        font-size: 14px;
+
+    }
+
+
+    .mini-cards {
+
+        display: none;
+
+    }
+
+
+    .hero-bottom {
+
+        display: none;
+
+    }
+
+
+    .form-card {
+
+        padding: 25px 19px;
+
+        border-radius: 20px;
+
+    }
+
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+    }
+
+
+    .form-header {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .mobile-logo {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .mobile-logo .brand-logo {
+
+        width: 36px;
+
+        height: 36px;
+
+    }
+
+
+    .social-buttons {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .floating-card {
+
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 15px;
+
+        opacity: 0.4;
+
+    }
+
+
+    .float-5,
+    .float-6,
+    .float-7,
+    .float-8 {
+
+        display: none;
+
+    }
+
+}
+/* =====================================================
+   CLEAN LEFT PANEL
+===================================================== */
+
+.hero-section {
+
+    position: relative;
+
+    min-height: 100%;
+
+    padding: 25px 35px;
+
+    display: block;
+
+}
+
+
+/* Keep only the logo */
+
+.hero-section .brand {
+
+    position: relative;
+
+    z-index: 10;
+
+}
+
+
+/* Remove all old left-panel content */
+
+.hero-content,
+.hero-bottom,
+.mini-cards,
+.ai-badge {
+
+    display: none !important;
+
+}
+
+
+/* =====================================================
+   FLOATING ELEMENTS
+===================================================== */
+
+.hero-section::before,
+.hero-section::after {
+
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+}
+
+
+/* Large soft glow */
+
+.hero-section::before {
+
+    width: 420px;
+
+    height: 420px;
+
+    top: 25%;
+
+    left: 15%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(124,58,237,0.10),
+            transparent 68%
+        );
+
+    filter: blur(10px);
+
+}
+
+
+/* Small blue glow */
+
+.hero-section::after {
+
+    width: 300px;
+
+    height: 300px;
+
+    bottom: 5%;
+
+    left: 30%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(37,99,235,0.08),
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+}
+
+
+/* =====================================================
+   FLOATING ICON POSITIONING
+===================================================== */
+
+.float-1 {
+
+    top: 18%;
+
+    left: 8%;
+
+}
+
+
+.float-2 {
+
+    top: 62%;
+
+    left: 13%;
+
+}
+
+
+.float-3 {
+
+    top: 8%;
+
+    right: 10%;
+
+}
+
+
+.float-4 {
+
+    bottom: 12%;
+
+    left: 45%;
+
+}
+
+
+.float-5 {
+
+    top: 42%;
+
+    left: 48%;
+
+}
+
+
+.float-6 {
+
+    top: 34%;
+
+    right: 2%;
+
+}
+
+
+.float-7 {
+
+    bottom: 25%;
+
+    right: 15%;
+
+}
+
+
+.float-8 {
+
+    top: 4%;
+
+    left: 50%;
+
+}
+
+
+/* =====================================================
+   EXTRA FLOATING EFFECT
+===================================================== */
+
+.float-1,
+.float-2,
+.float-3,
+.float-4,
+.float-5,
+.float-6,
+.float-7,
+.float-8 {
+
+    z-index: 3;
+
+}
+
+
+/* =====================================================
+   DIFFERENT ICON COLORS
+===================================================== */
+
+.float-1 i {
+
+    color: #7c3aed;
+
+}
+
+
+.float-2 i {
+
+    color: #2563eb;
+
+}
+
+
+.float-3 i {
+
+    color: #8b5cf6;
+
+}
+
+
+.float-4 i {
+
+    color: #f97316;
+
+}
+
+
+.float-5 i {
+
+    color: #06b6d4;
+
+}
+
+
+.float-6 i {
+
+    color: #f59e0b;
+
+}
+
+
+.float-7 i {
+
+    color: #16a34a;
+
+}
+
+
+.float-8 i {
+
+    color: #eab308;
+
+}
+
+
+/* =====================================================
+   MAKE LEFT SIDE MORE VISUAL
+===================================================== */
+
+@media (min-width: 1051px) {
+
+    .hero-section {
+
+        min-height: calc(100vh - 70px);
+
+    }
+
+}<!-- Social Login -->
+<div class="social-divider">
+    <span></span>
+    <p>or continue with</p>
+    <span></span>
+</div>
+
+<div class="social-login">
+
+    <button type="button" class="social-btn google-btn">
+        <i class="fa-brands fa-google"></i>
+        <span>Continue with Google</span>
+    </button>
+
+    <button type="button" class="social-btn github-btn">
+        <i class="fa-brands fa-github"></i>
+        <span>Continue with GitHub</span>
+    </button>
+
+</div>
+
+<div class="profile-security">
+    <i class="fa-solid fa-shield-halved"></i>
+    Your information stays within your EduNova student profile.
+</div>

@@ -2,103 +2,406 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNova AI Login</title>
-    <link rel="stylesheet" href="style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>EduNova AI | Start Learning</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef4ff 0%,
+                    #dbeafe 45%,
+                    #eff6ff 100%
+                );
+
+            overflow: hidden;
+        }
+
+        /* Background circles */
+
+        .circle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.45;
+            z-index: 0;
+        }
+
+        .circle.one {
+            width: 300px;
+            height: 300px;
+            background: #93c5fd;
+            top: -100px;
+            left: -100px;
+        }
+
+        .circle.two {
+            width: 350px;
+            height: 350px;
+            background: #c4b5fd;
+            bottom: -150px;
+            right: -100px;
+        }
+
+        .circle.three {
+            width: 180px;
+            height: 180px;
+            background: #bfdbfe;
+            top: 20%;
+            right: 10%;
+        }
+
+        /* Login Card */
+
+        .login-card {
+            position: relative;
+            z-index: 1;
+
+            width: 100%;
+            max-width: 430px;
+
+            padding: 45px 40px;
+
+            background: rgba(255, 255, 255, 0.92);
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 25px 60px rgba(37, 99, 235, 0.15);
+
+            backdrop-filter: blur(12px);
+
+            text-align: center;
+        }
+
+        /* Logo */
+
+        .logo {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 32px;
+            font-weight: bold;
+
+            box-shadow:
+                0 12px 30px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Heading */
+
+        h1 {
+            color: #111827;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-bottom: 35px;
+        }
+
+        /* Form */
+
+        .form {
+            text-align: left;
+        }
+
+        .label {
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: #374151;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .input {
+            width: 100%;
+
+            padding: 15px 16px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 12px;
+
+            background: #ffffff;
+
+            color: #111827;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s ease;
+        }
+
+        .input::placeholder {
+            color: #9ca3af;
+        }
+
+        .input:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px rgba(37, 99, 235, 0.10);
+        }
+
+        /* Button */
+
+        .continue-btn {
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px rgba(37, 99, 235, 0.25);
+        }
+
+        .continue-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+
+        .footer-text {
+            margin-top: 25px;
+
+            color: #9ca3af;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 20px;
+            }
+
+            .login-card {
+                padding: 35px 25px;
+
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .logo {
+                width: 62px;
+                height: 62px;
+
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
 
-<body class="login-page">
+<body>
 
-<div class="login-container">
-    <h1 class="login-logo">EduNova AI</h1>
-    <p class="login-subtitle">AI-Powered Smart Academic & Placement Companion</p>
+    <!-- Background decoration -->
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+    <div class="circle three"></div>
+
+
+    <!-- Login Card -->
 
     <div class="login-card">
-        <h2>Student Login</h2>
 
-        <label>Student Name</label>
-        <input type="text" id="name" placeholder="Enter your name">
+        <!-- EduNova Logo -->
 
-        <label>Register Number</label>
-        <input type="text" placeholder="Enter Register Number">
+        <div class="logo">
+            ✦
+        </div>
 
-        <label>Department</label>
-        <select>
-            <option>AIDS</option>
-            <option>CSE</option>
-            <option>IT</option>
-            <option>ECE</option>
-        </select>
 
-        <label>Year</label>
-        <select>
-            <option>1st Year</option>
-            <option>2nd Year</option>
-            <option selected>3rd Year</option>
-            <option>Final Year</option>
-        </select>
+        <!-- Title -->
 
-        <label>Semester</label>
-<select id="semester">
-    <option>Semester 1</option>
-    <option>Semester 2</option>
-    <option selected>Semester 3</option>
-    <option>Semester 4</option>
-    <option>Semester 5</option>
-    <option>Semester 6</option>
-    <option>Semester 7</option>
-    <option>Semester 8</option>
-</select>
+        <h1>
+            EduNova AI
+        </h1>
 
-        <!-- Dream Company -->
-        <label>Dream Company</label>
-        <select id="dreamCompany">
-            <option>TCS</option>
-            <option>Infosys</option>
-            <option>Google</option>
-            <option>Microsoft</option>
-            <option>Amazon</option>
-            <option>NVIDIA</option>
-            <option>Zoho</option>
-            <option>Accenture</option>
-            <option>Wipro</option>
-            <option>Cognizant</option>
-        </select>
-<button type="button" class="login-btn" onclick="goDashboard()">
-    Continue to EduNova AI
-</button>
+        <p class="subtitle">
+            Personalized learning, powered by AI
+        </p>
 
-<script>
-function goDashboard() {
-    window.location.href = "./index.html";
-}
-</script>
 
-<script>
-function goDashboard() {
-    window.location.href = "./index.html";
-}
-</script>
+        <!-- Login Form -->
 
-<script>
-function goDashboard() {
-    window.location.href = "index.html";
-}
-</script>
+        <form
+            class="form"
+            onsubmit="startEduNova(event)"
+        >
+
+            <label
+                class="label"
+                for="userName"
+            >
+                What's your name?
+            </label>
+
+            <input
+                class="input"
+                type="text"
+                id="userName"
+                placeholder="Enter your name"
+                autocomplete="name"
+                maxlength="50"
+                required
+            >
+
+
+            <button
+                class="continue-btn"
+                type="submit"
+            >
+                Start Learning →
+            </button>
+
+        </form>
+
+
+        <!-- Footer -->
+
+        <p class="footer-text">
+            Learn anything. Ask anything. Grow every day.
+        </p>
+
     </div>
-</div>
 
-<script>
-function goDashboard() {
-    localStorage.setItem("studentName",
-        document.getElementById("name").value);
 
-    localStorage.setItem("dreamCompany",
-        document.getElementById("dreamCompany").value);
+    <!-- JavaScript -->
 
-    window.location.href = "index.html";
-}
-</script>
+    <script>
+
+        function startEduNova(event) {
+
+            event.preventDefault();
+
+            const nameInput =
+                document.getElementById("userName");
+
+            const name =
+                nameInput.value.trim();
+
+
+            // Check whether the name is empty
+
+            if (name === "") {
+
+                alert(
+                    "Please enter your name."
+                );
+
+                nameInput.focus();
+
+                return;
+            }
+
+
+            // Save the user's name
+
+            localStorage.setItem(
+                "studentName",
+                name
+            );
+
+
+            // Open dashboard
+
+            window.location.href =
+                "dashboard.html";
+        }
+
+    </script>
 
 </body>
 </html>

@@ -1,24 +1,117 @@
-console.log("EduNova AI Dashboard Loaded");
-function sendMessage(){
+/* =====================================================
+   EduNova AI
+   Login / User Name JavaScript
+===================================================== */
 
-    let input = document.getElementById("userInput");
-    let chatBox = document.getElementById("chatBox");
 
-    if(input.value.trim() === ""){
+/* =====================================================
+   CONTINUE TO DASHBOARD
+===================================================== */
+
+function continueToDashboard() {
+
+    // Get name from login page
+    const nameInput =
+        document.getElementById("studentName");
+
+
+    // Make sure the input exists
+    if (!nameInput) {
+
+        alert("Name field not found.");
+
         return;
     }
 
-    let userMessage = document.createElement("div");
-    userMessage.className = "user-message";
-    userMessage.textContent = input.value;
-    chatBox.appendChild(userMessage);
 
-    let aiMessage = document.createElement("div");
-    aiMessage.className = "ai-message";
-    aiMessage.textContent = "I'm EduNova AI. I'll help you with studies, placements, AI, DBMS, Java, and more.";
-    chatBox.appendChild(aiMessage);
+    // Get entered name
+    const studentName =
+        nameInput.value.trim();
 
-    input.value = "";
 
-    chatBox.scrollTop = chatBox.scrollHeight;
+    // Check name
+    if (studentName === "") {
+
+        alert("Please enter your name.");
+
+        nameInput.focus();
+
+        return;
+    }
+
+
+    // Save only the name
+    localStorage.setItem(
+        "studentName",
+        studentName
+    );
+
+
+    // Open dashboard
+    window.location.href =
+        "index.html";
 }
+
+
+/* =====================================================
+   SHOW USER NAME ON DASHBOARD
+===================================================== */
+
+function loadStudentName() {
+
+    const studentName =
+        localStorage.getItem(
+            "studentName"
+        );
+
+
+    const welcomeText =
+        document.getElementById(
+            "welcomeText"
+        );
+
+
+    if (
+        studentName &&
+        welcomeText
+    ) {
+
+        welcomeText.textContent =
+            "Welcome, " +
+            studentName +
+            " 👋";
+    }
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logoutStudent() {
+
+    // Remove saved name
+    localStorage.removeItem(
+        "studentName"
+    );
+
+
+    // Go back to login
+    window.location.href =
+        "login.html";
+}
+
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadStudentName();
+
+    }
+);

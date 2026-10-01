@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduNova AI | Ask Anything</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =====================================================
+           PROFESSIONAL ICONS
+        ===================================================== */
+
+        svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .brand-icon svg {
+            width: 25px;
+            height: 25px;
+        }
+
+        .new-chat svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .suggestion-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f3f5;
+            margin-bottom: 18px;
+        }
+
+        .suggestion-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: #202124;
+        }
+
+        .welcome-icon svg {
+            width: 34px;
+            height: 34px;
+        }
+
+        .attach-option svg {
+            width: 19px;
+            height: 19px;
+        }
+
+        .icon-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .send-button svg {
+            width: 19px;
+            height: 19px;
+        }
+
+        .ai-avatar svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .welcome-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .suggestions {
+            width: min(820px, 100%);
+        }
+
+        .suggestion {
+            text-align: left;
+        }
+
+        .suggestion strong {
+            display: block;
+        }
+
+        .suggestion span {
+            display: block;
+        }
+
+        .ai-answer p {
+            margin: 0 0 10px 0;
+        }
+
+        .ai-answer ul,
+        .ai-answer ol {
+            margin: 8px 0 12px 22px;
+        }
+
+        .ai-answer li {
+            margin-bottom: 5px;
+        }
+
+        .ai-answer h2,
+        .ai-answer h3,
+        .ai-answer h4 {
+            margin: 12px 0 8px 0;
+        }
+
+        .ai-answer code {
+            padding: 2px 5px;
+            border-radius: 5px;
+            background: #f1f3f5;
+        }
+
+        .ai-answer pre {
+            overflow-x: auto;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f5f5f5;
+        }
+
+        .ai-answer pre code {
+            background: transparent;
+            padding: 0;
+        }
+
+        .ai-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+
+        .ai-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .ai-table th,
+        .ai-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .ai-table th {
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
+
+                    <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"></path>
+
+                    <path d="M19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16z"></path>
+
+                </svg>
+
+            </div>
+
+            <div>
+
+                <div class="brand-text">
+                    EduNova AI
+                </div>
+
+                <div class="brand-subtitle">
+                    Personalized Learning
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NEW CHAT -->
+
+        <button class="new-chat" id="newChatButton">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round">
+
+                <path d="M12 5v14"></path>
+                <path d="M5 12h14"></path>
+
+            </svg>
+
+            <span>
+                New chat
+            </span>
+
+        </button>
+
+
+        <!-- RECENT CHATS -->
+
+        <div class="sidebar-title">
+            Recent chats
+        </div>
+
+        <div
+            class="history"
+            id="history">
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="sidebar-bottom">
+
+            <div class="status">
+
+                <span
+                    class="status-dot"
+                    id="statusDot">
+                </span>
+
+                <span id="statusText">
+                    Checking AI system...
+                </span>
+
+            </div>
+
+            <div
+                class="model-name"
+                id="modelName">
+
+                Connecting...
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="top-title">
+                Ask Anything
+            </div>
+
+            <div class="top-status">
+
+                <span id="aiBadge">
+                    CONNECTING...
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             CHAT AREA
+        ================================================== -->
+
+        <div
+            class="chat-area"
+            id="chatArea">
+
+
+            <!-- =================================================
+                 WELCOME
+            ================================================== -->
+
+            <section
+                class="welcome"
+                id="welcome">
+
+                <div class="welcome-icon">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.8"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <rect
+                            x="4"
+                            y="5"
+                            width="16"
+                            height="15"
+                            rx="4">
+                        </rect>
+
+                        <path d="M9 5V3"></path>
+
+                        <path d="M15 5V3"></path>
+
+                        <circle
+                            cx="9"
+                            cy="12"
+                            r="1">
+                        </circle>
+
+                        <circle
+                            cx="15"
+                            cy="12"
+                            r="1">
+                        </circle>
+
+                        <path d="M8 16c2 1.5 6 1.5 8 0"></path>
+
+                    </svg>
+
+                </div>
+
+
+                <h1 id="welcomeText">
+                    What do you want to learn?
+                </h1>
+
+                <p>
+                    Ask EduNova AI anything.
+                    Learn concepts, solve problems,
+                    understand difficult topics,
+                    and explore new ideas.
+                </p>
+
+
+                <!-- SUGGESTIONS -->
+
+                <div class="suggestions">
+
+
+                    <!-- LEARN CONCEPT -->
+
+                    <button
+                        class="suggestion"
+                        data-question="Explain artificial intelligence in simple words.">
+
+                        <div class="suggestion-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+
+                                <path d="M9 4.5A3 3 0 0 0 6 7.5v.3A3.2 3.2 0 0 0 4 11a3.2 3.2 0 0 0 2 3v.5a3 3 0 0 0 3 3"></path>
+
+                                <path d="M15 4.5A3 3 0 0 1 18 7.5v.3a3.2 3.2 0 0 1 2 3.2 3.2 3.2 0 0 1-2 3v.5a3 3 0 0 1-3 3"></path>
+
+                                <path d="M9 4.5v15"></path>
+                                <path d="M15 4.5v15"></path>
+
+                                <path d="M9 9h3"></path>
+                                <path d="M15 13h-3"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <strong>
+                            Learn a concept
+                        </strong>
+
+                        <span>
+                            Explain something difficult simply
+                        </span>
+
+                    </button>
+
+
+                    <!-- STUDY PLAN -->
+
+                    <button
+                        class="suggestion"
+                        data-question="Create a beginner-friendly study plan for learning Python.">
+
+                        <div class="suggestion-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+
+                                <rect
+                                    x="3"
+                                    y="4"
+                                    width="18"
+                                    height="17"
+                                    rx="3">
+                                </rect>
+
+                                <path d="M16 2v4"></path>
+                                <path d="M8 2v4"></path>
+                                <path d="M3 9h18"></path>
+
+                                <path d="M8 13h2"></path>
+                                <path d="M14 13h2"></path>
+                                <path d="M8 17h2"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <strong>
+                            Make a study plan
+                        </strong>
+
+                        <span>
+                            Create a simple learning roadmap
+                        </span>
+
+                    </button>
+
+
+                    <!-- UNDERSTAND TOPIC -->
+
+                    <button
+                        class="suggestion"
+                        data-question="Explain how databases work with a simple example.">
+
+                        <div class="suggestion-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+
+                                <path d="M9 18h6"></path>
+                                <path d="M10 22h4"></path>
+
+                                <path d="M8.5 15.5C7.5 14.5 6 13 6 10.5A6 6 0 0 1 18 10.5c0 2.5-1.5 4-2.5 5"></path>
+
+                                <path d="M9 15h6"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <strong>
+                            Understand a topic
+                        </strong>
+
+                        <span>
+                            Get an easy explanation with examples
+                        </span>
+
+                    </button>
+
+
+                    <!-- INTERVIEW -->
+
+                    <button
+                        class="suggestion"
+                        data-question="Give me five useful technical interview questions for a beginner.">
+
+                        <div class="suggestion-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+
+                                <rect
+                                    x="3"
+                                    y="7"
+                                    width="18"
+                                    height="13"
+                                    rx="2">
+                                </rect>
+
+                                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+
+                                <path d="M3 12h18"></path>
+
+                                <path d="M10 12v2h4v-2"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <strong>
+                            Prepare for interviews
+                        </strong>
+
+                        <span>
+                            Practice technical questions
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- MESSAGES -->
+
+            <div
+                class="messages"
+                id="messages">
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             COMPOSER
+        ================================================== -->
+
+        <div class="composer-area">
+
+            <div
+                class="upload-name"
+                id="uploadName">
+            </div>
+
+
+            <div class="composer">
+
+
+                <!-- ATTACHMENT MENU -->
+
+                <div
+                    class="attach-menu"
+                    id="attachMenu">
+
+                    <button
+                        class="attach-option"
+                        id="pdfOption">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+
+                            <path d="M14 2v6h6"></path>
+
+                            <path d="M8 13h8"></path>
+
+                            <path d="M8 17h5"></path>
+
+                        </svg>
+
+                        <span>
+                            Upload PDF
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- FILE INPUT -->
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    class="file-input"
+                    accept=".pdf">
+
+
+                <!-- INPUT ROW -->
+
+                <div class="input-row">
+
+
+                    <!-- ATTACH -->
+
+                    <button
+                        class="icon-button"
+                        id="attachButton"
+                        title="Attach PDF">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+
+                        </svg>
+
+                    </button>
+
+
+                    <!-- TEXT -->
+
+                    <textarea
+                        id="questionInput"
+                        placeholder="Ask anything..."
+                        rows="1">
+                    </textarea>
+
+
+                    <!-- VOICE -->
+
+                    <button
+                        class="icon-button"
+                        id="voiceButton"
+                        title="Voice input">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <rect
+                                x="9"
+                                y="2"
+                                width="6"
+                                height="12"
+                                rx="3">
+                            </rect>
+
+                            <path d="M5 10a7 7 0 0 0 14 0"></path>
+
+                            <path d="M12 19v3"></path>
+
+                            <path d="M8 22h8"></path>
+
+                        </svg>
+
+                    </button>
+
+
+                    <!-- SEND -->
+
+                    <button
+                        class="send-button"
+                        id="sendButton"
+                        title="Send">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M22 2L11 13"></path>
+
+                            <path d="M22 2l-7 20-4-9-9-4z"></path>
+
+                        </svg>
+
+                    </button>
+
+                </div>
+
+
+                <div class="composer-footer">
+                    EduNova AI can make mistakes. Check important information.
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<script>
+
+const API_URL = "http://127.0.0.1:5000";
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const chatArea =
+    document.getElementById("chatArea");
+
+const messages =
+    document.getElementById("messages");
+
+const welcome =
+    document.getElementById("welcome");
+
+const input =
+    document.getElementById("questionInput");
+
+const sendButton =
+    document.getElementById("sendButton");
+
+const newChatButton =
+    document.getElementById("newChatButton");
+
+const history =
+    document.getElementById("history");
+
+const attachButton =
+    document.getElementById("attachButton");
+
+const attachMenu =
+    document.getElementById("attachMenu");
+
+const pdfOption =
+    document.getElementById("pdfOption");
+
+const fileInput =
+    document.getElementById("fileInput");
+
+const uploadName =
+    document.getElementById("uploadName");
+
+const voiceButton =
+    document.getElementById("voiceButton");
+
+const toast =
+    document.getElementById("toast");
+
+
+/* =====================================================
+   USER NAME
+===================================================== */
+
+function loadStudentName() {
+
+    const studentName =
+        localStorage.getItem("studentName");
+
+    const welcomeText =
+        document.getElementById("welcomeText");
+
+    if (studentName && welcomeText) {
+
+        welcomeText.textContent =
+            "Welcome, " +
+            studentName +
+            " 👋";
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =====================================================
+   AI ANSWER FORMATTER
+===================================================== */
+
+function formatAIAnswer(text) {
+
+    if (!text) {
+        return "";
+    }
+
+    /*
+       REMOVE UNWANTED SVG CONTENT
+    */
+
+    text = text.replace(
+        /<svg[\s\S]*?<\/svg>/gi,
+        ""
+    );
+
+    text = text.replace(
+        /\*\*svg\*\*/gi,
+        ""
+    );
+
+    text = text.replace(
+        /^svg$/gim,
+        ""
+    );
+
+    text = text.replace(
+        /^\s*svg\s*$/gim,
+        ""
+    );
+
+
+    /*
+       REMOVE MARKDOWN SEPARATOR
+    */
+
+    text = text.replace(
+        /^[-*_]{3,}\s*$/gm,
+        ""
+    );
+
+
+    /*
+       ESCAPE HTML
+    */
+
+    text = escapeHTML(text);
+
+
+    /*
+       CODE BLOCKS
+    */
+
+    text = text.replace(
+        /```([\s\S]*?)```/g,
+        "<pre><code>$1</code></pre>"
+    );
+
+
+    /*
+       HEADINGS
+    */
+
+    text = text.replace(
+        /^### (.*)$/gm,
+        "<h4>$1</h4>"
+    );
+
+    text = text.replace(
+        /^## (.*)$/gm,
+        "<h3>$1</h3>"
+    );
+
+    text = text.replace(
+        /^# (.*)$/gm,
+        "<h2>$1</h2>"
+    );
+
+
+    /*
+       BOLD
+    */
+
+    text = text.replace(
+        /\*\*(.*?)\*\*/g,
+        "<strong>$1</strong>"
+    );
+
+
+    /*
+       ITALIC
+    */
+
+    text = text.replace(
+        /(?<!\*)\*([^*\n]+)\*(?!\*)/g,
+        "<em>$1</em>"
+    );
+
+
+    /*
+       INLINE CODE
+    */
+
+    text = text.replace(
+        /`([^`]+)`/g,
+        "<code>$1</code>"
+    );
+
+
+    /*
+       ORDERED LISTS
+    */
+
+    text = text.replace(
+        /^\s*(\d+)[.)]\s+(.*)$/gm,
+        "<li>$2</li>"
+    );
+
+
+    /*
+       BULLET LISTS
+    */
+
+    text = text.replace(
+        /^\s*[-•*]\s+(.*)$/gm,
+        "<li>$1</li>"
+    );
+
+
+    /*
+       WRAP LI ITEMS
+    */
+
+    text = text.replace(
+        /((?:<li>.*?<\/li>\s*)+)/gs,
+        "<ul>$1</ul>"
+    );
+
+
+    /*
+       NEW LINES
+    */
+
+    text = text.replace(
+        /\n{2,}/g,
+        "<br><br>"
+    );
+
+    text = text.replace(
+        /\n/g,
+        "<br>"
+    );
+
+
+    /*
+       CLEAN EXTRA BREAKS
+    */
+
+    text = text.replace(
+        /(<br>\s*){3,}/g,
+        "<br><br>"
+    );
+
+
+    return text.trim();
+
+}
+
+
+/* =====================================================
+   ADD USER MESSAGE
+===================================================== */
+
+function addUserMessage(question) {
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "message user";
+
+    message.innerHTML = `
+
+        <div class="message-inner">
+
+            <div class="avatar user-avatar">
+                U
+            </div>
+
+            <div class="message-content">
+
+                <div class="message-name">
+                    You
+                </div>
+
+                <div>
+                    ${escapeHTML(question)}
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+    messages.appendChild(message);
+
+    scrollToBottom();
+
+}
+
+
+/* =====================================================
+   ADD AI MESSAGE
+===================================================== */
+
+function addAIMessage(data) {
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "message ai";
+
+
+    const answer =
+        formatAIAnswer(
+            data.answer ||
+            "No answer received."
+        );
+
+
+    message.innerHTML = `
+
+        <div class="message-inner">
+
+            <div class="avatar ai-avatar">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
+
+                    <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"></path>
+
+                </svg>
+
+            </div>
+
+            <div class="message-content">
+
+                <div class="message-name">
+                    EduNova AI
+                </div>
+
+                <div class="ai-answer">
+                    ${answer}
+                </div>
+
+                <div class="ai-meta">
+                    AI-generated learning explanation ·
+                    ${escapeHTML(
+                        data.provider || "groq"
+                    )}
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    messages.appendChild(message);
+
+    scrollToBottom();
+
+}
+
+
+/* =====================================================
+   AI ERROR
+===================================================== */
+
+function addAIError(messageText) {
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "message ai";
+
+
+    message.innerHTML = `
+
+        <div class="message-inner">
+
+            <div class="avatar ai-avatar">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
+
+                    <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"></path>
+
+                </svg>
+
+            </div>
+
+            <div class="message-content">
+
+                <div class="message-name">
+                    EduNova AI
+                </div>
+
+                <div class="ai-answer">
+
+                    <p>
+                        ${escapeHTML(
+                            messageText ||
+                            "Something went wrong. Please try again."
+                        )}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    messages.appendChild(message);
+
+    scrollToBottom();
+
+}
+
+
+/* =====================================================
+   ASK QUESTION
+===================================================== */
+
+async function askQuestion() {
+
+    const question =
+        input.value.trim();
+
+
+    if (!question) {
+
+        showToast(
+            "Please enter a question."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    welcome.style.display =
+        "none";
+
+
+    addUserMessage(question);
+
+
+    input.value = "";
+
+    autoResize();
+
+
+    sendButton.disabled =
+        true;
+
+
+    sendButton.innerHTML =
+        `<span>...</span>`;
+
+
+    const thinking =
+        document.createElement("div");
+
+    thinking.className =
+        "message ai";
+
+    thinking.id =
+        "thinkingMessage";
+
+
+    thinking.innerHTML = `
+
+        <div class="message-inner">
+
+            <div class="avatar ai-avatar">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
+
+                    <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"></path>
+
+                </svg>
+
+            </div>
+
+            <div class="message-content">
+
+                <div class="message-name">
+                    EduNova AI
+                </div>
+
+                <div class="ai-answer">
+                    Thinking...
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    messages.appendChild(thinking);
+
+    scrollToBottom();
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/ask",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        question:
+                            question,
+
+                        provider:
+                            "groq"
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        const thinkingMessage =
+            document.getElementById(
+                "thinkingMessage"
+            );
+
+
+        if (thinkingMessage) {
+
+            thinkingMessage.remove();
+
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.answer ||
+                "AI request failed."
+            );
+
+        }
+
+
+        addAIMessage(data);
+
+        addHistory(question);
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "EduNova AI Error:",
+            error
+        );
+
+
+        const thinkingMessage =
+            document.getElementById(
+                "thinkingMessage"
+            );
+
+
+        if (thinkingMessage) {
+
+            thinkingMessage.remove();
+
+        }
+
+
+        addAIError(
+            error.message ||
+            "EduNova AI could not connect to the backend. Please make sure Flask is running."
+        );
+
+    }
+
+
+    finally {
+
+        sendButton.disabled =
+            false;
+
+
+        sendButton.innerHTML = `
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.8"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+
+                <path d="M22 2L11 13"></path>
+
+                <path d="M22 2l-7 20-4-9-9-4z"></path>
+
+            </svg>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   SEND BUTTON
+===================================================== */
+
+sendButton.addEventListener(
+    "click",
+    askQuestion
+);
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+input.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter" &&
+            !event.shiftKey
+        ) {
+
+            event.preventDefault();
+
+            askQuestion();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   AUTO RESIZE
+===================================================== */
+
+function autoResize() {
+
+    input.style.height =
+        "auto";
+
+
+    input.style.height =
+        Math.min(
+            input.scrollHeight,
+            130
+        ) + "px";
+
+}
+
+
+input.addEventListener(
+    "input",
+    autoResize
+);
+
+
+/* =====================================================
+   NEW CHAT
+===================================================== */
+
+newChatButton.addEventListener(
+    "click",
+    function() {
+
+        messages.innerHTML =
+            "";
+
+        welcome.style.display =
+            "block";
+
+        input.value =
+            "";
+
+        uploadName.style.display =
+            "none";
+
+        uploadName.textContent =
+            "";
+
+        input.focus();
+
+    }
+);
+
+
+/* =====================================================
+   SUGGESTIONS
+===================================================== */
+
+document
+    .querySelectorAll(".suggestion")
+    .forEach(function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const question =
+                    button.dataset.question;
+
+                input.value =
+                    question;
+
+                autoResize();
+
+                askQuestion();
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+function addHistory(question) {
+
+    const item =
+        document.createElement("div");
+
+
+    item.className =
+        "history-item";
+
+
+    item.textContent =
+        question;
+
+
+    item.title =
+        question;
+
+
+    item.addEventListener(
+        "click",
+        function() {
+
+            input.value =
+                question;
+
+            autoResize();
+
+            input.focus();
+
+        }
+    );
+
+
+    history.prepend(item);
+
+
+    while (
+        history.children.length > 20
+    ) {
+
+        history.removeChild(
+            history.lastChild
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD SAVED HISTORY
+===================================================== */
+
+async function loadHistory() {
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/history"
+            );
+
+
+        if (!response.ok) {
+            return;
+        }
+
+
+        const data =
+            await response.json();
+
+
+        history.innerHTML =
+            "";
+
+
+        const savedHistory =
+            data.history || [];
+
+
+        savedHistory
+            .slice()
+            .reverse()
+            .forEach(function(item) {
+
+                if (item.question) {
+
+                    addHistory(
+                        item.question
+                    );
+
+                }
+
+            });
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "History loading error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ATTACHMENT MENU
+===================================================== */
+
+attachButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        attachMenu.classList.toggle(
+            "show"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   PDF OPTION
+===================================================== */
+
+pdfOption.addEventListener(
+    "click",
+    function() {
+
+        attachMenu.classList.remove(
+            "show"
+        );
+
+        fileInput.click();
+
+    }
+);
+
+
+/* =====================================================
+   CLOSE ATTACHMENT MENU
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            !attachMenu.contains(event.target) &&
+            event.target !== attachButton
+        ) {
+
+            attachMenu.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PDF UPLOAD
+===================================================== */
+
+fileInput.addEventListener(
+    "change",
+    async function() {
+
+        const file =
+            fileInput.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        if (
+            !file.name
+                .toLowerCase()
+                .endsWith(".pdf")
+        ) {
+
+            showToast(
+                "Please select a PDF file."
+            );
+
+            return;
+
+        }
+
+
+        uploadName.textContent =
+            "Uploading: " +
+            file.name;
+
+
+        uploadName.style.display =
+            "block";
+
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "file",
+            file
+        );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API_URL + "/upload",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "Upload failed."
+                );
+
+            }
+
+
+            uploadName.textContent =
+                "PDF ready: " +
+                file.name;
+
+
+            showToast(
+                "PDF uploaded successfully."
+            );
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "PDF upload error:",
+                error
+            );
+
+
+            uploadName.textContent =
+                "";
+
+
+            uploadName.style.display =
+                "none";
+
+
+            showToast(
+                error.message ||
+                "Could not upload PDF."
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   VOICE INPUT
+===================================================== */
+
+voiceButton.addEventListener(
+    "click",
+    function() {
+
+        const SpeechRecognition =
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition;
+
+
+        if (!SpeechRecognition) {
+
+            showToast(
+                "Voice input is not supported in this browser."
+            );
+
+            return;
+
+        }
+
+
+        const recognition =
+            new SpeechRecognition();
+
+
+        recognition.lang =
+            "en-IN";
+
+
+        recognition.interimResults =
+            false;
+
+
+        recognition.maxAlternatives =
+            1;
+
+
+        showToast(
+            "Listening..."
+        );
+
+
+        recognition.start();
+
+
+        recognition.onresult =
+            function(event) {
+
+                const speech =
+                    event.results[0][0]
+                        .transcript;
+
+
+                input.value =
+                    speech;
+
+
+                autoResize();
+
+                input.focus();
+
+            };
+
+
+        recognition.onerror =
+            function() {
+
+                showToast(
+                    "Voice input could not be used."
+                );
+
+            };
+
+    }
+);
+
+
+/* =====================================================
+   BACKEND STATUS
+===================================================== */
+
+async function checkBackendStatus() {
+
+    const dot =
+        document.getElementById(
+            "statusDot"
+        );
+
+
+    const statusText =
+        document.getElementById(
+            "statusText"
+        );
+
+
+    const badge =
+        document.getElementById(
+            "aiBadge"
+        );
+
+
+    const modelName =
+        document.getElementById(
+            "modelName"
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/status"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            data.status === "ready" &&
+            data.groq_configured
+        ) {
+
+            dot.className =
+                "status-dot online";
+
+
+            statusText.textContent =
+                "AI system ready";
+
+
+            badge.textContent =
+                "GROQ AI READY";
+
+
+            modelName.textContent =
+                data.model ||
+                "Groq AI";
+
+        }
+
+
+        else {
+
+            dot.className =
+                "status-dot";
+
+
+            statusText.textContent =
+                "AI configuration incomplete";
+
+
+            badge.textContent =
+                "CONFIGURATION NEEDED";
+
+
+            modelName.textContent =
+                "Check backend";
+
+        }
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Backend status error:",
+            error
+        );
+
+
+        dot.className =
+            "status-dot";
+
+
+        statusText.textContent =
+            "Backend offline";
+
+
+        badge.textContent =
+            "BACKEND OFFLINE";
+
+
+        modelName.textContent =
+            "Start Flask backend";
+
+    }
+
+}
+
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+function scrollToBottom() {
+
+    setTimeout(
+        function() {
+
+            chatArea.scrollTop =
+                chatArea.scrollHeight;
+
+        },
+        50
+    );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer;
+
+
+function showToast(message) {
+
+    toast.textContent =
+        message;
+
+
+    toast.style.display =
+        "block";
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            function() {
+
+                toast.style.display =
+                    "none";
+
+            },
+            2500
+        );
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadStudentName();
+
+        checkBackendStatus();
+
+        loadHistory();
+
+        input.focus();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

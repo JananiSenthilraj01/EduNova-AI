@@ -1,114 +1,701 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNova AI - Project Expo 2026</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EduNova AI | Dashboard</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
+
 
 <body>
 
-    <!-- Header -->
 
-    <header class="header">
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-        <div class="logo">EduNova AI</div>
+<aside class="sidebar">
 
-        <p>AI-Powered Smart Academic & Placement Companion</p>
 
-    </header>
+    <div class="sidebar-logo">
 
-    <!-- Welcome -->
+        <h2>EduNova AI</h2>
 
-    <h2 id="welcomeName"></h2>
+        <p>AI Student Hub</p>
 
-<script>
-const name = localStorage.getItem("studentName") || "Student";
-document.getElementById("welcomeName").innerHTML = "Welcome, " + name + " 👋";
-</script>
-    <!-- Dashboard -->
+    </div>
 
-    <section class="dashboard">
 
-        <h2>Quick Dashboard</h2>
+    <nav class="sidebar-menu">
 
-        <div class="dashboard-grid">
 
-            <!-- AI Study Mentor -->
+        <a href="index.html"
+           class="sidebar-link active">
 
-            <a href="study.html" class="dashboard-card">
+            <i class="fas fa-house"></i>
 
-                <div class="card-icon"></div>
+            <span>Home</span>
 
-                <h3>AI Study Mentor</h3>
+        </a>
 
-                <p>
-                    AI Chat, semester syllabus, notes, quizzes and progress tracker.
-                </p>
 
-            </a>
+        <a href="study.html"
+           class="sidebar-link">
 
-            <!-- Placement AI -->
+            <i class="fas fa-book-open"></i>
 
-            <a href="placement.html" class="dashboard-card">
+            <span>Study Mentor</span>
 
-                <div class="card-icon"></div>
+        </a>
 
-                <h3>Placement AI</h3>
 
-                <p>
-                    Dream company roadmap, resume builder and interview preparation.
-                </p>
+        <a href="placement.html"
+           class="sidebar-link">
 
-            </a>
+            <i class="fas fa-briefcase"></i>
 
-            <!-- Health AI -->
+            <span>Placement</span>
 
-            <a href="health.html" class="dashboard-card">
+        </a>
 
-                <div class="card-icon"></div>
 
-                <h3>Health AI</h3>
+        <a href="updates.html"
+           class="sidebar-link">
 
-                <p>
-                    Study timer, focus tracker, hydration reminder and wellness tools.
-                </p>
+            <i class="fas fa-bullhorn"></i>
 
-            </a>
+            <span>College Live Updates</span>
 
-            <!-- College Updates -->
+        </a>
 
-            <a href="updates.html" class="dashboard-card">
 
-                <div class="card-icon"></div>
+        <a href="health.html"
+           class="sidebar-link">
 
-                <h3>College Live Updates</h3>
+            <i class="fas fa-heart-pulse"></i>
 
-                <p>
-                    Symposiums, hackathons, workshops, placements and exam notifications.
-                </p>
+            <span>Health</span>
 
-            </a>
+        </a>
 
-        </div>
-
-    </section>
-
-    <!-- Bottom Navigation -->
-
-    <nav class="bottom-nav">
-
-        <a href="index.html" class="active">Home</a>
-
-        <a href="study.html">Study Mentor</a>
-
-        <a href="placement.html">Placement AI</a>
-
-        <a href="updates.html">Updates</a>
 
     </nav>
 
+
+    <div class="sidebar-bottom">
+
+
+        <a href="#"
+           class="sidebar-link">
+
+            <i class="fas fa-user"></i>
+
+            <span>Profile</span>
+
+        </a>
+
+
+        <button class="logout-button"
+                onclick="logoutStudent()">
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </button>
+
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- TOP HEADER -->
+
+    <header class="top-header">
+
+
+        <div class="welcome-area">
+
+            <p class="dashboard-label">
+                STUDENT DASHBOARD
+            </p>
+
+
+            <h1 id="greetingText">
+                Good afternoon,
+                <span id="studentNameDisplay">
+                    Student
+                </span>
+            </h1>
+
+        </div>
+
+
+
+        <div class="header-actions">
+
+
+            <div class="search-box">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                    type="text"
+                    placeholder="Search..."
+                >
+
+            </div>
+
+
+            <button class="notification-button">
+
+                <i class="far fa-bell"></i>
+
+            </button>
+
+
+            <div class="profile-area">
+
+
+                <div class="profile-circle"
+                     id="profileInitial">
+
+                    J
+
+                </div>
+
+
+                <strong id="profileName">
+
+                    Student
+
+                </strong>
+
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =================================================
+         STAT CARDS
+    ================================================== -->
+
+    <section class="stats">
+
+
+        <div class="stat-card">
+
+
+            <div class="stat-icon">
+
+                <i class="far fa-clock"></i>
+
+            </div>
+
+
+            <p>
+                Study Time
+            </p>
+
+
+            <h2>
+                2.5 hrs
+            </h2>
+
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+
+            <div class="stat-icon">
+
+                <i class="fas fa-bolt"></i>
+
+            </div>
+
+
+            <p>
+                XP
+            </p>
+
+
+            <h2>
+                1,240
+            </h2>
+
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+
+            <div class="stat-icon">
+
+                <i class="fas fa-list-check"></i>
+
+            </div>
+
+
+            <p>
+                Tasks
+            </p>
+
+
+            <h2>
+                3
+            </h2>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         AI RECOMMENDATION
+    ================================================== -->
+
+    <section class="ai-card">
+
+
+        <div class="ai-message">
+
+
+            <div class="ai-icon">
+
+                <i class="fas fa-robot"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    You should revise DBMS today.
+                </h3>
+
+
+                <p>
+                    EduNova AI recommends a
+                    30-minute revision session.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <button class="start-button">
+
+            Start 30-min Session
+
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         LEARNING SECTION
+    ================================================== -->
+
+    <section class="learning-grid">
+
+
+        <!-- TODAY'S LEARNING -->
+
+        <div class="learning-card">
+
+
+            <div class="card-title">
+
+                <h2>
+                    Today's Learning
+                </h2>
+
+
+                <span>
+                    Progress
+                </span>
+
+            </div>
+
+
+            <!-- DBMS -->
+
+            <div class="subject-row">
+
+
+                <div class="subject-header">
+
+                    <span>
+                        DBMS
+                    </span>
+
+                    <strong>
+                        72%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width:72%;">
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- DSA -->
+
+            <div class="subject-row">
+
+
+                <div class="subject-header">
+
+                    <span>
+                        DSA
+                    </span>
+
+                    <strong>
+                        55%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width:55%;">
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- AI -->
+
+            <div class="subject-row">
+
+
+                <div class="subject-header">
+
+                    <span>
+                        Artificial Intelligence
+                    </span>
+
+                    <strong>
+                        82%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width:82%;">
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             WEEKLY LEARNING
+        ================================================== -->
+
+        <div class="learning-card weekly-card">
+
+
+            <div class="card-title">
+
+                <h2>
+                    Weekly Learning
+                </h2>
+
+
+                <span>
+                    Study Hours
+                </span>
+
+            </div>
+
+
+
+            <div class="chart">
+
+
+                <div class="chart-lines">
+
+                    <span></span>
+
+                    <span></span>
+
+                    <span></span>
+
+                </div>
+
+
+                <svg
+                    viewBox="0 0 600 220"
+                    preserveAspectRatio="none"
+                    class="chart-svg">
+
+
+                    <polyline
+                        points="
+                        20,160
+                        110,120
+                        200,145
+                        290,95
+                        380,130
+                        470,65
+                        560,105
+                        "
+                        fill="none"
+                        stroke="#2864e8"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round">
+                    </polyline>
+
+
+                    <circle
+                        cx="20"
+                        cy="160"
+                        r="6">
+                    </circle>
+
+
+                    <circle
+                        cx="110"
+                        cy="120"
+                        r="6">
+                    </circle>
+
+
+                    <circle
+                        cx="200"
+                        cy="145"
+                        r="6">
+                    </circle>
+
+
+                    <circle
+                        cx="290"
+                        cy="95"
+                        r="6">
+                    </circle>
+
+
+                    <circle
+                        cx="380"
+                        cy="130"
+                        r="6">
+                    </circle>
+
+
+                    <circle
+                        cx="470"
+                        cy="65"
+                        r="6">
+                    </circle>
+
+
+                    <circle
+                        cx="560"
+                        cy="105"
+                        r="6">
+                    </circle>
+
+
+                </svg>
+
+
+                <div class="chart-days">
+
+                    <span>Mon</span>
+
+                    <span>Tue</span>
+
+                    <span>Wed</span>
+
+                    <span>Thu</span>
+
+                    <span>Fri</span>
+
+                    <span>Sat</span>
+
+                    <span>Sun</span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="weekly-summary">
+
+
+                <div>
+
+                    <h2>
+                        16.1 hrs
+                    </h2>
+
+                    <p>
+                        Total this week
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        2.3 hrs
+                    </h2>
+
+                    <p>
+                        Daily average
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    /* Get student information */
+
+    const studentName =
+        localStorage.getItem("studentName")
+        || "Student";
+
+
+    /* Greeting */
+
+    const hour =
+        new Date().getHours();
+
+
+    let greeting =
+        "Good morning,";
+
+
+    if (hour >= 12 && hour < 17) {
+
+        greeting =
+            "Good afternoon,";
+
+    }
+    else if (hour >= 17) {
+
+        greeting =
+            "Good evening,";
+
+    }
+
+
+    document.getElementById("greetingText").innerHTML =
+        greeting +
+        ' <span id="studentNameDisplay">' +
+        studentName +
+        '</span>';
+
+
+    /* Profile name */
+
+    document.getElementById("profileName").textContent =
+        studentName;
+
+
+    /* Profile initial */
+
+    document.getElementById("profileInitial").textContent =
+        studentName.charAt(0).toUpperCase();
+
+
+</script>
+
+
+<script src="script.js"></script>
+
+
 </body>
+
 </html>
