@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -22,22 +24,42 @@
             box-sizing: border-box;
         }
 
+
+        /* =====================================================
+           COLOR VARIABLES - SOFT FADED PURPLE
+        ===================================================== */
+
         :root {
-            --primary: #5b5ff7;
-            --primary-dark: #4548d9;
-            --purple: #8b5cf6;
-            --blue: #3b82f6;
-            --text: #111827;
-            --muted: #6b7280;
-            --light: #f8faff;
-            --border: rgba(255,255,255,0.55);
+
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --purple: #a78bfa;
+            --lavender: #c4b5fd;
+
+            --text: #1f1633;
+            --muted: #756b86;
+
+            --light: #fbf9ff;
+
+            --border: rgba(255,255,255,0.60);
         }
+
+
+        /* =====================================================
+           HTML
+        ===================================================== */
 
         html {
             scroll-behavior: smooth;
         }
 
+
+        /* =====================================================
+           BODY
+        ===================================================== */
+
         body {
+
             min-height: 100vh;
 
             font-family:
@@ -57,22 +79,27 @@
 
             overflow: hidden;
 
+            /* SOFT FADED PURPLE BACKGROUND */
+
             background:
+
                 radial-gradient(
                     circle at 10% 10%,
-                    rgba(99,102,241,0.20),
-                    transparent 30%
+                    rgba(167,139,250,0.22),
+                    transparent 32%
                 ),
+
                 radial-gradient(
                     circle at 90% 90%,
-                    rgba(139,92,246,0.20),
-                    transparent 30%
+                    rgba(196,181,253,0.25),
+                    transparent 32%
                 ),
+
                 linear-gradient(
                     135deg,
-                    #eef2ff,
-                    #f8faff 50%,
-                    #ede9fe
+                    #f5f0ff,
+                    #fbf9ff 50%,
+                    #eee7ff
                 );
         }
 
@@ -82,36 +109,52 @@
         ===================================================== */
 
         .background {
+
             position: fixed;
+
             inset: 0;
+
             overflow: hidden;
+
             pointer-events: none;
+
             z-index: 0;
         }
 
+
         .blob {
+
             position: absolute;
+
             border-radius: 50%;
+
             filter: blur(5px);
+
             opacity: 0.45;
-            animation: floatBlob 10s ease-in-out infinite;
+
+            animation:
+                floatBlob 10s ease-in-out infinite;
         }
 
+
         .blob.one {
+
             width: 340px;
             height: 340px;
 
-            background: #a5b4fc;
+            background: #c4b5fd;
 
             top: -150px;
             left: -100px;
         }
 
+
         .blob.two {
+
             width: 400px;
             height: 400px;
 
-            background: #c4b5fd;
+            background: #ddd6fe;
 
             right: -180px;
             bottom: -180px;
@@ -119,17 +162,20 @@
             animation-delay: 2s;
         }
 
+
         .blob.three {
+
             width: 170px;
             height: 170px;
 
-            background: #93c5fd;
+            background: #d8b4fe;
 
             top: 15%;
             right: 12%;
 
             animation-delay: 4s;
         }
+
 
         @keyframes floatBlob {
 
@@ -149,7 +195,9 @@
         ===================================================== */
 
         .page {
+
             position: relative;
+
             z-index: 2;
 
             width: min(1050px, 100%);
@@ -164,35 +212,50 @@
 
             border-radius: 32px;
 
-            background: rgba(255,255,255,0.72);
+            background: rgba(255,255,255,0.76);
 
-            border: 1px solid rgba(255,255,255,0.85);
+            border:
+                1px solid rgba(255,255,255,0.90);
 
             box-shadow:
-                0 35px 90px rgba(67,56,202,0.18),
-                0 10px 30px rgba(37,99,235,0.08);
+
+                0 35px 90px
+                rgba(109,78,155,0.16),
+
+                0 10px 30px
+                rgba(139,92,246,0.08);
 
             backdrop-filter: blur(25px);
 
-            animation: pageAppear 0.8s ease;
+            animation:
+                pageAppear 0.8s ease;
         }
+
 
         @keyframes pageAppear {
 
             from {
+
                 opacity: 0;
-                transform: translateY(25px) scale(0.98);
+
+                transform:
+                    translateY(25px)
+                    scale(0.98);
             }
 
             to {
+
                 opacity: 1;
-                transform: translateY(0) scale(1);
+
+                transform:
+                    translateY(0)
+                    scale(1);
             }
         }
 
 
         /* =====================================================
-           LEFT SIDE
+           LEFT HERO SECTION
         ===================================================== */
 
         .hero-section {
@@ -211,19 +274,24 @@
 
             color: white;
 
+            /* SOFT FADED PURPLE */
+
             background:
+
                 radial-gradient(
                     circle at 80% 15%,
                     rgba(255,255,255,0.20),
                     transparent 25%
                 ),
+
                 linear-gradient(
                     145deg,
-                    #4f46e5,
-                    #6366f1 48%,
-                    #7c3aed
+                    #7c5ac7,
+                    #9175d6 48%,
+                    #a78bdb
                 );
         }
+
 
         .hero-section::before {
 
@@ -236,11 +304,13 @@
 
             border-radius: 50%;
 
-            background: rgba(255,255,255,0.08);
+            background:
+                rgba(255,255,255,0.08);
 
             right: -120px;
             top: 100px;
         }
+
 
         .hero-section::after {
 
@@ -253,7 +323,8 @@
 
             border-radius: 50%;
 
-            border: 1px solid rgba(255,255,255,0.15);
+            border:
+                1px solid rgba(255,255,255,0.15);
 
             right: 80px;
             bottom: -100px;
@@ -267,39 +338,52 @@
         .brand {
 
             position: relative;
+
             z-index: 2;
 
             display: flex;
+
             align-items: center;
 
             gap: 12px;
 
             font-size: 18px;
+
             font-weight: 700;
 
             letter-spacing: 0.2px;
         }
 
+
         .brand-icon {
 
-            width: 42px;
-            height: 42px;
+            width: 55px;
+            height: 55px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            border-radius: 13px;
+            flex-shrink: 0;
+        }
 
-            font-size: 20px;
 
-            background: rgba(255,255,255,0.16);
+        .brand-icon img {
 
-            border: 1px solid rgba(255,255,255,0.25);
+            width: 55px;
+            height: 55px;
 
-            box-shadow:
-                inset 0 1px rgba(255,255,255,0.25),
-                0 8px 20px rgba(0,0,0,0.10);
+            object-fit: contain;
+
+            display: block;
+
+            filter:
+                drop-shadow(
+                    0 5px 12px
+                    rgba(0,0,0,0.15)
+                );
         }
 
 
@@ -310,10 +394,12 @@
         .hero-content {
 
             position: relative;
+
             z-index: 2;
 
             margin-top: 40px;
         }
+
 
         .eyebrow {
 
@@ -329,9 +415,11 @@
 
             border-radius: 50px;
 
-            background: rgba(255,255,255,0.12);
+            background:
+                rgba(255,255,255,0.12);
 
-            border: 1px solid rgba(255,255,255,0.18);
+            border:
+                1px solid rgba(255,255,255,0.18);
 
             font-size: 12px;
 
@@ -340,6 +428,7 @@
             letter-spacing: 0.4px;
         }
 
+
         .status-dot {
 
             width: 7px;
@@ -347,16 +436,19 @@
 
             border-radius: 50%;
 
-            background: #86efac;
+            background: #bbf7d0;
 
-            box-shadow: 0 0 10px #86efac;
+            box-shadow:
+                0 0 10px #bbf7d0;
         }
+
 
         .hero-title {
 
             max-width: 480px;
 
-            font-size: clamp(38px, 4vw, 58px);
+            font-size:
+                clamp(38px, 4vw, 58px);
 
             line-height: 1.02;
 
@@ -365,26 +457,31 @@
             margin-bottom: 22px;
         }
 
+
         .hero-title span {
 
             background:
+
                 linear-gradient(
                     90deg,
                     #ffffff,
-                    #ddd6fe
+                    #ede9fe
                 );
 
             -webkit-background-clip: text;
+
             background-clip: text;
 
             -webkit-text-fill-color: transparent;
         }
 
+
         .hero-description {
 
             max-width: 430px;
 
-            color: rgba(255,255,255,0.78);
+            color:
+                rgba(255,255,255,0.80);
 
             font-size: 15px;
 
@@ -399,6 +496,7 @@
         .features {
 
             position: relative;
+
             z-index: 3;
 
             display: flex;
@@ -408,6 +506,7 @@
             margin-top: 35px;
         }
 
+
         .feature {
 
             flex: 1;
@@ -416,21 +515,29 @@
 
             border-radius: 16px;
 
-            background: rgba(255,255,255,0.10);
+            background:
+                rgba(255,255,255,0.10);
 
-            border: 1px solid rgba(255,255,255,0.14);
+            border:
+                1px solid
+                rgba(255,255,255,0.14);
 
             backdrop-filter: blur(10px);
 
-            transition: 0.25s ease;
+            transition:
+                0.25s ease;
         }
+
 
         .feature:hover {
 
-            transform: translateY(-4px);
+            transform:
+                translateY(-4px);
 
-            background: rgba(255,255,255,0.16);
+            background:
+                rgba(255,255,255,0.16);
         }
+
 
         .feature-icon {
 
@@ -438,6 +545,7 @@
 
             margin-bottom: 8px;
         }
+
 
         .feature strong {
 
@@ -448,9 +556,11 @@
             margin-bottom: 3px;
         }
 
+
         .feature small {
 
-            color: rgba(255,255,255,0.65);
+            color:
+                rgba(255,255,255,0.68);
 
             font-size: 10px;
         }
@@ -467,6 +577,7 @@
             z-index: 4;
 
             right: 34px;
+
             top: 175px;
 
             width: 150px;
@@ -475,17 +586,24 @@
 
             border-radius: 18px;
 
-            background: rgba(255,255,255,0.13);
+            background:
+                rgba(255,255,255,0.13);
 
-            border: 1px solid rgba(255,255,255,0.20);
+            border:
+                1px solid
+                rgba(255,255,255,0.20);
 
             backdrop-filter: blur(15px);
 
             box-shadow:
-                0 15px 35px rgba(0,0,0,0.12);
+                0 15px 35px
+                rgba(0,0,0,0.12);
 
-            animation: floatingCard 4s ease-in-out infinite;
+            animation:
+                floatingCard 4s
+                ease-in-out infinite;
         }
+
 
         @keyframes floatingCard {
 
@@ -498,6 +616,7 @@
                 transform: translateY(-10px);
             }
         }
+
 
         .ai-card-top {
 
@@ -514,19 +633,24 @@
             font-weight: 600;
         }
 
+
         .ai-card-icon {
 
             width: 28px;
             height: 28px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             border-radius: 9px;
 
-            background: rgba(255,255,255,0.18);
+            background:
+                rgba(255,255,255,0.18);
         }
+
 
         .ai-line {
 
@@ -534,10 +658,12 @@
 
             border-radius: 20px;
 
-            background: rgba(255,255,255,0.18);
+            background:
+                rgba(255,255,255,0.18);
 
             margin-bottom: 7px;
         }
+
 
         .ai-line.short {
             width: 60%;
@@ -553,12 +679,15 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             padding: 55px 60px;
 
-            background: rgba(255,255,255,0.70);
+            background:
+                rgba(255,255,255,0.74);
         }
+
 
         .login-content {
 
@@ -566,52 +695,72 @@
 
             max-width: 360px;
 
-            animation: loginAppear 0.9s ease 0.15s both;
+            animation:
+                loginAppear
+                0.9s ease
+                0.15s both;
         }
+
 
         @keyframes loginAppear {
 
             from {
+
                 opacity: 0;
-                transform: translateX(20px);
+
+                transform:
+                    translateX(20px);
             }
 
             to {
+
                 opacity: 1;
-                transform: translateX(0);
+
+                transform:
+                    translateX(0);
             }
         }
 
 
         /* =====================================================
-           LOGIN HEADER
+           MOBILE LOGO
         ===================================================== */
 
         .mobile-logo {
 
             display: none;
 
-            width: 55px;
-            height: 55px;
+            width: 65px;
+            height: 65px;
 
             align-items: center;
+
             justify-content: center;
 
-            border-radius: 16px;
-
             margin-bottom: 20px;
+        }
 
-            color: white;
 
-            font-size: 25px;
+        .mobile-logo img {
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #4f46e5,
-                    #7c3aed
+            width: 65px;
+            height: 65px;
+
+            object-fit: contain;
+
+            display: block;
+
+            filter:
+                drop-shadow(
+                    0 5px 12px
+                    rgba(124,90,199,0.20)
                 );
         }
+
+
+        /* =====================================================
+           LOGIN HEADER
+        ===================================================== */
 
         .login-content h1 {
 
@@ -621,6 +770,7 @@
 
             margin-bottom: 9px;
         }
+
 
         .login-subtitle {
 
@@ -643,6 +793,7 @@
             margin-bottom: 22px;
         }
 
+
         .label-row {
 
             display: flex;
@@ -654,19 +805,22 @@
             margin-bottom: 9px;
         }
 
+
         .label {
 
-            color: #374151;
+            color: #4b4059;
 
             font-size: 13px;
 
             font-weight: 700;
         }
 
+
         .input-wrapper {
 
             position: relative;
         }
+
 
         .input-icon {
 
@@ -676,16 +830,19 @@
 
             top: 50%;
 
-            transform: translateY(-50%);
+            transform:
+                translateY(-50%);
 
-            color: #9ca3af;
+            color: #aaa0b8;
 
             font-size: 17px;
 
             pointer-events: none;
 
-            transition: 0.2s ease;
+            transition:
+                0.2s ease;
         }
+
 
         .input {
 
@@ -693,46 +850,64 @@
 
             height: 54px;
 
-            padding: 0 16px 0 45px;
+            padding:
+                0 16px 0 45px;
 
-            border: 1px solid #e5e7eb;
+            border:
+                1px solid #e6e0ee;
 
             border-radius: 14px;
 
-            background: rgba(255,255,255,0.90);
+            background:
+                rgba(255,255,255,0.92);
 
-            color: #111827;
+            color: #241b30;
 
             font-size: 14px;
 
             outline: none;
 
             transition:
+
                 border 0.2s ease,
+
                 box-shadow 0.2s ease,
+
                 transform 0.2s ease;
         }
 
+
         .input::placeholder {
-            color: #b0b5bf;
+            color: #b5aebe;
         }
 
+
         .input:hover {
-            border-color: #c7d2fe;
+
+            border-color:
+                #cbb8e8;
         }
+
 
         .input:focus {
 
-            border-color: #6366f1;
+            border-color:
+                #a78bfa;
 
             box-shadow:
-                0 0 0 4px rgba(99,102,241,0.10);
 
-            transform: translateY(-1px);
+                0 0 0 4px
+                rgba(167,139,250,0.12);
+
+            transform:
+                translateY(-1px);
         }
 
+
         .input:focus + .input-icon {
-            color: #6366f1;
+
+            color:
+                #8b5cf6;
         }
 
 
@@ -756,12 +931,15 @@
 
             color: white;
 
+            /* SOFT PURPLE BUTTON */
+
             background:
+
                 linear-gradient(
                     135deg,
-                    #4f46e5,
-                    #6366f1 50%,
-                    #7c3aed
+                    #7c5ac7,
+                    #9175d6 50%,
+                    #a78bdb
                 );
 
             font-size: 14px;
@@ -775,12 +953,17 @@
             overflow: hidden;
 
             box-shadow:
-                0 12px 25px rgba(79,70,229,0.25);
+
+                0 12px 25px
+                rgba(124,90,199,0.22);
 
             transition:
+
                 transform 0.2s ease,
+
                 box-shadow 0.2s ease;
         }
+
 
         .continue-btn::before {
 
@@ -789,39 +972,54 @@
             position: absolute;
 
             top: 0;
+
             left: -100%;
 
             width: 70%;
+
             height: 100%;
 
             background:
+
                 linear-gradient(
                     90deg,
                     transparent,
-                    rgba(255,255,255,0.25),
+                    rgba(255,255,255,0.28),
                     transparent
                 );
 
-            transform: skewX(-20deg);
+            transform:
+                skewX(-20deg);
 
-            transition: 0.6s ease;
+            transition:
+                0.6s ease;
         }
+
 
         .continue-btn:hover {
 
-            transform: translateY(-3px);
+            transform:
+                translateY(-3px);
 
             box-shadow:
-                0 17px 35px rgba(79,70,229,0.32);
+
+                0 17px 35px
+                rgba(124,90,199,0.28);
         }
 
+
         .continue-btn:hover::before {
+
             left: 130%;
         }
 
+
         .continue-btn:active {
-            transform: translateY(-1px);
+
+            transform:
+                translateY(-1px);
         }
+
 
         .btn-content {
 
@@ -832,18 +1030,24 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             gap: 9px;
         }
 
+
         .arrow {
 
-            transition: transform 0.2s ease;
+            transition:
+                transform 0.2s ease;
         }
 
+
         .continue-btn:hover .arrow {
-            transform: translateX(4px);
+
+            transform:
+                translateX(4px);
         }
 
 
@@ -859,12 +1063,14 @@
 
             gap: 12px;
 
-            margin: 27px 0 22px;
+            margin:
+                27px 0 22px;
 
-            color: #b0b5bf;
+            color: #aaa0b8;
 
             font-size: 11px;
         }
+
 
         .divider::before,
         .divider::after {
@@ -875,7 +1081,8 @@
 
             height: 1px;
 
-            background: #e5e7eb;
+            background:
+                #e7e1ef;
         }
 
 
@@ -894,6 +1101,7 @@
             margin-bottom: 25px;
         }
 
+
         .benefit {
 
             display: flex;
@@ -902,10 +1110,11 @@
 
             gap: 10px;
 
-            color: #6b7280;
+            color: #756b86;
 
             font-size: 12px;
         }
+
 
         .check {
 
@@ -915,13 +1124,16 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             border-radius: 50%;
 
-            color: #4f46e5;
+            color:
+                #7c5ac7;
 
-            background: #eef2ff;
+            background:
+                #f0eaff;
 
             font-size: 11px;
 
@@ -935,7 +1147,8 @@
 
         .footer-text {
 
-            color: #9ca3af;
+            color:
+                #a39aaa;
 
             font-size: 11px;
 
@@ -944,21 +1157,27 @@
             line-height: 1.6;
         }
 
+
         .footer-text strong {
-            color: #6b7280;
+
+            color:
+                #756b86;
         }
 
 
         /* =====================================================
-           RESPONSIVE
+           RESPONSIVE - TABLET
         ===================================================== */
 
         @media (max-width: 850px) {
 
             body {
+
                 padding: 20px;
+
                 overflow: auto;
             }
+
 
             .page {
 
@@ -969,6 +1188,7 @@
                 min-height: auto;
             }
 
+
             .hero-section {
 
                 min-height: 330px;
@@ -976,88 +1196,140 @@
                 padding: 35px;
             }
 
+
             .hero-content {
 
                 margin-top: 25px;
             }
+
 
             .hero-title {
 
                 font-size: 39px;
             }
 
+
             .hero-description {
 
                 max-width: 360px;
             }
 
+
             .features {
+
                 display: none;
             }
 
+
             .ai-card {
+
                 right: 25px;
+
                 top: 120px;
-                transform: scale(0.85);
+
+                transform:
+                    scale(0.85);
             }
 
+
             .login-section {
-                padding: 40px 35px;
+
+                padding:
+                    40px 35px;
             }
         }
 
 
+        /* =====================================================
+           RESPONSIVE - MOBILE
+        ===================================================== */
+
         @media (max-width: 520px) {
 
             body {
+
                 padding: 12px;
             }
 
+
             .page {
+
                 border-radius: 24px;
             }
 
+
             .hero-section {
+
                 min-height: 275px;
+
                 padding: 25px;
             }
 
+
             .brand {
+
                 font-size: 16px;
             }
 
+
             .brand-icon {
-                width: 36px;
-                height: 36px;
+
+                width: 45px;
+
+                height: 45px;
             }
+
+
+            .brand-icon img {
+
+                width: 45px;
+
+                height: 45px;
+            }
+
 
             .hero-title {
+
                 font-size: 32px;
-                letter-spacing: -1.2px;
+
+                letter-spacing:
+                    -1.2px;
             }
 
+
             .hero-description {
+
                 font-size: 13px;
             }
 
+
             .ai-card {
+
                 display: none;
             }
 
+
             .login-section {
-                padding: 35px 25px;
+
+                padding:
+                    35px 25px;
             }
 
+
             .login-content h1 {
+
                 font-size: 27px;
             }
 
+
             .mobile-logo {
+
                 display: flex;
             }
         }
 
     </style>
+
 </head>
 
 
@@ -1071,7 +1343,9 @@
     <div class="background">
 
         <div class="blob one"></div>
+
         <div class="blob two"></div>
+
         <div class="blob three"></div>
 
     </div>
@@ -1091,12 +1365,17 @@
         <section class="hero-section">
 
 
-            <!-- Brand -->
+            <!-- BRAND -->
 
             <div class="brand">
 
                 <div class="brand-icon">
-                    ✦
+
+                    <img
+                        src="assets/edunova-logo.png"
+                        alt="EduNova AI Logo"
+                    >
+
                 </div>
 
                 <span>
@@ -1106,9 +1385,10 @@
             </div>
 
 
-            <!-- Hero Content -->
+            <!-- HERO CONTENT -->
 
             <div class="hero-content">
+
 
                 <div class="eyebrow">
 
@@ -1122,9 +1402,12 @@
                 <h2 class="hero-title">
 
                     Learn smarter.
+
                     <br>
 
-                    <span>Grow faster.</span>
+                    <span>
+                        Grow faster.
+                    </span>
 
                 </h2>
 
@@ -1139,9 +1422,10 @@
                 </p>
 
 
-                <!-- Feature Cards -->
+                <!-- FEATURE CARDS -->
 
                 <div class="features">
+
 
                     <div class="feature">
 
@@ -1193,14 +1477,16 @@
 
                     </div>
 
+
                 </div>
 
             </div>
 
 
-            <!-- Floating AI Card -->
+            <!-- FLOATING AI CARD -->
 
             <div class="ai-card">
+
 
                 <div class="ai-card-top">
 
@@ -1214,11 +1500,13 @@
 
                 </div>
 
+
                 <div class="ai-line"></div>
 
                 <div class="ai-line"></div>
 
                 <div class="ai-line short"></div>
+
 
             </div>
 
@@ -1226,9 +1514,8 @@
         </section>
 
 
-
         <!-- =================================================
-             LOGIN SECTION
+             RIGHT LOGIN SECTION
         ================================================== -->
 
         <section class="login-section">
@@ -1237,18 +1524,24 @@
             <div class="login-content">
 
 
-                <!-- Mobile Logo -->
+                <!-- MOBILE LOGO -->
 
                 <div class="mobile-logo">
-                    ✦
+
+                    <img
+                        src="assets/edunova-logo.png"
+                        alt="EduNova AI Logo"
+                    >
+
                 </div>
 
 
-                <!-- Heading -->
+                <!-- HEADING -->
 
                 <h1>
                     Welcome back 👋
                 </h1>
+
 
                 <p class="login-subtitle">
 
@@ -1258,7 +1551,7 @@
                 </p>
 
 
-                <!-- Form -->
+                <!-- FORM -->
 
                 <form
                     class="form"
@@ -1268,19 +1561,23 @@
 
                     <div class="form-group">
 
+
                         <div class="label-row">
 
                             <label
                                 class="label"
                                 for="userName"
                             >
+
                                 Your name
+
                             </label>
 
                         </div>
 
 
                         <div class="input-wrapper">
+
 
                             <input
                                 class="input"
@@ -1292,21 +1589,25 @@
                                 required
                             >
 
+
                             <span class="input-icon">
                                 👤
                             </span>
 
+
                         </div>
+
 
                     </div>
 
 
-                    <!-- Button -->
+                    <!-- BUTTON -->
 
                     <button
                         class="continue-btn"
                         type="submit"
                     >
+
 
                         <span class="btn-content">
 
@@ -1320,22 +1621,26 @@
 
                         </span>
 
+
                     </button>
 
 
                 </form>
 
 
-                <!-- Divider -->
+                <!-- DIVIDER -->
 
                 <div class="divider">
+
                     Your learning journey
+
                 </div>
 
 
-                <!-- Benefits -->
+                <!-- BENEFITS -->
 
                 <div class="benefits">
+
 
                     <div class="benefit">
 
@@ -1375,14 +1680,16 @@
 
                     </div>
 
+
                 </div>
 
 
-                <!-- Footer -->
+                <!-- FOOTER -->
 
                 <p class="footer-text">
 
                     Learn anything. Ask anything.
+
                     <br>
 
                     <strong>
@@ -1400,12 +1707,12 @@
     </main>
 
 
-
     <!-- =====================================================
          JAVASCRIPT
     ===================================================== -->
 
     <script>
+
 
         function startEduNova(event) {
 
@@ -1420,7 +1727,7 @@
                 nameInput.value.trim();
 
 
-            /* Validate name */
+            /* VALIDATE NAME */
 
             if (name === "") {
 
@@ -1434,7 +1741,7 @@
             }
 
 
-            /* Save student name */
+            /* SAVE STUDENT NAME */
 
             localStorage.setItem(
                 "studentName",
@@ -1442,7 +1749,7 @@
             );
 
 
-            /* Small transition before dashboard */
+            /* BUTTON TRANSITION */
 
             const button =
                 document.querySelector(
@@ -1451,17 +1758,27 @@
 
 
             button.innerHTML = `
+
                 <span class="btn-content">
-                    <span>Welcome, ${escapeHTML(name)}!</span>
-                    <span>✓</span>
+
+                    <span>
+                        Welcome, ${escapeHTML(name)}!
+                    </span>
+
+                    <span>
+                        ✓
+                    </span>
+
                 </span>
+
             `;
 
 
-            button.style.pointerEvents = "none";
+            button.style.pointerEvents =
+                "none";
 
 
-            /* Open dashboard */
+            /* OPEN DASHBOARD */
 
             setTimeout(() => {
 
@@ -1473,20 +1790,43 @@
         }
 
 
-        /* Prevent HTML injection in button text */
+        /* =====================================================
+           PREVENT HTML INJECTION
+        ===================================================== */
 
         function escapeHTML(value) {
 
             return value
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
         }
 
     </script>
 
 
 </body>
+
 </html>
