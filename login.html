@@ -11,354 +11,1399 @@
     <title>EduNova AI | Start Learning</title>
 
     <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #5b5ff7;
+            --primary-dark: #4548d9;
+            --purple: #8b5cf6;
+            --blue: #3b82f6;
+            --text: #111827;
+            --muted: #6b7280;
+            --light: #f8faff;
+            --border: rgba(255,255,255,0.55);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             min-height: 100vh;
+
             font-family:
+                Inter,
+                "Segoe UI",
                 Arial,
                 Helvetica,
                 sans-serif;
 
+            color: var(--text);
+
             display: flex;
             align-items: center;
             justify-content: center;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #eef4ff 0%,
-                    #dbeafe 45%,
-                    #eff6ff 100%
-                );
+            padding: 30px;
 
             overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(99,102,241,0.20),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 90%,
+                    rgba(139,92,246,0.20),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f8faff 50%,
+                    #ede9fe
+                );
         }
 
-        /* Background circles */
 
-        .circle {
+        /* =====================================================
+           BACKGROUND BLOBS
+        ===================================================== */
+
+        .background {
             position: fixed;
-            border-radius: 50%;
-            filter: blur(2px);
-            opacity: 0.45;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
             z-index: 0;
         }
 
-        .circle.one {
-            width: 300px;
-            height: 300px;
-            background: #93c5fd;
-            top: -100px;
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(5px);
+            opacity: 0.45;
+            animation: floatBlob 10s ease-in-out infinite;
+        }
+
+        .blob.one {
+            width: 340px;
+            height: 340px;
+
+            background: #a5b4fc;
+
+            top: -150px;
             left: -100px;
         }
 
-        .circle.two {
-            width: 350px;
-            height: 350px;
+        .blob.two {
+            width: 400px;
+            height: 400px;
+
             background: #c4b5fd;
-            bottom: -150px;
-            right: -100px;
+
+            right: -180px;
+            bottom: -180px;
+
+            animation-delay: 2s;
         }
 
-        .circle.three {
-            width: 180px;
-            height: 180px;
-            background: #bfdbfe;
-            top: 20%;
-            right: 10%;
+        .blob.three {
+            width: 170px;
+            height: 170px;
+
+            background: #93c5fd;
+
+            top: 15%;
+            right: 12%;
+
+            animation-delay: 4s;
         }
 
-        /* Login Card */
+        @keyframes floatBlob {
 
-        .login-card {
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(20px, -20px);
+            }
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
+
+        .page {
             position: relative;
-            z-index: 1;
+            z-index: 2;
 
-            width: 100%;
-            max-width: 430px;
+            width: min(1050px, 100%);
 
-            padding: 45px 40px;
+            min-height: 650px;
 
-            background: rgba(255, 255, 255, 0.92);
+            display: grid;
 
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            grid-template-columns: 1.05fr 0.95fr;
 
-            border-radius: 24px;
+            overflow: hidden;
+
+            border-radius: 32px;
+
+            background: rgba(255,255,255,0.72);
+
+            border: 1px solid rgba(255,255,255,0.85);
 
             box-shadow:
-                0 25px 60px rgba(37, 99, 235, 0.15);
+                0 35px 90px rgba(67,56,202,0.18),
+                0 10px 30px rgba(37,99,235,0.08);
 
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(25px);
 
-            text-align: center;
+            animation: pageAppear 0.8s ease;
         }
 
-        /* Logo */
+        @keyframes pageAppear {
 
-        .logo {
-            width: 70px;
-            height: 70px;
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.98);
+            }
 
-            margin: 0 auto 20px;
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+
+        /* =====================================================
+           LEFT SIDE
+        ===================================================== */
+
+        .hero-section {
+
+            position: relative;
+
+            padding: 55px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            overflow: hidden;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 80% 15%,
+                    rgba(255,255,255,0.20),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    145deg,
+                    #4f46e5,
+                    #6366f1 48%,
+                    #7c3aed
+                );
+        }
+
+        .hero-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.08);
+
+            right: -120px;
+            top: 100px;
+        }
+
+        .hero-section::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            right: 80px;
+            bottom: -100px;
+        }
+
+
+        /* =====================================================
+           BRAND
+        ===================================================== */
+
+        .brand {
+
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 18px;
+            font-weight: 700;
+
+            letter-spacing: 0.2px;
+        }
+
+        .brand-icon {
+
+            width: 42px;
+            height: 42px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            border-radius: 20px;
+            border-radius: 13px;
+
+            font-size: 20px;
+
+            background: rgba(255,255,255,0.16);
+
+            border: 1px solid rgba(255,255,255,0.25);
+
+            box-shadow:
+                inset 0 1px rgba(255,255,255,0.25),
+                0 8px 20px rgba(0,0,0,0.10);
+        }
+
+
+        /* =====================================================
+           HERO CONTENT
+        ===================================================== */
+
+        .hero-content {
+
+            position: relative;
+            z-index: 2;
+
+            margin-top: 40px;
+        }
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 8px 13px;
+
+            margin-bottom: 22px;
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,0.12);
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.4px;
+        }
+
+        .status-dot {
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #86efac;
+
+            box-shadow: 0 0 10px #86efac;
+        }
+
+        .hero-title {
+
+            max-width: 480px;
+
+            font-size: clamp(38px, 4vw, 58px);
+
+            line-height: 1.02;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 22px;
+        }
+
+        .hero-title span {
 
             background:
                 linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #7c3aed
+                    90deg,
+                    #ffffff,
+                    #ddd6fe
                 );
 
-            color: white;
+            -webkit-background-clip: text;
+            background-clip: text;
 
-            font-size: 32px;
-            font-weight: bold;
-
-            box-shadow:
-                0 12px 30px rgba(37, 99, 235, 0.25);
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Heading */
+        .hero-description {
 
-        h1 {
-            color: #111827;
+            max-width: 430px;
 
-            font-size: 30px;
-
-            margin-bottom: 8px;
-
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            color: #6b7280;
+            color: rgba(255,255,255,0.78);
 
             font-size: 15px;
 
-            line-height: 1.6;
-
-            margin-bottom: 35px;
+            line-height: 1.75;
         }
 
-        /* Form */
 
-        .form {
-            text-align: left;
+        /* =====================================================
+           FEATURE CARDS
+        ===================================================== */
+
+        .features {
+
+            position: relative;
+            z-index: 3;
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 35px;
         }
 
-        .label {
+        .feature {
+
+            flex: 1;
+
+            padding: 14px;
+
+            border-radius: 16px;
+
+            background: rgba(255,255,255,0.10);
+
+            border: 1px solid rgba(255,255,255,0.14);
+
+            backdrop-filter: blur(10px);
+
+            transition: 0.25s ease;
+        }
+
+        .feature:hover {
+
+            transform: translateY(-4px);
+
+            background: rgba(255,255,255,0.16);
+        }
+
+        .feature-icon {
+
+            font-size: 19px;
+
+            margin-bottom: 8px;
+        }
+
+        .feature strong {
+
             display: block;
 
-            margin-bottom: 9px;
+            font-size: 12px;
 
-            color: #374151;
+            margin-bottom: 3px;
+        }
 
-            font-size: 14px;
+        .feature small {
+
+            color: rgba(255,255,255,0.65);
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           FLOATING AI CARD
+        ===================================================== */
+
+        .ai-card {
+
+            position: absolute;
+
+            z-index: 4;
+
+            right: 34px;
+            top: 175px;
+
+            width: 150px;
+
+            padding: 15px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.13);
+
+            border: 1px solid rgba(255,255,255,0.20);
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.12);
+
+            animation: floatingCard 4s ease-in-out infinite;
+        }
+
+        @keyframes floatingCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .ai-card-top {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 12px;
+
+            font-size: 11px;
 
             font-weight: 600;
         }
 
-        .input {
+        .ai-card-icon {
+
+            width: 28px;
+            height: 28px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: rgba(255,255,255,0.18);
+        }
+
+        .ai-line {
+
+            height: 5px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.18);
+
+            margin-bottom: 7px;
+        }
+
+        .ai-line.short {
+            width: 60%;
+        }
+
+
+        /* =====================================================
+           RIGHT LOGIN SECTION
+        ===================================================== */
+
+        .login-section {
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 55px 60px;
+
+            background: rgba(255,255,255,0.70);
+        }
+
+        .login-content {
+
             width: 100%;
 
-            padding: 15px 16px;
+            max-width: 360px;
 
-            border: 1px solid #d1d5db;
+            animation: loginAppear 0.9s ease 0.15s both;
+        }
 
-            border-radius: 12px;
+        @keyframes loginAppear {
 
-            background: #ffffff;
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
 
-            color: #111827;
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-            font-size: 15px;
 
-            outline: none;
+        /* =====================================================
+           LOGIN HEADER
+        ===================================================== */
+
+        .mobile-logo {
+
+            display: none;
+
+            width: 55px;
+            height: 55px;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            margin-bottom: 20px;
+
+            color: white;
+
+            font-size: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+        }
+
+        .login-content h1 {
+
+            font-size: 31px;
+
+            letter-spacing: -0.8px;
+
+            margin-bottom: 9px;
+        }
+
+        .login-subtitle {
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 32px;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-group {
+
+            margin-bottom: 22px;
+        }
+
+        .label-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 9px;
+        }
+
+        .label {
+
+            color: #374151;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9ca3af;
+
+            font-size: 17px;
+
+            pointer-events: none;
 
             transition: 0.2s ease;
         }
 
+        .input {
+
+            width: 100%;
+
+            height: 54px;
+
+            padding: 0 16px 0 45px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 14px;
+
+            background: rgba(255,255,255,0.90);
+
+            color: #111827;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition:
+                border 0.2s ease,
+                box-shadow 0.2s ease,
+                transform 0.2s ease;
+        }
+
         .input::placeholder {
-            color: #9ca3af;
+            color: #b0b5bf;
+        }
+
+        .input:hover {
+            border-color: #c7d2fe;
         }
 
         .input:focus {
-            border-color: #2563eb;
+
+            border-color: #6366f1;
 
             box-shadow:
-                0 0 0 4px rgba(37, 99, 235, 0.10);
+                0 0 0 4px rgba(99,102,241,0.10);
+
+            transform: translateY(-1px);
         }
 
-        /* Button */
+        .input:focus + .input-icon {
+            color: #6366f1;
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
 
         .continue-btn {
+
+            position: relative;
+
             width: 100%;
 
-            margin-top: 20px;
+            height: 55px;
 
-            padding: 15px;
+            margin-top: 5px;
 
             border: none;
 
-            border-radius: 12px;
+            border-radius: 14px;
+
+            color: white;
 
             background:
                 linear-gradient(
                     135deg,
-                    #2563eb,
-                    #4f46e5
+                    #4f46e5,
+                    #6366f1 50%,
+                    #7c3aed
                 );
 
-            color: white;
+            font-size: 14px;
 
-            font-size: 15px;
+            font-weight: 700;
 
-            font-weight: 600;
+            letter-spacing: 0.2px;
 
             cursor: pointer;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 12px 25px rgba(79,70,229,0.25);
 
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
         }
 
+        .continue-btn::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 70%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.25),
+                    transparent
+                );
+
+            transform: skewX(-20deg);
+
+            transition: 0.6s ease;
+        }
+
         .continue-btn:hover {
-            transform: translateY(-2px);
+
+            transform: translateY(-3px);
 
             box-shadow:
-                0 10px 25px rgba(37, 99, 235, 0.25);
+                0 17px 35px rgba(79,70,229,0.32);
+        }
+
+        .continue-btn:hover::before {
+            left: 130%;
         }
 
         .continue-btn:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
-        /* Footer */
+        .btn-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+        }
+
+        .arrow {
+
+            transition: transform 0.2s ease;
+        }
+
+        .continue-btn:hover .arrow {
+            transform: translateX(4px);
+        }
+
+
+        /* =====================================================
+           DIVIDER
+        ===================================================== */
+
+        .divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin: 27px 0 22px;
+
+            color: #b0b5bf;
+
+            font-size: 11px;
+        }
+
+        .divider::before,
+        .divider::after {
+
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #e5e7eb;
+        }
+
+
+        /* =====================================================
+           BENEFITS
+        ===================================================== */
+
+        .benefits {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+        .benefit {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #6b7280;
+
+            font-size: 12px;
+        }
+
+        .check {
+
+            width: 21px;
+            height: 21px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            color: #4f46e5;
+
+            background: #eef2ff;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
         .footer-text {
-            margin-top: 25px;
 
             color: #9ca3af;
 
-            font-size: 12px;
+            font-size: 11px;
 
-            line-height: 1.5;
+            text-align: center;
+
+            line-height: 1.6;
         }
 
-        /* Mobile */
+        .footer-text strong {
+            color: #6b7280;
+        }
 
-        @media (max-width: 500px) {
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 850px) {
 
             body {
                 padding: 20px;
+                overflow: auto;
             }
 
-            .login-card {
+            .page {
+
+                grid-template-columns: 1fr;
+
+                max-width: 500px;
+
+                min-height: auto;
+            }
+
+            .hero-section {
+
+                min-height: 330px;
+
+                padding: 35px;
+            }
+
+            .hero-content {
+
+                margin-top: 25px;
+            }
+
+            .hero-title {
+
+                font-size: 39px;
+            }
+
+            .hero-description {
+
+                max-width: 360px;
+            }
+
+            .features {
+                display: none;
+            }
+
+            .ai-card {
+                right: 25px;
+                top: 120px;
+                transform: scale(0.85);
+            }
+
+            .login-section {
+                padding: 40px 35px;
+            }
+        }
+
+
+        @media (max-width: 520px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .page {
+                border-radius: 24px;
+            }
+
+            .hero-section {
+                min-height: 275px;
+                padding: 25px;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .brand-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+                letter-spacing: -1.2px;
+            }
+
+            .hero-description {
+                font-size: 13px;
+            }
+
+            .ai-card {
+                display: none;
+            }
+
+            .login-section {
                 padding: 35px 25px;
-
-                border-radius: 20px;
             }
 
-            h1 {
+            .login-content h1 {
                 font-size: 27px;
             }
 
-            .logo {
-                width: 62px;
-                height: 62px;
-
-                font-size: 28px;
+            .mobile-logo {
+                display: flex;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- Background decoration -->
 
-    <div class="circle one"></div>
-    <div class="circle two"></div>
-    <div class="circle three"></div>
+    <!-- =====================================================
+         BACKGROUND
+    ===================================================== -->
 
+    <div class="background">
 
-    <!-- Login Card -->
-
-    <div class="login-card">
-
-        <!-- EduNova Logo -->
-
-        <div class="logo">
-            ✦
-        </div>
-
-
-        <!-- Title -->
-
-        <h1>
-            EduNova AI
-        </h1>
-
-        <p class="subtitle">
-            Personalized learning, powered by AI
-        </p>
-
-
-        <!-- Login Form -->
-
-        <form
-            class="form"
-            onsubmit="startEduNova(event)"
-        >
-
-            <label
-                class="label"
-                for="userName"
-            >
-                What's your name?
-            </label>
-
-            <input
-                class="input"
-                type="text"
-                id="userName"
-                placeholder="Enter your name"
-                autocomplete="name"
-                maxlength="50"
-                required
-            >
-
-
-            <button
-                class="continue-btn"
-                type="submit"
-            >
-                Start Learning →
-            </button>
-
-        </form>
-
-
-        <!-- Footer -->
-
-        <p class="footer-text">
-            Learn anything. Ask anything. Grow every day.
-        </p>
+        <div class="blob one"></div>
+        <div class="blob two"></div>
+        <div class="blob three"></div>
 
     </div>
 
 
-    <!-- JavaScript -->
+    <!-- =====================================================
+         MAIN PAGE
+    ===================================================== -->
+
+    <main class="page">
+
+
+        <!-- =================================================
+             LEFT HERO
+        ================================================== -->
+
+        <section class="hero-section">
+
+
+            <!-- Brand -->
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    ✦
+                </div>
+
+                <span>
+                    EduNova AI
+                </span>
+
+            </div>
+
+
+            <!-- Hero Content -->
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+
+                    <span class="status-dot"></span>
+
+                    AI Learning Assistant
+
+                </div>
+
+
+                <h2 class="hero-title">
+
+                    Learn smarter.
+                    <br>
+
+                    <span>Grow faster.</span>
+
+                </h2>
+
+
+                <p class="hero-description">
+
+                    Your personalized AI learning companion
+                    for understanding concepts, practicing
+                    questions, tracking progress, and building
+                    stronger skills.
+
+                </p>
+
+
+                <!-- Feature Cards -->
+
+                <div class="features">
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            🧠
+                        </div>
+
+                        <strong>
+                            AI Powered
+                        </strong>
+
+                        <small>
+                            Smart explanations
+                        </small>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            📚
+                        </div>
+
+                        <strong>
+                            Learn
+                        </strong>
+
+                        <small>
+                            Personalized content
+                        </small>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <div class="feature-icon">
+                            📈
+                        </div>
+
+                        <strong>
+                            Improve
+                        </strong>
+
+                        <small>
+                            Track your growth
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Floating AI Card -->
+
+            <div class="ai-card">
+
+                <div class="ai-card-top">
+
+                    <div class="ai-card-icon">
+                        ✨
+                    </div>
+
+                    <span>
+                        AI Assistant
+                    </span>
+
+                </div>
+
+                <div class="ai-line"></div>
+
+                <div class="ai-line"></div>
+
+                <div class="ai-line short"></div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             LOGIN SECTION
+        ================================================== -->
+
+        <section class="login-section">
+
+
+            <div class="login-content">
+
+
+                <!-- Mobile Logo -->
+
+                <div class="mobile-logo">
+                    ✦
+                </div>
+
+
+                <!-- Heading -->
+
+                <h1>
+                    Welcome back 👋
+                </h1>
+
+                <p class="login-subtitle">
+
+                    Tell us your name and let's
+                    continue your learning journey.
+
+                </p>
+
+
+                <!-- Form -->
+
+                <form
+                    class="form"
+                    onsubmit="startEduNova(event)"
+                >
+
+
+                    <div class="form-group">
+
+                        <div class="label-row">
+
+                            <label
+                                class="label"
+                                for="userName"
+                            >
+                                Your name
+                            </label>
+
+                        </div>
+
+
+                        <div class="input-wrapper">
+
+                            <input
+                                class="input"
+                                type="text"
+                                id="userName"
+                                placeholder="Enter your name"
+                                autocomplete="name"
+                                maxlength="50"
+                                required
+                            >
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Button -->
+
+                    <button
+                        class="continue-btn"
+                        type="submit"
+                    >
+
+                        <span class="btn-content">
+
+                            <span>
+                                Start Learning
+                            </span>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </span>
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- Divider -->
+
+                <div class="divider">
+                    Your learning journey
+                </div>
+
+
+                <!-- Benefits -->
+
+                <div class="benefits">
+
+                    <div class="benefit">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Personalized AI-powered learning
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Practice, quizzes and progress tracking
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Learn at your own pace
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Footer -->
+
+                <p class="footer-text">
+
+                    Learn anything. Ask anything.
+                    <br>
+
+                    <strong>
+                        Grow every day.
+                    </strong>
+
+                </p>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
 
     <script>
 
@@ -366,14 +1411,16 @@
 
             event.preventDefault();
 
+
             const nameInput =
                 document.getElementById("userName");
+
 
             const name =
                 nameInput.value.trim();
 
 
-            // Check whether the name is empty
+            /* Validate name */
 
             if (name === "") {
 
@@ -387,7 +1434,7 @@
             }
 
 
-            // Save the user's name
+            /* Save student name */
 
             localStorage.setItem(
                 "studentName",
@@ -395,13 +1442,51 @@
             );
 
 
-            // Open dashboard
+            /* Small transition before dashboard */
 
-            window.location.href =
-                "dashboard.html";
+            const button =
+                document.querySelector(
+                    ".continue-btn"
+                );
+
+
+            button.innerHTML = `
+                <span class="btn-content">
+                    <span>Welcome, ${escapeHTML(name)}!</span>
+                    <span>✓</span>
+                </span>
+            `;
+
+
+            button.style.pointerEvents = "none";
+
+
+            /* Open dashboard */
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 500);
+
+        }
+
+
+        /* Prevent HTML injection in button text */
+
+        function escapeHTML(value) {
+
+            return value
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
 
     </script>
+
 
 </body>
 </html>
