@@ -82,7 +82,6 @@ def save_chat_history():
 
     try:
 
-        # Keep latest 100 conversations
         history_to_save = chat_history[-100:]
 
         with open(
@@ -414,7 +413,8 @@ def ask():
 
         return jsonify({
 
-            "answer": "Please enter a question."
+            "answer":
+            "Please enter a question."
 
         }), 400
 
@@ -428,7 +428,10 @@ def ask():
         }), 500
 
 
-    # Search uploaded material
+    # ==============================
+    # SEARCH UPLOADED MATERIAL
+    # ==============================
+
     retrieved = retrieve_context(
         question,
         top_k=5
@@ -436,55 +439,17 @@ def ask():
 
 
     # ==============================
-    # NOTHING FOUND
+    # IF COURSE MATERIAL FOUND
     # ==============================
 
-    if not retrieved:
+    if retrieved:
 
-        answer = (
-            "I couldn't find this information "
-            "in the uploaded course material."
-        )
+        context_parts = []
 
-        chat_history.append({
+        for item in retrieved:
 
-            "question": question,
-
-            "answer": answer,
-
-            "grounded": False,
-
-            "sources": []
-
-        })
-
-        save_chat_history()
-
-        return jsonify({
-
-            "answer": answer,
-
-            "provider": "groq",
-
-            "model": GROQ_MODEL,
-
-            "grounded": False,
-
-            "sources": []
-
-        })
-
-
-    # ==============================
-    # BUILD CONTEXT
-    # ==============================
-
-    context_parts = []
-
-    for item in retrieved:
-
-        context_parts.append(
-            f"""
+            context_parts.append(
+                f"""
 SOURCE:
 {item['source']}
 
@@ -494,38 +459,36 @@ PAGE:
 CONTENT:
 {item['text']}
 """
+            )
+
+        context = "\n".join(
+            context_parts
         )
 
-    context = "\n".join(
-        context_parts
-    )
 
-
-    # ==============================
-    # AI PROMPT
-    # ==============================
-
-    prompt = f"""
+        prompt = f"""
 You are EduNova AI,
-a source-grounded personalized
-learning tutor.
+a personalized learning tutor.
 
-You MUST answer using ONLY
-the supplied course material.
+The student has asked a question.
 
-Do not use outside knowledge.
+Relevant uploaded course material
+is provided below.
 
-If the supplied material does not
-contain enough information, say:
+Use the uploaded course material
+when it is relevant to the question.
 
-"I couldn't find this information
-in the uploaded course material."
+If the course material does not contain
+enough information, you may answer using
+your general knowledge.
 
-Explain concepts simply.
+Explain the answer simply and clearly
+for a college student.
 
-Do not invent facts.
+Do not invent information.
 
-At the end include a Sources section
+If you use the uploaded course material,
+include a Sources section at the end
 with the filename and page number.
 
 UPLOADED COURSE MATERIAL:
@@ -536,6 +499,45 @@ STUDENT QUESTION:
 
 {question}
 """
+
+        grounded = True
+
+    else:
+
+        # ==============================
+        # GENERAL AI MODE
+        # ==============================
+
+        prompt = f"""
+You are EduNova AI,
+a helpful personalized learning tutor.
+
+There is no relevant uploaded course
+material available for this question.
+
+Answer the student's question using
+your general knowledge.
+
+Explain the concept in simple,
+student-friendly language.
+
+For programming, data structures,
+AI, machine learning, mathematics,
+DBMS and other academic topics:
+
+- Give a clear definition
+- Explain the concept simply
+- Give an example when useful
+- Use bullet points when helpful
+- Keep the answer easy to understand
+- Avoid unnecessary complexity
+
+Student question:
+
+{question}
+"""
+
+        grounded = False
 
 
     # ==============================
@@ -555,8 +557,8 @@ STUDENT QUESTION:
 
                     "content":
                     "You are EduNova AI, "
-                    "a source-grounded "
-                    "personalized learning tutor."
+                    "a helpful personalized "
+                    "learning tutor."
                 },
 
                 {
@@ -615,30 +617,43 @@ STUDENT QUESTION:
 
         chat_history.append({
 
-            "question": question,
+            "question":
+            question,
 
-            "answer": answer,
+            "answer":
+            answer,
 
-            "grounded": True,
+            "grounded":
+            grounded,
 
-            "sources": sources
+            "sources":
+            sources
 
         })
 
         save_chat_history()
 
 
+        # ==============================
+        # RESPONSE
+        # ==============================
+
         return jsonify({
 
-            "answer": answer,
+            "answer":
+            answer,
 
-            "provider": "groq",
+            "provider":
+            "groq",
 
-            "model": GROQ_MODEL,
+            "model":
+            GROQ_MODEL,
 
-            "grounded": True,
+            "grounded":
+            grounded,
 
-            "sources": sources
+            "sources":
+            sources
 
         })
 
@@ -652,15 +667,20 @@ STUDENT QUESTION:
 
         return jsonify({
 
-            "answer": str(error),
+            "answer":
+            str(error),
 
-            "provider": "groq",
+            "provider":
+            "groq",
 
-            "model": GROQ_MODEL,
+            "model":
+            GROQ_MODEL,
 
-            "grounded": False,
+            "grounded":
+            False,
 
-            "sources": []
+            "sources":
+            []
 
         }), 500
 
@@ -678,10 +698,8 @@ def upload():
     if "file" not in request.files:
 
         return jsonify({
-
-            "error":
-            "No file uploaded"
-
+            "success": False,
+            "error": "No file uploaded"
         }), 400
 
 
@@ -691,10 +709,8 @@ def upload():
     if file.filename == "":
 
         return jsonify({
-
-            "error":
-            "No file selected"
-
+            "success": False,
+            "error": "No file selected"
         }), 400
 
 
@@ -704,10 +720,8 @@ def upload():
     if not filename.lower().endswith(".pdf"):
 
         return jsonify({
-
-            "error":
-            "Please upload a PDF file."
-
+            "success": False,
+            "error": "Please upload a PDF file."
         }), 400
 
 
@@ -716,10 +730,19 @@ def upload():
         filename
     )
 
-    file.save(file_path)
-
 
     try:
+
+        # ==============================
+        # SAVE PDF
+        # ==============================
+
+        file.save(file_path)
+
+
+        # ==============================
+        # REMOVE OLD CHUNKS
+        # ==============================
 
         global knowledge_base
 
@@ -734,16 +757,32 @@ def upload():
         ]
 
 
+        # ==============================
+        # READ AND INDEX PDF
+        # ==============================
+
         chunks_added = index_pdf(
-
             file_path,
-
             filename
-
         )
 
 
+        print(
+            f"PDF uploaded successfully: {filename}"
+        )
+
+        print(
+            f"Chunks added: {chunks_added}"
+        )
+
+
+        # ==============================
+        # SUCCESS RESPONSE
+        # ==============================
+
         return jsonify({
+
+            "success": True,
 
             "message":
             "PDF indexed successfully",
@@ -757,7 +796,7 @@ def upload():
             "total_knowledge_chunks":
             len(knowledge_base)
 
-        })
+        }), 200
 
 
     except Exception as error:
@@ -768,6 +807,8 @@ def upload():
         )
 
         return jsonify({
+
+            "success": False,
 
             "error":
             "Could not read the PDF.",
@@ -813,12 +854,18 @@ def quiz():
         ""
     ).strip()
 
-    count = int(
-        data.get(
-            "count",
-            5
+    try:
+
+        count = int(
+            data.get(
+                "count",
+                5
+            )
         )
-    )
+
+    except (TypeError, ValueError):
+
+        count = 5
 
 
     if count < 1:
@@ -847,6 +894,10 @@ def quiz():
 
         }), 500
 
+
+    # ==============================
+    # SEARCH COURSE MATERIAL
+    # ==============================
 
     retrieved = retrieve_context(
         topic,
@@ -883,6 +934,10 @@ CONTENT: {item['text']}
     )
 
 
+    # ==============================
+    # QUIZ PROMPT
+    # ==============================
+
     prompt = f"""
 You are EduNova AI,
 an adaptive learning assessment generator.
@@ -895,8 +950,6 @@ TOPIC:
 
 Use ONLY the uploaded course material.
 
-Do not use outside knowledge.
-
 Each question must contain:
 
 question
@@ -907,7 +960,7 @@ difficulty
 source
 page
 
-Difficulty must be:
+Difficulty must be one of:
 
 Beginner
 Intermediate
@@ -918,23 +971,23 @@ Return ONLY valid JSON.
 Format:
 
 {{
-  "topic": "{topic}",
-  "questions": [
-    {{
-      "question": "Question text",
-      "options": [
-        "Option A",
-        "Option B",
-        "Option C",
-        "Option D"
-      ],
-      "correct_answer": "Option A",
-      "explanation": "Short explanation",
-      "difficulty": "Beginner",
-      "source": "filename.pdf",
-      "page": 1
-    }}
-  ]
+    "topic": "{topic}",
+    "questions": [
+        {{
+            "question": "Question text",
+            "options": [
+                "Option A",
+                "Option B",
+                "Option C",
+                "Option D"
+            ],
+            "correct_answer": "Option A",
+            "explanation": "Short explanation",
+            "difficulty": "Beginner",
+            "source": "filename.pdf",
+            "page": 1
+        }}
+    ]
 }}
 
 UPLOADED COURSE MATERIAL:
@@ -942,6 +995,10 @@ UPLOADED COURSE MATERIAL:
 {context}
 """
 
+
+    # ==============================
+    # GENERATE QUIZ
+    # ==============================
 
     try:
 
@@ -982,10 +1039,15 @@ UPLOADED COURSE MATERIAL:
         )
 
 
+        # ==============================
+        # REMOVE MARKDOWN CODE BLOCK
+        # ==============================
+
         answer = re.sub(
             r"^```json\s*",
             "",
-            answer
+            answer,
+            flags=re.IGNORECASE
         )
 
         answer = re.sub(
@@ -1001,6 +1063,10 @@ UPLOADED COURSE MATERIAL:
         )
 
 
+        # ==============================
+        # PARSE JSON
+        # ==============================
+
         quiz_data = json.loads(
             answer
         )
@@ -1010,11 +1076,33 @@ UPLOADED COURSE MATERIAL:
 
             "success": True,
 
-            "quiz": quiz_data,
+            "quiz":
+            quiz_data,
 
-            "grounded": True
+            "grounded":
+            True
 
-        })
+        }), 200
+
+
+    except json.JSONDecodeError as error:
+
+        print(
+            "\nQUIZ JSON ERROR:",
+            repr(error)
+        )
+
+        return jsonify({
+
+            "success": False,
+
+            "error":
+            "AI returned an invalid quiz format.",
+
+            "details":
+            str(error)
+
+        }), 500
 
 
     except Exception as error:
@@ -1026,6 +1114,8 @@ UPLOADED COURSE MATERIAL:
 
         return jsonify({
 
+            "success": False,
+
             "error":
             str(error)
 
@@ -1036,13 +1126,17 @@ UPLOADED COURSE MATERIAL:
 # STARTUP
 # ==============================
 
-print("\n==============================")
+print()
+print("==============================")
 print("LOADING SAVED CHAT HISTORY")
 print("==============================")
+
 print(
     f"Loaded chats: {len(chat_history)}"
 )
-print("==============================\n")
+
+print("==============================")
+print()
 
 
 load_existing_pdfs()
