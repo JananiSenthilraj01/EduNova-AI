@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .brand-icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-icon img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+
         /* =====================================================
            DASHBOARD LAYOUT
         ===================================================== */
@@ -89,6 +109,7 @@
             color: #777;
         }
 
+
         /* =====================================================
            PROGRESS
         ===================================================== */
@@ -121,6 +142,7 @@
             font-size: 12px;
             color: #666;
         }
+
 
         /* =====================================================
            SUBJECTS
@@ -155,6 +177,7 @@
             font-size: 11px;
             color: #777;
         }
+
 
         /* =====================================================
            QUIZ
@@ -196,6 +219,7 @@
             margin-top: 3px;
         }
 
+
         /* =====================================================
            ACTIVITY
         ===================================================== */
@@ -234,6 +258,7 @@
             font-size: 11px;
             color: #777;
         }
+
 
         /* =====================================================
            QUICK ACTIONS
@@ -283,6 +308,7 @@
             font-size: 11px;
             margin-top: 4px;
         }
+
 
         /* =====================================================
            AI STATUS
@@ -342,6 +368,7 @@
             background: #fee2e2;
             color: #b91c1c;
         }
+
 
         /* =====================================================
            CHAT
@@ -439,6 +466,7 @@
             }
         }
 
+
         /* =====================================================
            RESPONSIVE
         ===================================================== */
@@ -477,7 +505,18 @@
                 align-items: flex-start;
                 flex-direction: column;
             }
+
+            .brand-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .brand-icon img {
+                width: 48px;
+                height: 48px;
+            }
         }
+
     </style>
 </head>
 
@@ -495,11 +534,15 @@
         <div class="brand">
 
             <div class="brand-icon">
-                ✨
+                <img src="assets/edunova-logo.png"
+     alt="EduNova AI Logo">
             </div>
 
             <div>
-                <div class="brand-text">EduNova AI</div>
+                <div class="brand-text">
+                    EduNova AI
+                </div>
+
                 <div class="brand-subtitle">
                     Personalized Learning
                 </div>
@@ -508,19 +551,16 @@
         </div>
 
 
-        <!-- NEW CHAT -->
-
         <button class="new-chat" id="newChatButton">
             ＋
             <span>New Chat</span>
         </button>
 
 
-        <!-- NAVIGATION -->
-
         <div class="sidebar-title">
             Navigation
         </div>
+
 
         <div class="history">
 
@@ -547,16 +587,12 @@
         </div>
 
 
-        <!-- RECENT CHAT -->
-
         <div class="sidebar-title">
             Recent Chats
         </div>
 
         <div class="history" id="history"></div>
 
-
-        <!-- STATUS -->
 
         <div class="sidebar-bottom">
 
@@ -586,8 +622,6 @@
     <main class="main">
 
 
-        <!-- TOPBAR -->
-
         <header class="topbar">
 
             <div class="top-title">
@@ -612,8 +646,6 @@
         <div class="dashboard" id="dashboard">
 
 
-            <!-- WELCOME -->
-
             <section class="dashboard-welcome">
 
                 <h1 id="dashboardWelcome">
@@ -631,9 +663,7 @@
             <div class="dashboard-grid">
 
 
-                <!-- =================================================
-                     LEARNING PROGRESS
-                ================================================= -->
+                <!-- LEARNING PROGRESS -->
 
                 <div class="dashboard-card">
 
@@ -689,9 +719,7 @@
                 </div>
 
 
-                <!-- =================================================
-                     SUBJECTS
-                ================================================= -->
+                <!-- SUBJECTS -->
 
                 <div class="dashboard-card">
 
@@ -717,7 +745,6 @@
 
 
                     <div class="subjects">
-
 
                         <div class="subject">
 
@@ -770,15 +797,12 @@
 
                         </div>
 
-
                     </div>
 
                 </div>
 
 
-                <!-- =================================================
-                     QUIZ
-                ================================================= -->
+                <!-- QUIZ -->
 
                 <div class="dashboard-card">
 
@@ -835,9 +859,7 @@
                 </div>
 
 
-                <!-- =================================================
-                     RECENT ACTIVITY
-                ================================================= -->
+                <!-- RECENT ACTIVITY -->
 
                 <div class="dashboard-card">
 
@@ -932,9 +954,7 @@
                 </div>
 
 
-                <!-- =================================================
-                     QUICK ACTIONS
-                ================================================= -->
+                <!-- QUICK ACTIONS -->
 
                 <div class="dashboard-card full">
 
@@ -962,8 +982,6 @@
                     <div class="quick-actions">
 
 
-                        <!-- ASK AI -->
-
                         <button class="quick-action"
                                 type="button"
                                 id="askAIAction">
@@ -983,8 +1001,6 @@
                         </button>
 
 
-                        <!-- QUIZ -->
-
                         <button class="quick-action"
                                 type="button"
                                 id="quizAction">
@@ -1003,8 +1019,6 @@
 
                         </button>
 
-
-                        <!-- STUDY PLAN -->
 
                         <button class="quick-action"
                                 type="button"
@@ -1030,9 +1044,7 @@
                 </div>
 
 
-                <!-- =================================================
-                     AI STATUS
-                ================================================= -->
+                <!-- AI STATUS -->
 
                 <div class="dashboard-card full">
 
@@ -1098,9 +1110,7 @@
         </div>
 
 
-        <!-- =====================================================
-             CHAT AREA
-        ===================================================== -->
+        <!-- CHAT AREA -->
 
         <div class="chat-area"
              id="chatArea">
@@ -1211,9 +1221,7 @@
         </div>
 
 
-        <!-- =====================================================
-             COMPOSER
-        ===================================================== -->
+        <!-- COMPOSER -->
 
         <div class="composer-area"
              id="composerArea">
@@ -1252,16 +1260,8 @@
 
 <script>
 
-/* ============================================================
-   CONFIG
-============================================================ */
-
 const API_URL = "http://127.0.0.1:5000";
 
-
-/* ============================================================
-   ELEMENTS
-============================================================ */
 
 const dashboard =
     document.getElementById("dashboard");
@@ -1294,10 +1294,6 @@ const toast =
 let lastQuestion = "";
 
 
-/* ============================================================
-   STUDENT NAME
-============================================================ */
-
 function loadStudentName() {
 
     const studentName =
@@ -1322,10 +1318,6 @@ function loadStudentName() {
 }
 
 
-/* ============================================================
-   SHOW DASHBOARD
-============================================================ */
-
 function showDashboard() {
 
     dashboard.style.display = "block";
@@ -1340,10 +1332,6 @@ function showDashboard() {
 
 }
 
-
-/* ============================================================
-   SHOW CHAT
-============================================================ */
 
 function showChat() {
 
@@ -1370,10 +1358,6 @@ function showChat() {
 }
 
 
-/* ============================================================
-   ASK AI BUTTON
-============================================================ */
-
 document
     .getElementById("askAIAction")
     .addEventListener("click", function () {
@@ -1383,27 +1367,14 @@ document
     });
 
 
-/* ============================================================
-   QUIZ BUTTON
-============================================================ */
-
 document
     .getElementById("quizAction")
     .addEventListener("click", function () {
-
-        /*
-           If your quiz is inside chat.html,
-           open chat.html.
-        */
 
         window.location.href = "chat.html";
 
     });
 
-
-/* ============================================================
-   STUDY PLAN BUTTON
-============================================================ */
 
 document
     .getElementById("studyPlanAction")
@@ -1421,10 +1392,6 @@ document
     });
 
 
-/* ============================================================
-   SIDEBAR DASHBOARD
-============================================================ */
-
 document
     .getElementById("dashboardNav")
     .addEventListener("click", function () {
@@ -1433,10 +1400,6 @@ document
 
     });
 
-
-/* ============================================================
-   SIDEBAR ASK AI
-============================================================ */
 
 document
     .getElementById("askAINav")
@@ -1447,10 +1410,6 @@ document
     });
 
 
-/* ============================================================
-   SIDEBAR QUIZ
-============================================================ */
-
 document
     .getElementById("quizNav")
     .addEventListener("click", function () {
@@ -1459,10 +1418,6 @@ document
 
     });
 
-
-/* ============================================================
-   SIDEBAR STUDY PLAN
-============================================================ */
 
 document
     .getElementById("studyPlanNav")
@@ -1479,10 +1434,6 @@ document
 
     });
 
-
-/* ============================================================
-   NEW CHAT
-============================================================ */
 
 newChatButton.addEventListener(
     "click",
@@ -1508,10 +1459,6 @@ newChatButton.addEventListener(
 );
 
 
-/* ============================================================
-   ESCAPE HTML
-============================================================ */
-
 function escapeHTML(text) {
 
     return String(text)
@@ -1524,20 +1471,12 @@ function escapeHTML(text) {
 }
 
 
-/* ============================================================
-   AI ICON
-============================================================ */
-
 function getAIIcon() {
 
     return "🤖";
 
 }
 
-
-/* ============================================================
-   FORMAT ANSWER
-============================================================ */
 
 function formatAIAnswer(text) {
 
@@ -1571,10 +1510,6 @@ function formatAIAnswer(text) {
 
 }
 
-
-/* ============================================================
-   ADD USER MESSAGE
-============================================================ */
 
 function addUserMessage(question) {
 
@@ -1612,10 +1547,6 @@ function addUserMessage(question) {
 
 }
 
-
-/* ============================================================
-   ADD AI MESSAGE
-============================================================ */
 
 function addAIMessage(data) {
 
@@ -1659,10 +1590,6 @@ function addAIMessage(data) {
 
 }
 
-
-/* ============================================================
-   THINKING
-============================================================ */
 
 function addThinkingMessage() {
 
@@ -1711,10 +1638,6 @@ function addThinkingMessage() {
 
 }
 
-
-/* ============================================================
-   ASK QUESTION
-============================================================ */
 
 async function askQuestion() {
 
@@ -1870,19 +1793,11 @@ async function askQuestion() {
 }
 
 
-/* ============================================================
-   SEND BUTTON
-============================================================ */
-
 sendButton.addEventListener(
     "click",
     askQuestion
 );
 
-
-/* ============================================================
-   ENTER KEY
-============================================================ */
 
 input.addEventListener(
     "keydown",
@@ -1903,10 +1818,6 @@ input.addEventListener(
 );
 
 
-/* ============================================================
-   AUTO RESIZE
-============================================================ */
-
 function autoResize() {
 
     input.style.height =
@@ -1920,10 +1831,6 @@ function autoResize() {
 
 }
 
-
-/* ============================================================
-   SUGGESTIONS
-============================================================ */
 
 document
     .querySelectorAll(".suggestion")
@@ -1947,10 +1854,6 @@ document
 
     });
 
-
-/* ============================================================
-   HISTORY
-============================================================ */
 
 function addHistory(question) {
 
@@ -1992,10 +1895,6 @@ function addHistory(question) {
 
 }
 
-
-/* ============================================================
-   LOAD HISTORY
-============================================================ */
 
 async function loadHistory() {
 
@@ -2043,10 +1942,6 @@ async function loadHistory() {
 
 }
 
-
-/* ============================================================
-   BACKEND STATUS
-============================================================ */
 
 async function checkBackendStatus() {
 
@@ -2199,10 +2094,6 @@ async function checkBackendStatus() {
 }
 
 
-/* ============================================================
-   TOAST
-============================================================ */
-
 let toastTimer;
 
 function showToast(message) {
@@ -2230,10 +2121,6 @@ function showToast(message) {
 
 }
 
-
-/* ============================================================
-   INITIALIZE
-============================================================ */
 
 document.addEventListener(
     "DOMContentLoaded",
