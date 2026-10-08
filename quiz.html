@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNova AI - Quiz</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f8ff;
+            color: #172033;
+        }
+
+        .header {
+            height: 70px;
+            background: white;
+            border-bottom: 1px solid #e5e9f2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title h1 {
+            margin-bottom: 8px;
+        }
+
+        .title p {
+            color: #667085;
+        }
+
+        .setup-card,
+        .quiz-card,
+        .result-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d7dce5;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 13px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .primary-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .question-number {
+            color: #2563eb;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .question {
+            font-size: 22px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: #f8faff;
+            border: 1px solid #dce3f0;
+            margin-bottom: 12px;
+            color: #172033;
+        }
+
+        .option:hover {
+            border-color: #2563eb;
+            background: #eef4ff;
+        }
+
+        .option.selected {
+            border-color: #2563eb;
+            background: #dbeafe;
+        }
+
+        .next-btn {
+            margin-top: 15px;
+            background: #2563eb;
+            color: white;
+            width: 100%;
+        }
+
+        .progress {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #2563eb;
+            transition: width 0.3s;
+        }
+
+        .score {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            color: #2563eb;
+            margin: 20px 0;
+        }
+
+        .result-text {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 25px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: #dc2626;
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">EduNova AI</div>
+        <div>Quiz</div>
+    </header>
+
+    <main class="container">
+
+        <!-- SETUP -->
+        <section id="setupSection">
+
+            <div class="title">
+                <h1>Adaptive Quiz</h1>
+                <p>Test your understanding from the uploaded learning material.</p>
+            </div>
+
+            <div class="setup-card">
+
+                <label for="topic">Topic</label>
+
+                <input
+                    type="text"
+                    id="topic"
+                    placeholder="Example: Query Processing"
+                >
+
+                <label for="count">Number of Questions</label>
+
+                <select id="count">
+                    <option value="5">5 Questions</option>
+                    <option value="10">10 Questions</option>
+                </select>
+
+                <button class="primary-btn" onclick="startQuiz()">
+                    Generate Quiz
+                </button>
+
+                <div id="errorMessage" class="error"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ -->
+        <section id="quizSection" class="hidden">
+
+            <div class="quiz-card">
+
+                <div class="progress">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+
+                <div id="questionNumber" class="question-number"></div>
+
+                <div id="questionText" class="question"></div>
+
+                <div id="optionsContainer"></div>
+
+                <button
+                    id="nextButton"
+                    class="next-btn"
+                    onclick="nextQuestion()"
+                    disabled
+                >
+                    Next
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULT -->
+        <section id="resultSection" class="hidden">
+
+            <div class="result-card">
+
+                <div class="title">
+                    <h1>Quiz Complete</h1>
+                </div>
+
+                <div id="scoreText" class="score"></div>
+
+                <div id="resultMessage" class="result-text"></div>
+
+                <button
+                    class="primary-btn"
+                    onclick="restartQuiz()"
+                >
+                    Try Another Quiz
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+<script>
+
+const API_URL = "http://127.0.0.1:5000";
+
+let quizQuestions = [];
+let currentQuestion = 0;
+let selectedAnswer = null;
+let score = 0;
+
+
+async function startQuiz() {
+
+    const topic = document
+        .getElementById("topic")
+        .value
+        .trim();
+
+    const count = Number(
+        document.getElementById("count").value
+    );
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    errorMessage.textContent = "";
+
+    if (!topic) {
+        errorMessage.textContent =
+            "Please enter a topic.";
+
+        return;
+    }
+
+    try {
+
+        errorMessage.textContent =
+            "Generating quiz...";
+
+        const response = await fetch(
+            API_URL + "/quiz",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+                    topic: topic,
+                    count: count
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.error || "Quiz generation failed."
+            );
+        }
+
+        quizQuestions =
+            data.quiz.questions || [];
+
+        if (quizQuestions.length === 0) {
+            throw new Error(
+                "No questions were generated."
+            );
+        }
+
+        currentQuestion = 0;
+        score = 0;
+
+        document
+            .getElementById("setupSection")
+            .classList.add("hidden");
+
+        document
+            .getElementById("quizSection")
+            .classList.remove("hidden");
+
+        showQuestion();
+
+    } catch (error) {
+
+        console.error(error);
+
+        errorMessage.textContent =
+            error.message;
+
+    }
+}
+
+
+function showQuestion() {
+
+    const question =
+        quizQuestions[currentQuestion];
+
+    selectedAnswer = null;
+
+    document
+        .getElementById("questionNumber")
+        .textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        quizQuestions.length;
+
+    document
+        .getElementById("questionText")
+        .textContent =
+        question.question;
+
+    const optionsContainer =
+        document.getElementById(
+            "optionsContainer"
+        );
+
+    optionsContainer.innerHTML = "";
+
+    question.options.forEach(function(option) {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent = option;
+
+        button.onclick = function() {
+
+            document
+                .querySelectorAll(".option")
+                .forEach(function(item) {
+                    item.classList.remove(
+                        "selected"
+                    );
+                });
+
+            button.classList.add("selected");
+
+            selectedAnswer = option;
+
+            document
+                .getElementById("nextButton")
+                .disabled = false;
+        };
+
+        optionsContainer.appendChild(button);
+
+    });
+
+    const progress =
+        ((currentQuestion) /
+        quizQuestions.length) * 100;
+
+    document
+        .getElementById("progressBar")
+        .style.width =
+        progress + "%";
+
+    document
+        .getElementById("nextButton")
+        .textContent =
+        currentQuestion ===
+        quizQuestions.length - 1
+        ? "Submit Quiz"
+        : "Next";
+
+    document
+        .getElementById("nextButton")
+        .disabled = true;
+}
+
+
+function nextQuestion() {
+
+    if (selectedAnswer === null) {
+        return;
+    }
+
+    const question =
+        quizQuestions[currentQuestion];
+
+    if (
+        selectedAnswer ===
+        question.correct_answer
+    ) {
+        score++;
+    }
+
+    currentQuestion++;
+
+    if (
+        currentQuestion >=
+        quizQuestions.length
+    ) {
+
+        showResult();
+
+    } else {
+
+        showQuestion();
+
+    }
+}
+
+
+function showResult() {
+
+    document
+        .getElementById("quizSection")
+        .classList.add("hidden");
+
+    document
+        .getElementById("resultSection")
+        .classList.remove("hidden");
+
+    const total =
+        quizQuestions.length;
+
+    document
+        .getElementById("scoreText")
+        .textContent =
+        score + " / " + total;
+
+    let message = "";
+
+    const percentage =
+        (score / total) * 100;
+
+    if (percentage >= 80) {
+
+        message =
+            "Excellent! You have a strong understanding of this topic.";
+
+    } else if (percentage >= 60) {
+
+        message =
+            "Good work! Review the questions you missed.";
+
+    } else {
+
+        message =
+            "Keep practicing. EduNova recommends revising this topic.";
+
+    }
+
+    document
+        .getElementById("resultMessage")
+        .textContent =
+        message;
+}
+
+
+function restartQuiz() {
+
+    quizQuestions = [];
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    selectedAnswer = null;
+
+    document
+        .getElementById("resultSection")
+        .classList.add("hidden");
+
+    document
+        .getElementById("setupSection")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("topic")
+        .value = "";
+
+}
+
+</script>
+
+</body>
+</html>

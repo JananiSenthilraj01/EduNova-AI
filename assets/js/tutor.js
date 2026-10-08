@@ -64,4 +64,4 @@ async function askEduNova(question) {
                 "EduNova AI could not connect to the backend. Please make sure Flask is running."
         };
     }
-}
+}git 

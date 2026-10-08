@@ -1,0 +1,268 @@
+[
+  {
+    "question": "What is Artificial Intelligence?",
+    "answer": "Artificial Intelligence (AI) is a field of computer science that creates systems capable of performing tasks that normally require human intelligence. These tasks include:\n\n- Understanding language  \n- Recognizing images  \n- Finding patterns  \n- Making predictions  \n- Assisting with decisions  \n\n**Example:** A voice assistant can understand a spoken question and provide a response.  \n\n**Sources**  \n- *EduNova_AI_Learning_Material.pdf*, page 1",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.3978
+      },
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 2,
+        "score": 0.0585
+      }
+    ]
+  },
+  {
+    "question": "What is Artificial Intelligence?",
+    "answer": "Artificial Intelligence (AI) is a field of computer science that creates systems capable of performing tasks that normally require human intelligence. These tasks include understanding language, recognizing images, finding patterns, making predictions, and assisting with decisions. For example, a voice assistant can understand a spoken question and provide a response.  \n\n**Sources**  \nEduNova_AI_Learning_Material.pdf, page 1",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.3978
+      },
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 2,
+        "score": 0.0585
+      }
+    ]
+  },
+  {
+    "question": "Explain how databases work with a simple example.",
+    "answer": "**How a database works – a simple example**\n\nA database is a structured collection of data that can be stored, retrieved, and manipulated by a database management system (DBMS).  \nThe DBMS lets you ask questions (queries) about the data using a language such as SQL.  \nBelow is a very simple illustration that uses the material from the DBMS study notes.\n\n---\n\n### 1.  The data – a table\n\n| StudentID | Name   | Marks |\n|-----------|--------|-------|\n| 1         | Alice  | 85    |\n| 2         | Bob    | 72    |\n| 3         | Carol  | 91    |\n| 4         | Dave   | 68    |\n\nThis table is called **Student** and is stored in the database.\n\n---\n\n### 2.  Querying the data\n\nSuppose we want to find all students who scored more than 80 marks.  \nIn SQL we write:\n\n```\nSELECT * FROM Student WHERE Marks > 80;\n```\n\n* **SELECT \\*** – tells the DBMS to return all columns of the matching rows.  \n* **FROM Student** – tells it which table to look in.  \n* **WHERE Marks > 80** – is a *selection* operation that keeps only rows that satisfy the condition.\n\nThe DBMS processes this query by applying the **selection** operation to the Student table, producing a result set that contains only Alice and Carol.\n\n---\n\n### 3.  How the DBMS actually does it\n\n1. **Read the table** – the DBMS reads the rows of the Student table from disk into memory.  \n2. **Apply the selection** – for each row it checks the condition `Marks > 80`.  \n3. **Return the result** – rows that satisfy the condition are sent back to the user.\n\nIf the table were very large and did not fit into memory, the DBMS might use an **External Sort‑Merge** algorithm (see the notes) to sort or merge data in smaller “runs” that fit into memory.  \nFor joining two tables, the DBMS could use one of several join algorithms such as Nested Loop, Block Nested Loop, Merge Join, or Hash Join (also described in the notes).\n\n---\n\n### 4.  Summary\n\n- A **database** stores data in tables.  \n- A **query** (e.g., an SQL statement) tells the DBMS what data you want.  \n- The DBMS performs operations such as **selection**, **projection**, **join**, and **sorting** to produce the answer.  \n- For large data sets, the DBMS uses specialized algorithms like **External Sort‑Merge** or different join strategies to keep the work efficient.\n\nThis simple example shows the core idea: you store data, ask a question, and the DBMS retrieves the answer for you.\n\n---\n\n**Sources**\n\n- DBMS_Unit_IV_16_Marks_Study_Notes_With_Diagrams.pdf – page 2 (SQL example, selection, external sort‑merge, join operations).",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "DBMS_Unit_IV_16_Marks_Study_Notes_With_Diagrams.pdf",
+        "page": 4,
+        "chunk": 1,
+        "score": 0.4977
+      },
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.0697
+      },
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 2,
+        "score": 0.0212
+      },
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 2,
+        "chunk": 1,
+        "score": 0.0166
+      },
+      {
+        "source": "DBMS_Unit_IV_16_Marks_Study_Notes_With_Diagrams.pdf",
+        "page": 2,
+        "chunk": 1,
+        "score": 0.014
+      }
+    ]
+  },
+  {
+    "question": "ask",
+    "answer": "I couldn't find this information in the uploaded course material.",
+    "grounded": false,
+    "sources": []
+  },
+  {
+    "question": "What is query processing?",
+    "answer": "Query processing is the process that takes an SQL query, turns it into an efficient execution plan, and then retrieves the requested data from the database.  \nIt involves steps such as parsing the query, translating it into relational algebra, optimizing the plan, executing it, and returning the result.  \n\nSources:  \n- DBMS_Unit_IV_16_Marks_Study_Notes_With_Diagrams.pdf, page 1",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "DBMS_Unit_IV_16_Marks_Study_Notes_With_Diagrams.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.5113
+      },
+      {
+        "source": "DBMS_Unit_IV_16_Marks_Study_Notes_With_Diagrams.pdf",
+        "page": 4,
+        "chunk": 1,
+        "score": 0.1627
+      },
+      {
+        "source": "DBMS_Unit_IV_16_Marks_Study_Notes_With_Diagrams.pdf",
+        "page": 3,
+        "chunk": 1,
+        "score": 0.1562
+      }
+    ]
+  },
+  {
+    "question": "What is DBMS?",
+    "answer": "**DBMS** – *Database Management System*\n\n---\n\n### 1. What is it?\nA DBMS is software that lets you **store, organize, retrieve, and manage data** in a structured way. Think of it as a digital filing cabinet that keeps your information safe, easy to find, and ready to use whenever you need it.\n\n---\n\n### 2. How does it work (in plain terms)?\n- **Data storage** – Keeps your data on disk or in memory in a format that’s efficient to read/write.\n- **Data definition** – Lets you describe what the data looks like (tables, columns, types).\n- **Data manipulation** – Provides commands (like SQL) to add, change, delete, or read data.\n- **Security & integrity** – Controls who can see or change data and ensures it stays consistent.\n- **Backup & recovery** – Saves copies so you can restore data if something goes wrong.\n\n---\n\n### 3. When is it useful?  \n- **Websites** that need to remember users, posts, or products (e.g., e‑commerce sites).\n- **Mobile apps** that store user settings or offline data.\n- **Business systems** that track inventory, sales, or employee records.\n- **Scientific research** that handles large datasets (e.g., patient records, sensor data).\n\n---\n\n### 4. Common DBMS examples  \n| Type | Example | Typical use case |\n|------|---------|------------------|\n| **Relational** | MySQL, PostgreSQL, Oracle, SQL Server | Websites, banking systems |\n| **NoSQL** | MongoDB, Cassandra, Redis | Big‑data analytics, real‑time apps |\n| **In‑memory** | Redis, Memcached | Caching, session storage |\n| **Graph** | Neo4j, Amazon Neptune | Social networks, recommendation engines |\n\n---\n\n### 5. Quick recap in bullet points  \n- **DBMS = Database Management System**  \n- Stores data in a structured, organized way  \n- Provides tools to create, read, update, delete (CRUD) data  \n- Handles security, backup, and data integrity  \n- Powers almost every modern application that needs to keep information\n\n---\n\n**Bottom line:** A DBMS is the software that turns raw data into a reliable, searchable, and secure resource you can use in your programs, websites, or everyday tools.",
+    "grounded": false,
+    "sources": []
+  },
+  {
+    "question": "What is the purpose of query optimization?",
+    "answer": "**Answer**\n\nQuery optimization’s main goal is to pick the most efficient way to run an SQL query.  \nIt examines different possible execution plans and chooses the one that will use the least resources—such as disk I/O, CPU time, memory, and network communication—so the query finishes quickly and uses minimal cost.\n\n**Sources**\n\n- EduNova_DBMS_Test_Material.pdf, page 1",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.5564
+      }
+    ]
+  },
+  {
+    "question": "Who is the current President of India?",
+    "answer": "**Current President of India**\n\n- **Name:** **Draupadi Murmu**  \n- **In office since:** 25 July 2022  \n- **Key facts:**\n  - She is the 15th President of India.\n  - First person from a tribal community to hold the office.\n  - Before becoming President, she served as Governor of Jharkhand.\n\nSo, as of today (October 2026), the President of India is **Draupadi Murmu**.",
+    "grounded": false,
+    "sources": []
+  },
+  {
+    "question": "What is query processing?",
+    "answer": "**Query processing** is the series of steps a DBMS follows to turn an SQL statement into a set of actions that actually retrieve or modify data.  \nIt involves:\n\n1. **Parsing** – checking the syntax of the query and building a parse tree.  \n2. **Translation** – converting the parse tree into an intermediate representation (often a relational algebra expression).  \n3. **Optimization** – selecting the most efficient way to execute the query (choosing join orders, indexes, etc.).  \n4. **Execution** – running the chosen plan to produce the result set.\n\nIn short, query processing takes a user’s SQL query and turns it into an efficient execution plan that the database can run.  \n\n**Source**  \n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.5242
+      }
+    ]
+  },
+  {
+    "question": "What is query processing?",
+    "answer": "**Query processing** is the series of steps a database system follows to turn an SQL statement into actions that retrieve or modify data.  \nThe main stages are:\n\n1. **Parsing** – checking the syntax of the query and building a parse tree.  \n2. **Translation** – converting the parse tree into an intermediate representation (often a relational algebra expression).  \n3. **Optimization** – choosing the most efficient way to execute the query (e.g., deciding join order, which indexes to use).  \n4. **Execution** – actually running the chosen plan to produce the result set.\n\nIn short, query processing takes a user’s SQL query and turns it into an efficient execution plan that the DBMS can run.  \n\n**Sources**  \n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.5242
+      }
+    ]
+  },
+  {
+    "question": "What is artificial intelligence?",
+    "answer": "**Artificial Intelligence (AI)** is a branch of computer science that builds systems capable of performing tasks that normally need human intelligence. These tasks include:\n\n- **Understanding language** (e.g., a voice assistant answering questions)  \n- **Recognizing images** (e.g., identifying objects in a photo)  \n- **Finding patterns** in data  \n- **Making predictions** (e.g., forecasting weather)  \n- **Assisting with decisions** (e.g., recommending products)\n\nIn short, AI creates computer programs that can learn from data, adapt, and solve problems in ways that mimic human thinking.\n\n**Sources**\n\n- *EduNova_AI_Learning_Material.pdf*, page 1 – definition of AI and examples.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.4032
+      },
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 2,
+        "score": 0.0548
+      }
+    ]
+  },
+  {
+    "question": "What is DBMS?",
+    "answer": "A **Database Management System (DBMS)** is software that lets you create, store, organize, retrieve, and manage data in a database. It handles all the work of keeping data consistent, secure, and accessible so you can run queries (like SQL statements) to get the information you need.\n\n**Key points**\n\n- **Storage** – Keeps data on disk or other storage media.  \n- **Organization** – Structures data in tables, indexes, etc., so it can be accessed efficiently.  \n- **Retrieval** – Provides a query language (e.g., SQL) to ask for specific data.  \n- **Management** – Handles tasks such as concurrency control, backup, recovery, and security.\n\nIn short, a DBMS is the software layer that sits between users/applications and the raw data, making data handling reliable and efficient.\n\n**Sources**\n\n- EduNova_DBMS_Test_Material.pdf, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "What is DBMS?",
+    "answer": "A **Database Management System (DBMS)** is software that lets you create, store, organize, retrieve, and manage data in a database. It handles tasks like keeping data consistent, providing fast access, and allowing multiple users to work with the data safely and efficiently.  \n\n**Source**  \n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "What is query processing?",
+    "answer": "**Query processing** is the series of steps a database management system (DBMS) follows to turn an SQL statement into actual work that retrieves or updates data.  \nThe main stages are:\n\n1. **Parsing** – the SQL text is checked for syntax errors and broken into a structured form.  \n2. **Translation** – the parsed query is converted into an intermediate representation (often a relational algebra tree).  \n3. **Optimization** – the DBMS examines many possible ways to execute the query and picks the most efficient plan, considering factors like disk I/O, CPU usage, and memory.  \n4. **Execution** – the chosen plan is carried out, producing the result set or performing the requested updates.\n\nIn short, query processing is the pipeline that transforms a user’s SQL query into an efficient execution plan and then runs that plan to get the desired data.\n\n**Sources**\n\n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.5242
+      }
+    ]
+  },
+  {
+    "question": "What is DBMS?",
+    "answer": "A **Database Management System (DBMS)** is software that lets you create, store, organize, retrieve, and manage data in a database. It handles tasks such as adding new records, updating existing ones, deleting data, and running queries to find information you need. In short, a DBMS is the tool that makes working with large collections of data easy and efficient.  \n\n**Sources**  \n- EduNova_DBMS_Test_Material.pdf, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "What is DBMS?",
+    "answer": "A **Database Management System (DBMS)** is software that lets you create, store, organize, retrieve, and manage data in a database. It provides tools and interfaces for defining the structure of the data, inserting and updating records, and running queries to extract information.\n\n**Key points**\n\n- **Storage** – Keeps data on disk or other storage media.  \n- **Organization** – Structures data into tables, indexes, and relationships.  \n- **Retrieval** – Allows you to fetch data using query languages (e.g., SQL).  \n- **Management** – Handles tasks such as backup, recovery, concurrency control, and security.\n\nIn short, a DBMS is the system that manages the entire lifecycle of data in a database, from creation to deletion.\n\n**Source**\n\n- EduNova_DBMS_Test_Material.pdf, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "Why is binary search faster than linear search for a sorted array?",
+    "answer": "**Binary search vs. linear search**\n\n| Search type | How it works | Speed (time complexity) |\n|-------------|--------------|--------------------------|\n| **Linear search** | Look at each element one by one until you find the target. | **O(n)** – in the worst case you check every element. |\n| **Binary search** | Repeatedly split the sorted array in half, keep the half that could contain the target, and discard the other half. | **O(log n)** – you cut the search space in half each step. |\n\n---\n\n### Why binary search is faster\n\n1. **Sorted array is the key**  \n   - Binary search can only work when the array is sorted.  \n   - Sorting lets us know whether the target is in the left half or the right half.\n\n2. **Halving the problem each step**  \n   - After one comparison, we eliminate about half of the remaining elements.  \n   - After two comparisons, we eliminate three‑quarters, after three comparisons, 7/8, and so on.\n\n3. **Fewer comparisons**  \n   - For an array of 1,000 elements:  \n     - Linear search may need up to 1,000 comparisons.  \n     - Binary search needs only about `log₂(1000) ≈ 10` comparisons.\n\n4. **Mathematical view**  \n   - Linear search: `n` comparisons → linear growth.  \n   - Binary search: `log₂(n)` comparisons → logarithmic growth.  \n   - Logarithmic growth grows much slower as `n` gets large.\n\n---\n\n### Example\n\nSuppose we want to find the number **37** in a sorted list of 16 numbers:\n\n```\n[3, 7, 12, 18, 24, 29, 33, 37, 42, 48, 55, 61, 68, 73, 79, 84]\n```\n\n| Step | Middle element | Decision | Remaining range |\n|------|----------------|----------|-----------------|\n| 1 | 33 | 37 > 33 → right half | 37, 42, 48, 55, 61, 68, 73, 79, 84 |\n| 2 | 61 | 37 < 61 → left half | 37, 42, 48, 55 |\n| 3 | 48 | 37 < 48 → left half | 37, 42 |\n| 4 | 42 | 37 < 42 → left half | 37 |\n| 5 | 37 | **Found** | – |\n\nOnly **5 comparisons** were needed, whereas a linear search might have checked up to 16 numbers.\n\n---\n\n### Bottom line\n\n- **Linear search** checks every element → many comparisons for large arrays.  \n- **Binary search** cuts the search space in half each time → far fewer comparisons.  \n- That’s why binary search is *much faster* on sorted arrays.",
+    "grounded": false,
+    "sources": []
+  },
+  {
+    "question": "Why is binary search faster than linear search for a sorted array?",
+    "answer": "**Binary search vs. Linear search**\n\n| Search method | How it works | Speed (time needed) |\n|---------------|--------------|---------------------|\n| **Linear search** | Look at each element one by one until you find the target. | **O(n)** – you may have to check every element. |\n| **Binary search** | Repeatedly cut the list in half, keeping only the half that could contain the target. | **O(log n)** – you only need to look at a few elements, even for very large lists. |\n\n---\n\n### Why binary search is faster\n\n1. **It uses the fact that the array is sorted.**  \n   - If the target is smaller than the middle element, everything to the right of the middle can be ignored.  \n   - If it’s larger, everything to the left can be ignored.\n\n2. **It reduces the search space exponentially.**  \n   - After the first comparison you have half the elements left.  \n   - After the second comparison you have a quarter, then an eighth, and so on.\n\n3. **Fewer comparisons mean less work.**  \n   - For an array of 1,000,000 items:  \n     - Linear search might look at up to 1,000,000 elements.  \n     - Binary search needs only about 20 comparisons (because 2²⁰ ≈ 1,000,000).\n\n---\n\n### Simple example\n\nSuppose you have a sorted list of 8 numbers:  \n`[3, 7, 12, 18, 24, 31, 42, 56]`\n\n| Step | Middle element | Decision | Remaining elements |\n|------|----------------|----------|--------------------|\n| 1 | 18 | Target is 31 → go right | `[24, 31, 42, 56]` |\n| 2 | 42 | Target is 31 → go left | `[24, 31]` |\n| 3 | 31 | Found! | – |\n\nOnly **3 comparisons** were needed, whereas linear search could have checked up to 8 numbers.\n\n---\n\n### When to use each\n\n- **Linear search**  \n  - Small arrays or when the array isn’t sorted.  \n  - Simple to implement, no extra memory needed.\n\n- **Binary search**  \n  - Large, sorted arrays or lists.  \n  - When you need fast look‑ups and can afford the initial sort.\n\n---\n\n**Bottom line:**  \nBinary search is faster because it cuts the number of elements you need to examine in half each time, turning a potentially long scan into a quick, logarithmic‑time lookup.",
+    "grounded": false,
+    "sources": []
+  },
+  {
+    "question": "What is DBMS?",
+    "answer": "A **Database Management System (DBMS)** is software that lets you store, organize, retrieve, and manage data in a database. It provides tools for creating tables, inserting and updating records, and running queries to extract information, while handling tasks like data integrity, security, and backup.  \n\n**Sources**  \n- EduNova_DBMS_Test_Material.pdf, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  }
+]

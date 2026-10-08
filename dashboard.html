@@ -2,110 +2,280 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>EduNova AI | Dashboard</title>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Main stylesheet -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Professional Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
 
     <style>
+
+        /* =====================================================
+           BASIC RESET
+        ===================================================== */
+
+        html,
+        body {
+
+            width: 100%;
+            max-width: 100%;
+
+            margin: 0;
+            padding: 0;
+
+            overflow-x: hidden;
+        }
+
+
+        *,
+        *::before,
+        *::after {
+
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           LUCIDE ICONS
+        ===================================================== */
+
+        .lucide {
+
+            width: 19px;
+            height: 19px;
+
+            stroke-width: 2;
+
+            flex-shrink: 0;
+        }
+
+
+        .new-chat .lucide {
+
+            width: 18px;
+            height: 18px;
+        }
+
+
+        .dashboard-nav {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .dashboard-nav .lucide {
+
+            width: 18px;
+            height: 18px;
+        }
+
 
         /* =====================================================
            LOGO
         ===================================================== */
 
         .brand-icon {
+
             width: 55px;
             height: 55px;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
         }
 
+
         .brand-icon img {
+
             width: 55px;
             height: 55px;
+
             object-fit: contain;
         }
 
 
         /* =====================================================
-           DASHBOARD LAYOUT
+           DASHBOARD
         ===================================================== */
 
         .dashboard {
+
             padding: 28px 32px;
+
             max-width: 1250px;
+
             margin: 0 auto;
+
             width: 100%;
-            overflow-y: auto;
+
             height: calc(100vh - 70px);
+
+            overflow-y: auto;
+            overflow-x: hidden;
         }
+
+
+        /* =====================================================
+           WELCOME
+        ===================================================== */
 
         .dashboard-welcome {
-            background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6d28d9,
+                    #8b5cf6
+                );
+
             color: white;
+
             border-radius: 20px;
+
             padding: 30px;
+
             margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(109, 40, 217, 0.18);
+
+            box-shadow:
+                0 10px 30px
+                rgba(109, 40, 217, 0.18);
         }
 
+
         .dashboard-welcome h1 {
+
             margin: 0 0 8px;
+
             font-size: 28px;
         }
 
+
         .dashboard-welcome p {
+
             margin: 0;
+
             opacity: 0.92;
         }
 
+
+        /* =====================================================
+           DASHBOARD GRID
+        ===================================================== */
+
         .dashboard-grid {
+
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
             gap: 20px;
         }
 
+
         .dashboard-card {
+
+            min-width: 0;
+
             background: white;
+
             border: 1px solid #e9e7f2;
+
             border-radius: 18px;
+
             padding: 22px;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+
+            box-shadow:
+                0 5px 18px
+                rgba(0, 0, 0, 0.04);
         }
 
+
         .dashboard-card.full {
+
             grid-column: 1 / -1;
         }
 
+
+        /* =====================================================
+           CARD TITLE
+        ===================================================== */
+
         .card-title {
+
             display: flex;
+
             align-items: center;
+
             gap: 10px;
+
             margin-bottom: 18px;
         }
 
+
         .card-title-icon {
+
             width: 40px;
             height: 40px;
+
             border-radius: 11px;
+
             background: #f1edff;
+
             color: #6d28d9;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
-            font-size: 19px;
+
+            flex-shrink: 0;
         }
 
+
+        .card-title-icon .lucide {
+
+            width: 20px;
+            height: 20px;
+        }
+
+
         .card-title h2 {
+
             font-size: 17px;
+
             margin: 0;
         }
 
+
         .card-title p {
+
             margin: 3px 0 0;
+
             font-size: 12px;
+
             color: #777;
         }
 
@@ -115,32 +285,61 @@
         ===================================================== */
 
         .progress-top {
+
             display: flex;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             margin-bottom: 9px;
+
             font-size: 13px;
         }
 
+
         .progress-bar {
+
             height: 10px;
+
             background: #eeeaf7;
+
             border-radius: 20px;
+
             overflow: hidden;
         }
 
+
         .progress-fill {
+
             height: 100%;
+
             width: 68%;
-            background: linear-gradient(90deg, #6d28d9, #a78bfa);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6d28d9,
+                    #a78bfa
+                );
+
             border-radius: 20px;
         }
 
+
         .progress-info {
+
             display: flex;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             margin-top: 13px;
+
             font-size: 12px;
+
             color: #666;
+
+            gap: 10px;
         }
 
 
@@ -149,32 +348,58 @@
         ===================================================== */
 
         .subjects {
+
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
             gap: 12px;
         }
 
+
         .subject {
+
+            min-width: 0;
+
             border: 1px solid #eee;
+
             border-radius: 12px;
+
             padding: 14px;
+
             transition: 0.2s;
         }
 
+
         .subject:hover {
-            transform: translateY(-2px);
+
+            transform:
+                translateY(-2px);
+
             border-color: #cfc0ff;
+
             background: #faf8ff;
         }
 
+
         .subject strong {
+
             display: block;
+
             font-size: 14px;
+
             margin-bottom: 5px;
         }
 
+
         .subject span {
+
             font-size: 11px;
+
             color: #777;
         }
 
@@ -184,38 +409,68 @@
         ===================================================== */
 
         .quiz-score {
+
             display: flex;
+
             align-items: center;
+
             gap: 20px;
         }
 
+
         .score-circle {
+
             width: 82px;
             height: 82px;
+
             border-radius: 50%;
+
             background: #f1edff;
-            border: 7px solid #8b5cf6;
+
+            border:
+                7px solid #8b5cf6;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
+
             flex-shrink: 0;
         }
 
+
         .score-circle strong {
+
             font-size: 21px;
+
             color: #6d28d9;
         }
 
+
+        .quiz-details {
+
+            min-width: 0;
+        }
+
+
         .quiz-details strong {
+
             display: block;
+
             font-size: 16px;
+
             margin-bottom: 6px;
         }
 
+
         .quiz-details span {
+
             display: block;
+
             font-size: 12px;
+
             color: #777;
+
             margin-top: 3px;
         }
 
@@ -225,37 +480,72 @@
         ===================================================== */
 
         .activity-list {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 11px;
         }
 
+
         .activity {
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
             padding: 11px;
+
             background: #fafafa;
+
             border-radius: 10px;
+
+            min-width: 0;
         }
+
 
         .activity-icon {
+
             width: 34px;
             height: 34px;
+
             border-radius: 9px;
+
             background: #eee8ff;
+
+            color: #6d28d9;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
+
+            flex-shrink: 0;
         }
 
+
+        .activity-icon .lucide {
+
+            width: 17px;
+            height: 17px;
+        }
+
+
         .activity strong {
+
             display: block;
+
             font-size: 13px;
         }
 
+
         .activity span {
+
             font-size: 11px;
+
             color: #777;
         }
 
@@ -265,47 +555,109 @@
         ===================================================== */
 
         .quick-actions {
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(0, 1fr)
+                );
+
             gap: 12px;
         }
 
+
         .quick-action {
+
             border: 1px solid #eee;
+
             background: white;
+
+            color: inherit;
+
             border-radius: 13px;
+
             padding: 18px;
+
             cursor: pointer;
+
             text-align: left;
-            transition: all 0.2s ease;
+
+            transition:
+                all 0.2s ease;
+
             font-family: inherit;
+
+            width: 100%;
         }
+
 
         .quick-action:hover {
-            transform: translateY(-3px);
+
+            transform:
+                translateY(-3px);
+
             border-color: #bca7ff;
+
             background: #faf8ff;
-            box-shadow: 0 8px 20px rgba(109, 40, 217, 0.08);
+
+            box-shadow:
+                0 8px 20px
+                rgba(109, 40, 217, 0.08);
         }
+
 
         .quick-action:active {
-            transform: scale(0.98);
+
+            transform:
+                scale(0.98);
         }
+
 
         .quick-action-icon {
-            font-size: 24px;
-            margin-bottom: 9px;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 11px;
+
+            background: #f1edff;
+
+            color: #6d28d9;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 10px;
         }
 
+
+        .quick-action-icon .lucide {
+
+            width: 21px;
+            height: 21px;
+        }
+
+
         .quick-action strong {
+
             display: block;
+
             font-size: 13px;
         }
 
+
         .quick-action span {
+
             display: block;
+
             color: #777;
+
             font-size: 11px;
+
             margin-top: 4px;
         }
 
@@ -315,155 +667,140 @@
         ===================================================== */
 
         .ai-status-box {
+
             display: flex;
+
             align-items: center;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             gap: 15px;
+
             padding: 16px;
+
             border-radius: 13px;
+
             background: #f7f7f7;
         }
 
+
         .ai-status-left {
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
+            min-width: 0;
         }
+
 
         .ai-status-dot {
+
             width: 12px;
             height: 12px;
+
             background: #22c55e;
+
             border-radius: 50%;
-            box-shadow: 0 0 0 5px #dcfce7;
+
+            box-shadow:
+                0 0 0 5px #dcfce7;
+
+            flex-shrink: 0;
         }
+
 
         .ai-status-dot.offline {
+
             background: #ef4444;
-            box-shadow: 0 0 0 5px #fee2e2;
+
+            box-shadow:
+                0 0 0 5px #fee2e2;
         }
 
+
         .ai-status-left strong {
+
             display: block;
+
             font-size: 14px;
         }
 
+
         .ai-status-left span {
+
             display: block;
+
             color: #777;
+
             font-size: 11px;
+
             margin-top: 3px;
         }
 
+
         .ai-status-badge {
+
             background: #dcfce7;
+
             color: #15803d;
+
             padding: 6px 10px;
+
             border-radius: 20px;
+
             font-size: 10px;
+
             font-weight: 700;
+
+            white-space: nowrap;
         }
 
+
         .ai-status-badge.offline {
+
             background: #fee2e2;
+
             color: #b91c1c;
         }
 
 
         /* =====================================================
-           CHAT
+           SIDEBAR STATUS
         ===================================================== */
 
-        .chat-area {
-            display: none;
-        }
+        .status {
 
-        .welcome {
-            padding: 35px 20px;
-        }
-
-        .suggestions {
-            width: min(820px, 100%);
-            margin: 25px auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        .suggestion {
-            border: 1px solid #eee;
-            background: white;
-            border-radius: 14px;
-            padding: 18px;
-            cursor: pointer;
-            text-align: left;
-            transition: 0.2s;
-        }
-
-        .suggestion:hover {
-            transform: translateY(-2px);
-            border-color: #cfc0ff;
-            background: #faf8ff;
-        }
-
-        .suggestion-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
             display: flex;
+
             align-items: center;
-            justify-content: center;
-            background: #f1f3f5;
-            margin-bottom: 15px;
-            font-size: 21px;
+
+            gap: 8px;
         }
 
-        .suggestion strong,
-        .suggestion span {
-            display: block;
-        }
 
-        .suggestion span {
-            color: #777;
-            font-size: 12px;
-            margin-top: 5px;
-        }
+        .status-dot {
 
-        .composer-area {
-            display: none;
-        }
+            width: 8px;
+            height: 8px;
 
-        .thinking-dots {
-            display: inline-flex;
-            gap: 4px;
-        }
-
-        .thinking-dots span {
-            width: 6px;
-            height: 6px;
-            background: #7c3aed;
             border-radius: 50%;
-            animation: thinking 1.3s infinite ease-in-out;
+
+            background: #9ca3af;
+
+            flex-shrink: 0;
         }
 
-        .thinking-dots span:nth-child(2) {
-            animation-delay: .15s;
-        }
 
-        .thinking-dots span:nth-child(3) {
-            animation-delay: .3s;
-        }
+        .status-dot.online {
 
-        @keyframes thinking {
-            0%, 60%, 100% {
-                transform: translateY(0);
-                opacity: .35;
-            }
+            background: #22c55e;
 
-            30% {
-                transform: translateY(-5px);
-                opacity: 1;
-            }
+            box-shadow:
+                0 0 0 3px #dcfce7;
         }
 
 
@@ -474,50 +811,127 @@
         @media (max-width: 900px) {
 
             .dashboard-grid {
+
                 grid-template-columns: 1fr;
             }
 
+
             .dashboard-card.full {
+
                 grid-column: auto;
             }
+
         }
+
 
         @media (max-width: 768px) {
 
             .dashboard {
+
                 padding: 20px 15px;
-                height: calc(100vh - 60px);
+
+                height:
+                    calc(100vh - 60px);
             }
 
+
+            .dashboard-welcome {
+
+                padding: 24px;
+            }
+
+
             .dashboard-welcome h1 {
+
                 font-size: 23px;
             }
 
+
             .subjects {
+
                 grid-template-columns: 1fr;
             }
+
 
             .quick-actions {
+
                 grid-template-columns: 1fr;
             }
 
+
             .ai-status-box {
+
                 align-items: flex-start;
+
                 flex-direction: column;
             }
 
+
             .brand-icon {
+
                 width: 48px;
                 height: 48px;
             }
 
+
             .brand-icon img {
+
                 width: 48px;
                 height: 48px;
             }
+
+
+            .progress-info {
+
+                flex-direction: column;
+
+                gap: 4px;
+            }
+
+
+            .quiz-score {
+
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .dashboard {
+
+                padding: 16px 10px;
+            }
+
+
+            .dashboard-card {
+
+                padding: 17px;
+            }
+
+
+            .dashboard-welcome {
+
+                padding: 20px;
+            }
+
+
+            .dashboard-welcome h1 {
+
+                font-size: 21px;
+            }
+
+
+            .quiz-score {
+
+                flex-direction: column;
+            }
+
         }
 
     </style>
+
 </head>
 
 
@@ -525,20 +939,30 @@
 
 <div class="app">
 
+
     <!-- =====================================================
          SIDEBAR
     ===================================================== -->
 
     <aside class="sidebar">
 
+
+        <!-- BRAND -->
+
         <div class="brand">
 
             <div class="brand-icon">
-                <img src="assets/edunova-logo.png"
-     alt="EduNova AI Logo">
+
+                <img
+                    src="assets/edunova-logo.png"
+                    alt="EduNova AI Logo"
+                >
+
             </div>
 
+
             <div>
+
                 <div class="brand-text">
                     EduNova AI
                 </div>
@@ -546,16 +970,30 @@
                 <div class="brand-subtitle">
                     Personalized Learning
                 </div>
+
             </div>
 
         </div>
 
 
-        <button class="new-chat" id="newChatButton">
-            ＋
-            <span>New Chat</span>
+        <!-- NEW CHAT -->
+
+        <button
+            class="new-chat"
+            id="newChatButton"
+            type="button"
+        >
+
+            <i data-lucide="plus"></i>
+
+            <span>
+                New Chat
+            </span>
+
         </button>
 
+
+        <!-- NAVIGATION TITLE -->
 
         <div class="sidebar-title">
             Navigation
@@ -564,41 +1002,104 @@
 
         <div class="history">
 
-            <div class="history-item dashboard-nav active"
-                 id="dashboardNav">
-                🏠 Dashboard
+
+            <!-- DASHBOARD -->
+
+            <div
+                class="history-item dashboard-nav active"
+                id="dashboardNav"
+                role="button"
+                tabindex="0"
+            >
+
+                <i data-lucide="layout-dashboard"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
             </div>
 
-            <div class="history-item dashboard-nav"
-                 id="askAINav">
-                🤖 Ask AI
+
+            <!-- ASK AI -->
+
+            <div
+                class="history-item dashboard-nav"
+                id="askAINav"
+                role="button"
+                tabindex="0"
+            >
+
+                <i data-lucide="bot"></i>
+
+                <span>
+                    Ask AI
+                </span>
+
             </div>
 
-            <div class="history-item dashboard-nav"
-                 id="quizNav">
-                📝 Quiz
+
+            <!-- QUIZ -->
+
+            <div
+                class="history-item dashboard-nav"
+                id="quizNav"
+                role="button"
+                tabindex="0"
+            >
+
+                <i data-lucide="clipboard-check"></i>
+
+                <span>
+                    Quiz
+                </span>
+
             </div>
 
-            <div class="history-item dashboard-nav"
-                 id="studyPlanNav">
-                📅 Study Plan
+
+            <!-- STUDY PLAN -->
+
+            <div
+                class="history-item dashboard-nav"
+                id="studyPlanNav"
+                role="button"
+                tabindex="0"
+            >
+
+                <i data-lucide="calendar-days"></i>
+
+                <span>
+                    Study Plan
+                </span>
+
             </div>
 
         </div>
 
+
+        <!-- RECENT CHATS -->
 
         <div class="sidebar-title">
             Recent Chats
         </div>
 
-        <div class="history" id="history"></div>
 
+        <div
+            class="history"
+            id="history"
+        ></div>
+
+
+        <!-- SIDEBAR STATUS -->
 
         <div class="sidebar-bottom">
 
             <div class="status">
 
-                <span class="status-dot" id="statusDot"></span>
+                <span
+                    class="status-dot"
+                    id="statusDot"
+                ></span>
 
                 <span id="statusText">
                     Checking AI system...
@@ -606,7 +1107,11 @@
 
             </div>
 
-            <div class="model-name" id="modelName">
+
+            <div
+                class="model-name"
+                id="modelName"
+            >
                 Connecting...
             </div>
 
@@ -622,11 +1127,14 @@
     <main class="main">
 
 
+        <!-- TOP BAR -->
+
         <header class="topbar">
 
             <div class="top-title">
                 Dashboard
             </div>
+
 
             <div class="top-status">
 
@@ -643,13 +1151,18 @@
              DASHBOARD
         ================================================= -->
 
-        <div class="dashboard" id="dashboard">
+        <div
+            class="dashboard"
+            id="dashboard"
+        >
 
+
+            <!-- WELCOME -->
 
             <section class="dashboard-welcome">
 
                 <h1 id="dashboardWelcome">
-                    👋 Welcome, Student
+                    Welcome, Student
                 </h1>
 
                 <p>
@@ -663,22 +1176,31 @@
             <div class="dashboard-grid">
 
 
-                <!-- LEARNING PROGRESS -->
+                <!-- =================================================
+                     LEARNING PROGRESS
+                ================================================= -->
 
                 <div class="dashboard-card">
 
                     <div class="card-title">
 
                         <div class="card-title-icon">
-                            📊
+
+                            <i data-lucide="chart-no-axes-combined"></i>
+
                         </div>
 
+
                         <div>
-                            <h2>Learning Progress</h2>
+
+                            <h2>
+                                Learning Progress
+                            </h2>
 
                             <p>
                                 Your overall learning progress
                             </p>
+
                         </div>
 
                     </div>
@@ -699,7 +1221,9 @@
 
                     <div class="progress-bar">
 
-                        <div class="progress-fill"></div>
+                        <div
+                            class="progress-fill"
+                        ></div>
 
                     </div>
 
@@ -719,15 +1243,20 @@
                 </div>
 
 
-                <!-- SUBJECTS -->
+                <!-- =================================================
+                     SUBJECTS
+                ================================================= -->
 
                 <div class="dashboard-card">
 
                     <div class="card-title">
 
                         <div class="card-title-icon">
-                            📚
+
+                            <i data-lucide="book-open"></i>
+
                         </div>
+
 
                         <div>
 
@@ -745,6 +1274,7 @@
 
 
                     <div class="subjects">
+
 
                         <div class="subject">
 
@@ -797,20 +1327,26 @@
 
                         </div>
 
+
                     </div>
 
                 </div>
 
 
-                <!-- QUIZ -->
+                <!-- =================================================
+                     QUIZ PERFORMANCE
+                ================================================= -->
 
                 <div class="dashboard-card">
 
                     <div class="card-title">
 
                         <div class="card-title-icon">
-                            📝
+
+                            <i data-lucide="graduation-cap"></i>
+
                         </div>
+
 
                         <div>
 
@@ -828,6 +1364,7 @@
 
 
                     <div class="quiz-score">
+
 
                         <div class="score-circle">
 
@@ -859,15 +1396,20 @@
                 </div>
 
 
-                <!-- RECENT ACTIVITY -->
+                <!-- =================================================
+                     RECENT ACTIVITY
+                ================================================= -->
 
                 <div class="dashboard-card">
 
                     <div class="card-title">
 
                         <div class="card-title-icon">
-                            🕘
+
+                            <i data-lucide="clock-3"></i>
+
                         </div>
+
 
                         <div>
 
@@ -884,14 +1426,22 @@
                     </div>
 
 
-                    <div class="activity-list"
-                         id="activityList">
+                    <div
+                        class="activity-list"
+                        id="activityList"
+                    >
+
+
+                        <!-- AI ACTIVITY -->
 
                         <div class="activity">
 
                             <div class="activity-icon">
-                                🤖
+
+                                <i data-lucide="bot"></i>
+
                             </div>
+
 
                             <div>
 
@@ -908,11 +1458,16 @@
                         </div>
 
 
+                        <!-- QUIZ ACTIVITY -->
+
                         <div class="activity">
 
                             <div class="activity-icon">
-                                📝
+
+                                <i data-lucide="clipboard-check"></i>
+
                             </div>
+
 
                             <div>
 
@@ -929,11 +1484,16 @@
                         </div>
 
 
+                        <!-- STUDY ACTIVITY -->
+
                         <div class="activity">
 
                             <div class="activity-icon">
-                                📖
+
+                                <i data-lucide="book-open"></i>
+
                             </div>
+
 
                             <div>
 
@@ -949,20 +1509,27 @@
 
                         </div>
 
+
                     </div>
 
                 </div>
 
 
-                <!-- QUICK ACTIONS -->
+                <!-- =================================================
+                     QUICK ACTIONS
+                ================================================= -->
 
                 <div class="dashboard-card full">
+
 
                     <div class="card-title">
 
                         <div class="card-title-icon">
-                            ⚡
+
+                            <i data-lucide="zap"></i>
+
                         </div>
+
 
                         <div>
 
@@ -982,17 +1549,25 @@
                     <div class="quick-actions">
 
 
-                        <button class="quick-action"
-                                type="button"
-                                id="askAIAction">
+                        <!-- ASK AI -->
+
+                        <button
+                            class="quick-action"
+                            type="button"
+                            id="askAIAction"
+                        >
 
                             <div class="quick-action-icon">
-                                🤖
+
+                                <i data-lucide="bot"></i>
+
                             </div>
+
 
                             <strong>
                                 Ask AI
                             </strong>
+
 
                             <span>
                                 Ask EduNova anything
@@ -1001,17 +1576,25 @@
                         </button>
 
 
-                        <button class="quick-action"
-                                type="button"
-                                id="quizAction">
+                        <!-- QUIZ -->
+
+                        <button
+                            class="quick-action"
+                            type="button"
+                            id="quizAction"
+                        >
 
                             <div class="quick-action-icon">
-                                📝
+
+                                <i data-lucide="clipboard-check"></i>
+
                             </div>
+
 
                             <strong>
                                 Quiz
                             </strong>
+
 
                             <span>
                                 Test your knowledge
@@ -1020,17 +1603,25 @@
                         </button>
 
 
-                        <button class="quick-action"
-                                type="button"
-                                id="studyPlanAction">
+                        <!-- STUDY PLAN -->
+
+                        <button
+                            class="quick-action"
+                            type="button"
+                            id="studyPlanAction"
+                        >
 
                             <div class="quick-action-icon">
-                                📅
+
+                                <i data-lucide="calendar-days"></i>
+
                             </div>
+
 
                             <strong>
                                 Study Plan
                             </strong>
+
 
                             <span>
                                 Create a learning plan
@@ -1044,15 +1635,21 @@
                 </div>
 
 
-                <!-- AI STATUS -->
+                <!-- =================================================
+                     AI STATUS
+                ================================================= -->
 
                 <div class="dashboard-card full">
+
 
                     <div class="card-title">
 
                         <div class="card-title-icon">
-                            🤖
+
+                            <i data-lucide="brain"></i>
+
                         </div>
+
 
                         <div>
 
@@ -1071,20 +1668,27 @@
 
                     <div class="ai-status-box">
 
+
                         <div class="ai-status-left">
 
-                            <div class="ai-status-dot"
-                                 id="dashboardStatusDot">
-                            </div>
+                            <div
+                                class="ai-status-dot"
+                                id="dashboardStatusDot"
+                            ></div>
 
 
                             <div>
 
-                                <strong id="dashboardAIStatus">
+                                <strong
+                                    id="dashboardAIStatus"
+                                >
                                     Checking AI system...
                                 </strong>
 
-                                <span id="dashboardAIModel">
+
+                                <span
+                                    id="dashboardAIModel"
+                                >
                                     Connecting to backend
                                 </span>
 
@@ -1093,156 +1697,18 @@
                         </div>
 
 
-                        <div class="ai-status-badge"
-                             id="dashboardStatusBadge">
-
+                        <div
+                            class="ai-status-badge"
+                            id="dashboardStatusBadge"
+                        >
                             CONNECTING
-
                         </div>
+
 
                     </div>
 
                 </div>
 
-
-            </div>
-
-        </div>
-
-
-        <!-- CHAT AREA -->
-
-        <div class="chat-area"
-             id="chatArea">
-
-            <section class="welcome"
-                     id="welcome">
-
-                <div class="welcome-icon">
-                    🤖
-                </div>
-
-                <h1 id="welcomeText">
-                    What do you want to learn?
-                </h1>
-
-                <p>
-                    Ask EduNova AI anything.
-                    Learn concepts, solve problems,
-                    understand difficult topics,
-                    and explore new ideas.
-                </p>
-
-
-                <div class="suggestions">
-
-
-                    <button class="suggestion"
-                            data-question="Explain artificial intelligence in simple words.">
-
-                        <div class="suggestion-icon">
-                            🧠
-                        </div>
-
-                        <strong>
-                            Learn a concept
-                        </strong>
-
-                        <span>
-                            Explain something difficult simply
-                        </span>
-
-                    </button>
-
-
-                    <button class="suggestion"
-                            data-question="Create a beginner-friendly study plan for learning Python.">
-
-                        <div class="suggestion-icon">
-                            📅
-                        </div>
-
-                        <strong>
-                            Make a study plan
-                        </strong>
-
-                        <span>
-                            Create a simple learning roadmap
-                        </span>
-
-                    </button>
-
-
-                    <button class="suggestion"
-                            data-question="Explain how databases work with a simple example.">
-
-                        <div class="suggestion-icon">
-                            💡
-                        </div>
-
-                        <strong>
-                            Understand a topic
-                        </strong>
-
-                        <span>
-                            Get an easy explanation with examples
-                        </span>
-
-                    </button>
-
-
-                    <button class="suggestion"
-                            data-question="Give me five useful technical interview questions for a beginner.">
-
-                        <div class="suggestion-icon">
-                            💼
-                        </div>
-
-                        <strong>
-                            Prepare for interviews
-                        </strong>
-
-                        <span>
-                            Practice technical questions
-                        </span>
-
-                    </button>
-
-
-                </div>
-
-            </section>
-
-
-            <div class="messages"
-                 id="messages">
-            </div>
-
-        </div>
-
-
-        <!-- COMPOSER -->
-
-        <div class="composer-area"
-             id="composerArea">
-
-            <div class="composer">
-
-                <div class="input-row">
-
-                    <textarea id="questionInput"
-                              placeholder="Ask anything..."
-                              rows="1"></textarea>
-
-                    <button class="send-button"
-                            id="sendButton"
-                            type="button">
-
-                        ➤
-
-                    </button>
-
-                </div>
 
             </div>
 
@@ -1253,893 +1719,903 @@
 </div>
 
 
-<div class="toast"
-     id="toast">
-</div>
-
-
 <script>
 
-const API_URL = "http://127.0.0.1:5000";
+    /* =====================================================
+       BACKEND
+    ===================================================== */
 
+    const API_URL =
+        "http://127.0.0.1:5000";
 
-const dashboard =
-    document.getElementById("dashboard");
 
-const chatArea =
-    document.getElementById("chatArea");
+    /* =====================================================
+       STUDENT NAME
+    ===================================================== */
 
-const welcome =
-    document.getElementById("welcome");
+    function loadStudentName() {
 
-const messages =
-    document.getElementById("messages");
-
-const input =
-    document.getElementById("questionInput");
-
-const sendButton =
-    document.getElementById("sendButton");
-
-const newChatButton =
-    document.getElementById("newChatButton");
-
-const history =
-    document.getElementById("history");
-
-const toast =
-    document.getElementById("toast");
-
-
-let lastQuestion = "";
-
-
-function loadStudentName() {
-
-    const studentName =
-        localStorage.getItem("studentName");
-
-    const dashboardWelcome =
-        document.getElementById("dashboardWelcome");
-
-    const welcomeText =
-        document.getElementById("welcomeText");
-
-    if (studentName) {
-
-        dashboardWelcome.textContent =
-            "👋 Welcome, " + studentName;
-
-        welcomeText.textContent =
-            "Welcome, " + studentName;
-
-    }
-
-}
-
-
-function showDashboard() {
-
-    dashboard.style.display = "block";
-
-    chatArea.style.display = "none";
-
-    document.querySelector(".composer-area").style.display =
-        "none";
-
-    document.querySelector(".top-title").textContent =
-        "Dashboard";
-
-}
-
-
-function showChat() {
-
-    dashboard.style.display = "none";
-
-    chatArea.style.display = "block";
-
-    document.querySelector(".composer-area").style.display =
-        "block";
-
-    document.querySelector(".top-title").textContent =
-        "Ask Anything";
-
-    if (welcome) {
-        welcome.style.display = "block";
-    }
-
-    setTimeout(function () {
-
-        input.focus();
-
-    }, 100);
-
-}
-
-
-document
-    .getElementById("askAIAction")
-    .addEventListener("click", function () {
-
-        showChat();
-
-    });
-
-
-document
-    .getElementById("quizAction")
-    .addEventListener("click", function () {
-
-        window.location.href = "chat.html";
-
-    });
-
-
-document
-    .getElementById("studyPlanAction")
-    .addEventListener("click", function () {
-
-        showChat();
-
-        input.value =
-            "Create a beginner-friendly study plan for learning Python.";
-
-        autoResize();
-
-        input.focus();
-
-    });
-
-
-document
-    .getElementById("dashboardNav")
-    .addEventListener("click", function () {
-
-        showDashboard();
-
-    });
-
-
-document
-    .getElementById("askAINav")
-    .addEventListener("click", function () {
-
-        showChat();
-
-    });
-
-
-document
-    .getElementById("quizNav")
-    .addEventListener("click", function () {
-
-        window.location.href = "chat.html";
-
-    });
-
-
-document
-    .getElementById("studyPlanNav")
-    .addEventListener("click", function () {
-
-        showChat();
-
-        input.value =
-            "Create a beginner-friendly study plan for learning Python.";
-
-        autoResize();
-
-        input.focus();
-
-    });
-
-
-newChatButton.addEventListener(
-    "click",
-    function () {
-
-        messages.innerHTML = "";
-
-        lastQuestion = "";
-
-        input.value = "";
-
-        showChat();
-
-        welcome.style.display = "block";
-
-        autoResize();
-
-        showToast(
-            "New chat started."
-        );
-
-    }
-);
-
-
-function escapeHTML(text) {
-
-    return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-function getAIIcon() {
-
-    return "🤖";
-
-}
-
-
-function formatAIAnswer(text) {
-
-    if (!text) {
-        return "";
-    }
-
-    text = escapeHTML(text);
-
-    text = text.replace(
-        /```([\s\S]*?)```/g,
-        "<pre><code>$1</code></pre>"
-    );
-
-    text = text.replace(
-        /\*\*(.*?)\*\*/g,
-        "<strong>$1</strong>"
-    );
-
-    text = text.replace(
-        /`([^`]+)`/g,
-        "<code>$1</code>"
-    );
-
-    text = text.replace(
-        /\n/g,
-        "<br>"
-    );
-
-    return text;
-
-}
-
-
-function addUserMessage(question) {
-
-    const message =
-        document.createElement("div");
-
-    message.className =
-        "message user";
-
-    message.innerHTML = `
-
-        <div class="message-inner">
-
-            <div class="avatar user-avatar">
-                U
-            </div>
-
-            <div class="message-content">
-
-                <div class="message-name">
-                    You
-                </div>
-
-                <div>
-                    ${escapeHTML(question)}
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    messages.appendChild(message);
-
-}
-
-
-function addAIMessage(data) {
-
-    const message =
-        document.createElement("div");
-
-    message.className =
-        "message ai";
-
-    const answer =
-        formatAIAnswer(
-            data.answer ||
-            "No answer received."
-        );
-
-    message.innerHTML = `
-
-        <div class="message-inner">
-
-            <div class="avatar ai-avatar">
-                ${getAIIcon()}
-            </div>
-
-            <div class="message-content">
-
-                <div class="message-name">
-                    EduNova AI
-                </div>
-
-                <div class="ai-answer">
-                    ${answer}
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    messages.appendChild(message);
-
-}
-
-
-function addThinkingMessage() {
-
-    const thinking =
-        document.createElement("div");
-
-    thinking.className =
-        "message ai";
-
-    thinking.id =
-        "thinkingMessage";
-
-    thinking.innerHTML = `
-
-        <div class="message-inner">
-
-            <div class="avatar ai-avatar">
-                🤖
-            </div>
-
-            <div class="message-content">
-
-                <div class="message-name">
-                    EduNova AI
-                </div>
-
-                <div class="ai-answer">
-
-                    Thinking
-
-                    <span class="thinking-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    messages.appendChild(thinking);
-
-}
-
-
-async function askQuestion() {
-
-    const question =
-        input.value.trim();
-
-    if (!question) {
-
-        showToast(
-            "Please enter a question."
-        );
-
-        return;
-
-    }
-
-    lastQuestion =
-        question;
-
-    welcome.style.display =
-        "none";
-
-    addUserMessage(
-        question
-    );
-
-    input.value = "";
-
-    autoResize();
-
-    sendButton.disabled =
-        true;
-
-    addThinkingMessage();
-
-    try {
-
-        const response =
-            await fetch(
-                API_URL + "/ask",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        question: question,
-                        provider: "groq"
-                    })
-                }
+        const studentName =
+            localStorage.getItem(
+                "studentName"
             );
 
-
-        const data =
-            await response.json();
-
-
-        const thinking =
+        const welcome =
             document.getElementById(
-                "thinkingMessage"
+                "dashboardWelcome"
             );
-
-        if (thinking) {
-            thinking.remove();
-        }
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.answer ||
-                data.error ||
-                "AI request failed."
-            );
-
-        }
-
-
-        addAIMessage(
-            data
-        );
-
-
-        addHistory(
-            question
-        );
-
-    }
-
-    catch (error) {
-
-        const thinking =
-            document.getElementById(
-                "thinkingMessage"
-            );
-
-        if (thinking) {
-            thinking.remove();
-        }
-
-
-        const errorMessage =
-            document.createElement("div");
-
-        errorMessage.className =
-            "message ai";
-
-        errorMessage.innerHTML = `
-
-            <div class="message-inner">
-
-                <div class="avatar ai-avatar">
-                    🤖
-                </div>
-
-                <div class="message-content">
-
-                    <div class="message-name">
-                        EduNova AI
-                    </div>
-
-                    <div class="ai-error-box">
-
-                        ${escapeHTML(
-                            error.message ||
-                            "Backend connection failed."
-                        )}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-        messages.appendChild(
-            errorMessage
-        );
-
-    }
-
-    finally {
-
-        sendButton.disabled =
-            false;
-
-    }
-
-}
-
-
-sendButton.addEventListener(
-    "click",
-    askQuestion
-);
-
-
-input.addEventListener(
-    "keydown",
-    function (event) {
 
         if (
-            event.key === "Enter" &&
-            !event.shiftKey
+            studentName &&
+            welcome
         ) {
 
-            event.preventDefault();
-
-            askQuestion();
+            welcome.textContent =
+                "Welcome, " +
+                studentName;
 
         }
 
     }
-);
 
 
-function autoResize() {
+    /* =====================================================
+       GO TO PAGE
+    ===================================================== */
 
-    input.style.height =
-        "auto";
+    function goToPage(page) {
 
-    input.style.height =
-        Math.min(
-            input.scrollHeight,
-            130
-        ) + "px";
+        window.location.href =
+            page;
 
-}
+    }
 
 
-document
-    .querySelectorAll(".suggestion")
-    .forEach(function (button) {
+    /* =====================================================
+       NEW CHAT
+    ===================================================== */
 
-        button.addEventListener(
+    const newChatButton =
+        document.getElementById(
+            "newChatButton"
+        );
+
+    if (newChatButton) {
+
+        newChatButton.addEventListener(
             "click",
             function () {
 
-                showChat();
-
-                input.value =
-                    button.dataset.question;
-
-                autoResize();
-
-                askQuestion();
+                goToPage(
+                    "chat.html"
+                );
 
             }
         );
 
-    });
-
-
-function addHistory(question) {
-
-    if (!question) {
-        return;
     }
 
-    const item =
-        document.createElement("div");
 
-    item.className =
-        "history-item";
+    /* =====================================================
+       ASK AI QUICK ACTION
+    ===================================================== */
 
-    item.textContent =
-        question;
+    const askAIAction =
+        document.getElementById(
+            "askAIAction"
+        );
 
-    item.title =
-        question;
+    if (askAIAction) {
 
-    item.addEventListener(
-        "click",
-        function () {
+        askAIAction.addEventListener(
+            "click",
+            function () {
 
-            showChat();
+                goToPage(
+                    "chat.html"
+                );
 
-            input.value =
-                question;
+            }
+        );
 
-            autoResize();
-
-            input.focus();
-
-        }
-    );
-
-    history.prepend(
-        item
-    );
-
-}
+    }
 
 
-async function loadHistory() {
+    /* =====================================================
+       ASK AI SIDEBAR
+    ===================================================== */
 
-    try {
+    const askAINav =
+        document.getElementById(
+            "askAINav"
+        );
 
-        const response =
-            await fetch(
-                API_URL + "/history"
-            );
+    if (askAINav) {
 
-        if (!response.ok) {
+        askAINav.addEventListener(
+            "click",
+            function () {
+
+                goToPage(
+                    "chat.html"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       QUIZ QUICK ACTION
+    ===================================================== */
+
+    const quizAction =
+        document.getElementById(
+            "quizAction"
+        );
+
+    if (quizAction) {
+
+        quizAction.addEventListener(
+            "click",
+            function () {
+
+                goToPage(
+                    "quiz.html"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       QUIZ SIDEBAR
+    ===================================================== */
+
+    const quizNav =
+        document.getElementById(
+            "quizNav"
+        );
+
+    if (quizNav) {
+
+        quizNav.addEventListener(
+            "click",
+            function () {
+
+                goToPage(
+                    "quiz.html"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       STUDY PLAN QUICK ACTION
+    ===================================================== */
+
+    const studyPlanAction =
+        document.getElementById(
+            "studyPlanAction"
+        );
+
+    if (studyPlanAction) {
+
+        studyPlanAction.addEventListener(
+            "click",
+            function () {
+
+                goToPage(
+                    "chat.html"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       STUDY PLAN SIDEBAR
+    ===================================================== */
+
+    const studyPlanNav =
+        document.getElementById(
+            "studyPlanNav"
+        );
+
+    if (studyPlanNav) {
+
+        studyPlanNav.addEventListener(
+            "click",
+            function () {
+
+                goToPage(
+                    "chat.html"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       DASHBOARD
+    ===================================================== */
+
+    const dashboardNav =
+        document.getElementById(
+            "dashboardNav"
+        );
+
+    if (dashboardNav) {
+
+        dashboardNav.addEventListener(
+            "click",
+            function () {
+
+                goToPage(
+                    "dashboard.html"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       KEYBOARD NAVIGATION
+    ===================================================== */
+
+    function addKeyboardNavigation(
+        element,
+        callback
+    ) {
+
+        if (!element) {
             return;
         }
 
-        const data =
-            await response.json();
+        element.addEventListener(
+            "keydown",
+            function (event) {
 
-        history.innerHTML =
-            "";
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
 
-        (data.history || [])
-            .slice()
-            .reverse()
-            .forEach(function (item) {
+                    event.preventDefault();
 
-                if (item.question) {
+                    callback();
 
-                    addHistory(
-                        item.question
+                }
+
+            }
+        );
+
+    }
+
+
+    addKeyboardNavigation(
+        dashboardNav,
+        function () {
+
+            goToPage(
+                "dashboard.html"
+            );
+
+        }
+    );
+
+
+    addKeyboardNavigation(
+        askAINav,
+        function () {
+
+            goToPage(
+                "chat.html"
+            );
+
+        }
+    );
+
+
+    addKeyboardNavigation(
+        quizNav,
+        function () {
+
+            goToPage(
+                "quiz.html"
+            );
+
+        }
+    );
+
+
+    addKeyboardNavigation(
+        studyPlanNav,
+        function () {
+
+            goToPage(
+                "chat.html"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       LOAD CHAT HISTORY
+    ===================================================== */
+
+    async function loadHistory() {
+
+        const history =
+            document.getElementById(
+                "history"
+            );
+
+        if (!history) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API_URL +
+                    "/history"
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "History request failed"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            history.innerHTML =
+                "";
+
+
+            const chatHistory =
+                Array.isArray(
+                    data.history
+                )
+                    ? data.history
+                    : [];
+
+
+            chatHistory
+                .slice()
+                .reverse()
+                .forEach(
+                    function (item) {
+
+                        if (
+                            item &&
+                            item.question
+                        ) {
+
+                            addHistoryItem(
+                                item.question
+                            );
+
+                        }
+
+                    }
+                );
+
+        }
+        catch (error) {
+
+            console.log(
+                "Chat history unavailable.",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       ADD HISTORY ITEM
+    ===================================================== */
+
+    function addHistoryItem(
+        question
+    ) {
+
+        const history =
+            document.getElementById(
+                "history"
+            );
+
+
+        if (
+            !history ||
+            !question
+        ) {
+
+            return;
+
+        }
+
+
+        const item =
+            document.createElement(
+                "div"
+            );
+
+
+        item.className =
+            "history-item";
+
+
+        item.title =
+            question;
+
+
+        item.setAttribute(
+            "role",
+            "button"
+        );
+
+
+        item.setAttribute(
+            "tabindex",
+            "0"
+        );
+
+
+        /* Chat icon */
+
+        const icon =
+            document.createElement(
+                "i"
+            );
+
+
+        icon.setAttribute(
+            "data-lucide",
+            "message-square"
+        );
+
+
+        const text =
+            document.createElement(
+                "span"
+            );
+
+
+        text.textContent =
+            question;
+
+
+        item.appendChild(
+            icon
+        );
+
+
+        item.appendChild(
+            text
+        );
+
+
+        item.addEventListener(
+            "click",
+            function () {
+
+                goToPage(
+                    "chat.html"
+                );
+
+            }
+        );
+
+
+        item.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    goToPage(
+                        "chat.html"
                     );
 
                 }
 
-            });
+            }
+        );
+
+
+        history.appendChild(
+            item
+        );
+
+
+        /*
+         * Convert the newly added
+         * Lucide icon.
+         */
+
+        lucide.createIcons();
 
     }
 
-    catch (error) {
 
-        console.log(
-            "History unavailable"
-        );
+    /* =====================================================
+       BACKEND STATUS
+    ===================================================== */
 
-    }
+    async function checkBackendStatus() {
 
-}
-
-
-async function checkBackendStatus() {
-
-    const dot =
-        document.getElementById(
-            "statusDot"
-        );
-
-    const statusText =
-        document.getElementById(
-            "statusText"
-        );
-
-    const badge =
-        document.getElementById(
-            "aiBadge"
-        );
-
-    const modelName =
-        document.getElementById(
-            "modelName"
-        );
-
-    const dashboardDot =
-        document.getElementById(
-            "dashboardStatusDot"
-        );
-
-    const dashboardStatus =
-        document.getElementById(
-            "dashboardAIStatus"
-        );
-
-    const dashboardModel =
-        document.getElementById(
-            "dashboardAIModel"
-        );
-
-    const dashboardBadge =
-        document.getElementById(
-            "dashboardStatusBadge"
-        );
-
-
-    try {
-
-        const response =
-            await fetch(
-                API_URL + "/status"
+        const dot =
+            document.getElementById(
+                "statusDot"
             );
 
 
-        const data =
-            await response.json();
-
-
-        if (
-            data.status === "ready" &&
-            data.groq_configured
-        ) {
-
-            dot.className =
-                "status-dot online";
-
-            dashboardDot.className =
-                "ai-status-dot";
-
-            statusText.textContent =
-                "AI system ready";
-
-            badge.textContent =
-                "GROQ AI READY";
-
-            modelName.textContent =
-                data.model ||
-                "Groq AI";
-
-            dashboardStatus.textContent =
-                "AI system ready";
-
-            dashboardModel.textContent =
-                data.model ||
-                "Groq AI";
-
-            dashboardBadge.textContent =
-                "ONLINE";
-
-            dashboardBadge.classList.remove(
-                "offline"
+        const statusText =
+            document.getElementById(
+                "statusText"
             );
 
+
+        const badge =
+            document.getElementById(
+                "aiBadge"
+            );
+
+
+        const modelName =
+            document.getElementById(
+                "modelName"
+            );
+
+
+        const dashboardDot =
+            document.getElementById(
+                "dashboardStatusDot"
+            );
+
+
+        const dashboardStatus =
+            document.getElementById(
+                "dashboardAIStatus"
+            );
+
+
+        const dashboardModel =
+            document.getElementById(
+                "dashboardAIModel"
+            );
+
+
+        const dashboardBadge =
+            document.getElementById(
+                "dashboardStatusBadge"
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API_URL +
+                    "/status"
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Backend unavailable"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            /* =================================================
+               AI READY
+            ================================================= */
+
+            if (
+                data.status === "ready" &&
+                data.groq_configured
+            ) {
+
+
+                if (dot) {
+
+                    dot.className =
+                        "status-dot online";
+
+                }
+
+
+                if (dashboardDot) {
+
+                    dashboardDot.className =
+                        "ai-status-dot";
+
+                }
+
+
+                if (statusText) {
+
+                    statusText.textContent =
+                        "AI system ready";
+
+                }
+
+
+                if (badge) {
+
+                    badge.textContent =
+                        "GROQ AI READY";
+
+                }
+
+
+                if (modelName) {
+
+                    modelName.textContent =
+                        data.model ||
+                        "Groq AI";
+
+                }
+
+
+                if (dashboardStatus) {
+
+                    dashboardStatus.textContent =
+                        "AI system ready";
+
+                }
+
+
+                if (dashboardModel) {
+
+                    dashboardModel.textContent =
+                        data.model ||
+                        "Groq AI";
+
+                }
+
+
+                if (dashboardBadge) {
+
+                    dashboardBadge.textContent =
+                        "ONLINE";
+
+
+                    dashboardBadge.classList.remove(
+                        "offline"
+                    );
+
+                }
+
+            }
+
+
+            /* =================================================
+               CONFIGURATION PROBLEM
+            ================================================= */
+
+            else {
+
+
+                if (dot) {
+
+                    dot.className =
+                        "status-dot";
+
+                }
+
+
+                if (dashboardDot) {
+
+                    dashboardDot.className =
+                        "ai-status-dot offline";
+
+                }
+
+
+                if (statusText) {
+
+                    statusText.textContent =
+                        "AI configuration incomplete";
+
+                }
+
+
+                if (badge) {
+
+                    badge.textContent =
+                        "CHECK CONFIG";
+
+                }
+
+
+                if (modelName) {
+
+                    modelName.textContent =
+                        "Check backend";
+
+                }
+
+
+                if (dashboardStatus) {
+
+                    dashboardStatus.textContent =
+                        "Configuration incomplete";
+
+                }
+
+
+                if (dashboardModel) {
+
+                    dashboardModel.textContent =
+                        "Check backend settings";
+
+                }
+
+
+                if (dashboardBadge) {
+
+                    dashboardBadge.textContent =
+                        "CHECK";
+
+
+                    dashboardBadge.classList.add(
+                        "offline"
+                    );
+
+                }
+
+            }
+
         }
 
-        else {
 
-            statusText.textContent =
-                "AI configuration incomplete";
+        /* =====================================================
+           BACKEND OFFLINE
+        ===================================================== */
 
-            badge.textContent =
-                "CHECK CONFIG";
+        catch (error) {
 
-            modelName.textContent =
-                "Check backend";
 
-            dashboardStatus.textContent =
-                "Configuration incomplete";
+            if (dot) {
 
-            dashboardModel.textContent =
-                "Check backend settings";
+                dot.className =
+                    "status-dot";
 
-            dashboardBadge.textContent =
-                "CHECK";
+            }
+
+
+            if (dashboardDot) {
+
+                dashboardDot.className =
+                    "ai-status-dot offline";
+
+            }
+
+
+            if (statusText) {
+
+                statusText.textContent =
+                    "Backend offline";
+
+            }
+
+
+            if (badge) {
+
+                badge.textContent =
+                    "BACKEND OFFLINE";
+
+            }
+
+
+            if (modelName) {
+
+                modelName.textContent =
+                    "Start Flask backend";
+
+            }
+
+
+            if (dashboardStatus) {
+
+                dashboardStatus.textContent =
+                    "Backend offline";
+
+            }
+
+
+            if (dashboardModel) {
+
+                dashboardModel.textContent =
+                    "Start Flask backend";
+
+            }
+
+
+            if (dashboardBadge) {
+
+                dashboardBadge.textContent =
+                    "OFFLINE";
+
+
+                dashboardBadge.classList.add(
+                    "offline"
+                );
+
+            }
 
         }
 
     }
 
-    catch (error) {
 
-        dot.className =
-            "status-dot";
+    /* =====================================================
+       PAGE START
+    ===================================================== */
 
-        dashboardDot.className =
-            "ai-status-dot offline";
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
 
-        statusText.textContent =
-            "Backend offline";
+            loadStudentName();
 
-        badge.textContent =
-            "BACKEND OFFLINE";
+            checkBackendStatus();
 
-        modelName.textContent =
-            "Start Flask backend";
+            loadHistory();
 
-        dashboardStatus.textContent =
-            "Backend offline";
+            /*
+             * Initialize all professional
+             * Lucide icons.
+             */
 
-        dashboardModel.textContent =
-            "Start Flask backend";
+            lucide.createIcons();
 
-        dashboardBadge.textContent =
-            "OFFLINE";
-
-        dashboardBadge.classList.add(
-            "offline"
-        );
-
-    }
-
-}
-
-
-let toastTimer;
-
-function showToast(message) {
-
-    toast.textContent =
-        message;
-
-    toast.style.display =
-        "block";
-
-    clearTimeout(
-        toastTimer
+        }
     );
-
-    toastTimer =
-        setTimeout(
-            function () {
-
-                toast.style.display =
-                    "none";
-
-            },
-            2500
-        );
-
-}
-
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        loadStudentName();
-
-        checkBackendStatus();
-
-        loadHistory();
-
-        showDashboard();
-
-        autoResize();
-
-    }
-);
 
 </script>
 
+
 </body>
+
 </html>
