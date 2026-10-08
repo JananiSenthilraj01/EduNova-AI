@@ -53,6 +53,5 @@ Use this uploaded learning material when relevant:
         print("Gemini Error:", error)
 
         return {
-            "success": False,
-            "answer": "Unable to get a response from Gemini."
+          
         }

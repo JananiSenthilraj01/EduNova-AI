@@ -431,5 +431,102 @@
         "score": 0.2224
       }
     ]
+  },
+  {
+    "question": "What is query optimization?",
+    "answer": "**Query optimization** is the part of query processing that selects the most efficient way to execute a SQL query.  \nThe optimizer examines many possible execution plans—different join orders, use of indexes, materialized views, etc.—and estimates the cost of each plan in terms of disk I/O, CPU usage, memory consumption, and communication overhead. It then chooses the plan with the lowest estimated cost, aiming to return the correct result while minimizing resource usage.\n\n**Key points from the course material**\n\n- The optimizer is a distinct step in query processing (after parsing and translation).  \n- It compares possible execution plans and considers factors such as I/O cost, CPU cost, memory usage, indexes, and table sizes.  \n- The goal is to reduce the overall execution cost of the query.\n\nSources  \n- EduNova_DBMS_Test_Material.pdf — Page 1  \n- DBMS_Query_Processing_Lecture.pptx — Slide 3  \n- DBMS_Query_Processing_Lecture.pptx — Slide 5",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "slide": 0,
+        "chunk": 1,
+        "score": 0.4595
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 3,
+        "chunk": 1,
+        "score": 0.3789
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 5,
+        "chunk": 1,
+        "score": 0.3086
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 2,
+        "chunk": 1,
+        "score": 0.28
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 10,
+        "chunk": 1,
+        "score": 0.1936
+      }
+    ]
+  },
+  {
+    "question": "What is a hash join?",
+    "answer": "A **hash join** is a join algorithm that uses a hash table to match rows from two relations on a join attribute.\n\n**From the course material**\n\n- Slide 8 of the lecture notes explains that a hash join “uses a hash table to match join attributes. Usually effective for equality joins. Performance depends on hashing and available memory.”  \n- Slide 6 lists hash join among the main types of joins (nested‑loop, block nested‑loop, merge, hash).\n\nSources:\n- DBMS_Query_Processing_Lecture.pptx — Slide 8\n- DBMS_Query_Processing_Lecture.pptx — Slide 6\n\n**General knowledge (not in the uploaded slides)**\n\nIn practice, a hash join works in two phases:\n\n1. **Build phase** – one of the input relations (usually the smaller one) is scanned and a hash table is built on the join key.  \n2. **Probe phase** – the other relation is scanned; for each tuple, the hash table is probed to find matching tuples on the join key, and the matching pairs are output.\n\nThis approach is especially efficient for equality joins where the hash function can quickly locate matching rows, and it performs well when enough memory is available to hold the hash table.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 6,
+        "chunk": 1,
+        "score": 0.5754
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 8,
+        "chunk": 1,
+        "score": 0.5449
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 7,
+        "chunk": 1,
+        "score": 0.1083
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 10,
+        "chunk": 1,
+        "score": 0.0985
+      }
+    ]
+  },
+  {
+    "question": "What is photosynthesis?",
+    "answer": "**Photosynthesis** is the process by which green plants, algae, and some bacteria convert light energy from the sun into chemical energy stored in sugars. It’s the foundation of most life on Earth because it supplies the organic molecules and oxygen that other organisms need.\n\n### The Big Picture\n1. **Light‑capturing**  \n   Chlorophyll (the green pigment in chloroplasts) absorbs sunlight. This energy excites electrons, starting the whole chain of reactions.\n\n2. **Water splitting (Photolysis)**  \n   The excited electrons are replaced by electrons taken from water molecules. Splitting water releases oxygen (O₂) as a by‑product, which is released into the atmosphere.\n\n3. **Energy conversion**  \n   The excited electrons travel through a series of proteins (the electron transport chain), generating a proton gradient that powers the synthesis of ATP (the cell’s energy currency) and NADPH (a reducing agent).\n\n4. **Carbon fixation (Calvin cycle)**  \n   ATP and NADPH provide the energy and reducing power to convert atmospheric CO₂ into glucose (C₆H₁₂O₆) and other sugars. This occurs in the stroma of the chloroplast.\n\n### Key Equations\n- **Overall reaction**  \n  \\[\n  6\\,\\text{CO}_2 + 6\\,\\text{H}_2\\text{O} + \\text{light energy} \\;\\longrightarrow\\; \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\,\\text{O}_2\n  \\]\n\n### Why It Matters\n- **Oxygen production**: The O₂ released is essential for aerobic respiration in animals and many microbes.\n- **Food source**: The sugars produced are the primary energy source for nearly all ecosystems.\n- **Carbon cycle**: Photosynthesis removes CO₂ from the atmosphere, helping regulate Earth’s climate.\n\nIn short, photosynthesis is the biological “solar panel” that turns sunlight into usable chemical energy while producing the oxygen we breathe.",
+    "grounded": false,
+    "sources": []
+  },
+  {
+    "question": "selection pushdown?",
+    "answer": "**Selection pushdown** is a query‑optimization technique that moves filtering operations (the *SELECT* clause in SQL) as close to the data source as possible—usually right after the data is read from disk. By applying the filter early, the database engine can discard rows that don’t satisfy the condition before they participate in more expensive operations such as joins or aggregations. This reduces the amount of data that must be processed downstream, lowering I/O, CPU, and memory usage.\n\nIn other words, selection pushdown “pushes” the selection (filter) operation down the execution plan to the earliest point where it can be applied, often directly on the storage layer or during a table scan.\n\nSources:\n- EduNova_DBMS_Test_Material.pdf — Page 1",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "slide": 0,
+        "chunk": 1,
+        "score": 0.2824
+      }
+    ]
   }
 ]

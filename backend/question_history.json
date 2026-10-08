@@ -33,5 +33,110 @@
     "difficulty": "Advanced",
     "source": "EduNova_DBMS_Test_Material.pdf",
     "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "Which stage of query processing is responsible for checking the syntax of the SQL query?",
+    "difficulty": "Beginner",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "What is the main purpose of the translation stage in query processing?",
+    "difficulty": "Beginner",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "In which stage of query processing does the database actually retrieve data from storage and perform operations like joins and selections?",
+    "difficulty": "Beginner",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "Which of the following best describes the role of the optimizer in query processing?",
+    "difficulty": "Intermediate",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "How does selection pushdown improve query performance?",
+    "difficulty": "Intermediate",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": ": Query Processing",
+    "question": "What is the primary role of a DBMS?",
+    "difficulty": "Beginner",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": ": Query Processing",
+    "question": "Which of the following is NOT a main stage of query processing?",
+    "difficulty": "Beginner",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": ": Query Processing",
+    "question": "What factors does query optimization consider?",
+    "difficulty": "Intermediate",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": ": Query Processing",
+    "question": "What is the main benefit of selection pushdown?",
+    "difficulty": "Beginner",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": ": Query Processing",
+    "question": "What is the purpose of query optimization?",
+    "difficulty": "Intermediate",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "Which of the following is NOT a stage in the query processing pipeline described in the material?",
+    "difficulty": "Beginner",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "Which stage follows the translation stage in the query processing flow?",
+    "difficulty": "Intermediate",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "Which cost factor is explicitly mentioned as being considered by the query optimizer?",
+    "difficulty": "Beginner",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "What does the execution stage of query processing primarily do?",
+    "difficulty": "Intermediate",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "How is an execution plan best described according to the material?",
+    "difficulty": "Advanced",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
   }
 ]
