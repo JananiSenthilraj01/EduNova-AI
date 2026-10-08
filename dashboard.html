@@ -12,13 +12,11 @@
 
     <title>EduNova AI | Dashboard</title>
 
-    <!-- Main stylesheet -->
     <link
         rel="stylesheet"
         href="style.css"
     >
 
-    <!-- Professional Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
 
@@ -323,6 +321,9 @@
                 );
 
             border-radius: 20px;
+
+            transition:
+                width 0.6s ease;
         }
 
 
@@ -401,6 +402,784 @@
             font-size: 11px;
 
             color: #777;
+        }
+
+
+        /* =====================================================
+           LEARNING MASTERY
+        ===================================================== */
+
+        .mastery-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                250px
+                minmax(0, 1fr);
+
+            gap: 28px;
+
+            align-items: center;
+        }
+
+
+        .mastery-overall {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 10px;
+        }
+
+
+        .mastery-ring {
+
+            width: 155px;
+            height: 155px;
+
+            border-radius: 50%;
+
+            background:
+                conic-gradient(
+                    #6d28d9 0deg,
+                    #8b5cf6 0deg,
+                    #eeeaf7 0deg,
+                    #eeeaf7 360deg
+                );
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            transition:
+                background 0.8s ease;
+
+            box-shadow:
+                0 12px 30px
+                rgba(109, 40, 217, 0.12);
+        }
+
+
+        .mastery-ring::before {
+
+            content: "";
+
+            width: 116px;
+            height: 116px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            position: absolute;
+        }
+
+
+        .mastery-ring-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            text-align: center;
+        }
+
+
+        .mastery-score {
+
+            display: block;
+
+            font-size: 32px;
+
+            line-height: 1;
+
+            font-weight: 800;
+
+            color: #4c1d95;
+        }
+
+
+        .mastery-percent {
+
+            font-size: 14px;
+
+            color: #7c3aed;
+
+            font-weight: 700;
+        }
+
+
+        .mastery-label {
+
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 11px;
+
+            color: #777;
+        }
+
+
+        .mastery-details {
+
+            min-width: 0;
+        }
+
+
+        .mastery-level-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 10px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .mastery-level-title {
+
+            font-size: 18px;
+
+            font-weight: 750;
+
+            color: #25213a;
+        }
+
+
+        .mastery-level {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background: #f1edff;
+
+            color: #6d28d9;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        .mastery-description {
+
+            margin: 0 0 18px;
+
+            color: #777;
+
+            font-size: 12px;
+
+            line-height: 1.55;
+        }
+
+
+        .mastery-stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(0, 1fr)
+                );
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .mastery-stat {
+
+            padding: 12px;
+
+            border-radius: 12px;
+
+            background: #faf8ff;
+
+            border: 1px solid #eee8ff;
+
+            min-width: 0;
+        }
+
+
+        .mastery-stat-label {
+
+            display: block;
+
+            color: #888;
+
+            font-size: 10px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .mastery-stat-value {
+
+            display: block;
+
+            color: #4c1d95;
+
+            font-size: 14px;
+
+            font-weight: 750;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            white-space: nowrap;
+        }
+
+
+        .mastery-subjects {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+
+        .mastery-subject {
+
+            min-width: 0;
+        }
+
+
+        .mastery-subject-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 10px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .mastery-subject-name {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            min-width: 0;
+
+            color: #333;
+
+            font-size: 12px;
+
+            font-weight: 650;
+        }
+
+
+        .mastery-subject-name .lucide {
+
+            width: 15px;
+            height: 15px;
+
+            color: #6d28d9;
+        }
+
+
+        .mastery-subject-name span {
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            white-space: nowrap;
+        }
+
+
+        .mastery-subject-value {
+
+            color: #6d28d9;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        .mastery-track {
+
+            width: 100%;
+
+            height: 8px;
+
+            border-radius: 20px;
+
+            background: #eeeaf7;
+
+            overflow: hidden;
+        }
+
+
+        .mastery-bar {
+
+            height: 100%;
+
+            width: 0%;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6d28d9,
+                    #a78bfa
+                );
+
+            transition:
+                width 0.7s ease;
+        }
+
+
+        .mastery-focus {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            margin-top: 18px;
+
+            padding: 12px 13px;
+
+            background: #faf8ff;
+
+            border: 1px solid #ebe5ff;
+
+            border-radius: 12px;
+        }
+
+
+        .mastery-focus-icon {
+
+            width: 32px;
+            height: 32px;
+
+            border-radius: 9px;
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+        }
+
+
+        .mastery-focus-icon .lucide {
+
+            width: 16px;
+            height: 16px;
+        }
+
+
+        .mastery-focus strong {
+
+            display: block;
+
+            font-size: 12px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .mastery-focus span {
+
+            display: block;
+
+            color: #777;
+
+            font-size: 11px;
+
+            line-height: 1.45;
+        }
+
+
+        /* =====================================================
+           WEAK TOPICS
+        ===================================================== */
+
+        .weak-topics-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 12px;
+
+            margin-bottom: 16px;
+        }
+
+
+        .weak-topic-count {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-width: 28px;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            background: #fff7ed;
+
+            color: #c2410c;
+
+            font-size: 10px;
+
+            font-weight: 800;
+        }
+
+
+        .weak-topics-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap: 13px;
+        }
+
+
+        .weak-topic {
+
+            position: relative;
+
+            min-width: 0;
+
+            padding: 16px;
+
+            border:
+                1px solid #f3e8df;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffdfb,
+                    #fff8f3
+                );
+
+            transition:
+                all 0.2s ease;
+        }
+
+
+        .weak-topic:hover {
+
+            transform:
+                translateY(-2px);
+
+            border-color:
+                #fdba74;
+
+            box-shadow:
+                0 8px 20px
+                rgba(234, 88, 12, 0.08);
+        }
+
+
+        .weak-topic-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 10px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .weak-topic-icon {
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #ffedd5;
+
+            color: #ea580c;
+
+            flex-shrink: 0;
+        }
+
+
+        .weak-topic-icon .lucide {
+
+            width: 18px;
+            height: 18px;
+        }
+
+
+        .weak-topic-score {
+
+            padding: 5px 8px;
+
+            border-radius: 20px;
+
+            background: #fff;
+
+            border:
+                1px solid #fed7aa;
+
+            color: #c2410c;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        .weak-topic-name {
+
+            color: #292524;
+
+            font-size: 14px;
+
+            font-weight: 750;
+
+            margin-bottom: 5px;
+        }
+
+
+        .weak-topic-description {
+
+            color: #78716c;
+
+            font-size: 11px;
+
+            line-height: 1.45;
+
+            margin-bottom: 13px;
+        }
+
+
+        .weak-topic-progress {
+
+            width: 100%;
+
+            height: 7px;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            background: #f5e7dc;
+
+            margin-bottom: 11px;
+        }
+
+
+        .weak-topic-progress-fill {
+
+            height: 100%;
+
+            border-radius: 20px;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #f97316,
+                    #fb923c
+                );
+
+            transition:
+                width 0.7s ease;
+        }
+
+
+        .weak-topic-bottom {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 8px;
+        }
+
+
+        .weak-topic-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            color: #92400e;
+
+            font-size: 10px;
+
+            font-weight: 650;
+        }
+
+
+        .weak-topic-status-dot {
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: #f97316;
+
+            flex-shrink: 0;
+        }
+
+
+        .weak-topic-action {
+
+            border: none;
+
+            background: transparent;
+
+            color: #ea580c;
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            font-weight: 750;
+
+            cursor: pointer;
+
+            padding: 3px 0;
+        }
+
+
+        .weak-topic-action:hover {
+
+            text-decoration:
+                underline;
+        }
+
+
+        .weak-topic-empty {
+
+            padding: 26px;
+
+            border-radius: 14px;
+
+            border:
+                1px solid #dcfce7;
+
+            background: #f0fdf4;
+
+            text-align: center;
+
+            color: #166534;
+        }
+
+
+        .weak-topic-empty-icon {
+
+            width: 44px;
+            height: 44px;
+
+            margin: 0 auto 10px;
+
+            border-radius: 12px;
+
+            background: #dcfce7;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: #16a34a;
+        }
+
+
+        .weak-topic-empty strong {
+
+            display: block;
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .weak-topic-empty span {
+
+            font-size: 11px;
+
+            color: #4b7a59;
+
         }
 
 
@@ -821,6 +1600,26 @@
                 grid-column: auto;
             }
 
+
+            .mastery-layout {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .mastery-overall {
+
+                padding-bottom: 0;
+            }
+
+
+            .weak-topics-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
         }
 
 
@@ -849,21 +1648,25 @@
 
             .subjects {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
             }
 
 
             .quick-actions {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
             }
 
 
             .ai-status-box {
 
-                align-items: flex-start;
+                align-items:
+                    flex-start;
 
-                flex-direction: column;
+                flex-direction:
+                    column;
             }
 
 
@@ -883,7 +1686,8 @@
 
             .progress-info {
 
-                flex-direction: column;
+                flex-direction:
+                    column;
 
                 gap: 4px;
             }
@@ -891,7 +1695,25 @@
 
             .quiz-score {
 
-                align-items: flex-start;
+                align-items:
+                    flex-start;
+            }
+
+
+            .mastery-stats {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .mastery-level-row {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
             }
 
         }
@@ -925,7 +1747,34 @@
 
             .quiz-score {
 
-                flex-direction: column;
+                flex-direction:
+                    column;
+            }
+
+
+            .mastery-ring {
+
+                width: 140px;
+                height: 140px;
+            }
+
+
+            .mastery-ring::before {
+
+                width: 104px;
+                height: 104px;
+            }
+
+
+            .mastery-score {
+
+                font-size: 29px;
+            }
+
+
+            .weak-topic {
+
+                padding: 14px;
             }
 
         }
@@ -946,8 +1795,6 @@
 
     <aside class="sidebar">
 
-
-        <!-- BRAND -->
 
         <div class="brand">
 
@@ -976,8 +1823,6 @@
         </div>
 
 
-        <!-- NEW CHAT -->
-
         <button
             class="new-chat"
             id="newChatButton"
@@ -993,8 +1838,6 @@
         </button>
 
 
-        <!-- NAVIGATION TITLE -->
-
         <div class="sidebar-title">
             Navigation
         </div>
@@ -1002,8 +1845,6 @@
 
         <div class="history">
 
-
-            <!-- DASHBOARD -->
 
             <div
                 class="history-item dashboard-nav active"
@@ -1021,8 +1862,6 @@
             </div>
 
 
-            <!-- ASK AI -->
-
             <div
                 class="history-item dashboard-nav"
                 id="askAINav"
@@ -1039,8 +1878,6 @@
             </div>
 
 
-            <!-- QUIZ -->
-
             <div
                 class="history-item dashboard-nav"
                 id="quizNav"
@@ -1056,8 +1893,6 @@
 
             </div>
 
-
-            <!-- STUDY PLAN -->
 
             <div
                 class="history-item dashboard-nav"
@@ -1077,8 +1912,6 @@
         </div>
 
 
-        <!-- RECENT CHATS -->
-
         <div class="sidebar-title">
             Recent Chats
         </div>
@@ -1089,8 +1922,6 @@
             id="history"
         ></div>
 
-
-        <!-- SIDEBAR STATUS -->
 
         <div class="sidebar-bottom">
 
@@ -1127,8 +1958,6 @@
     <main class="main">
 
 
-        <!-- TOP BAR -->
-
         <header class="topbar">
 
             <div class="top-title">
@@ -1147,17 +1976,15 @@
         </header>
 
 
-        <!-- =================================================
-             DASHBOARD
-        ================================================= -->
-
         <div
             class="dashboard"
             id="dashboard"
         >
 
 
-            <!-- WELCOME -->
+            <!-- =================================================
+                 WELCOME
+            ================================================= -->
 
             <section class="dashboard-welcome">
 
@@ -1334,6 +2161,279 @@
 
 
                 <!-- =================================================
+                     LEARNING MASTERY
+                ================================================= -->
+
+                <div
+                    class="dashboard-card full"
+                    id="masteryCard"
+                >
+
+                    <div class="card-title">
+
+                        <div class="card-title-icon">
+
+                            <i data-lucide="brain"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2>
+                                Learning Mastery
+                            </h2>
+
+                            <p>
+                                See how strongly you understand each subject
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mastery-layout">
+
+
+                        <div class="mastery-overall">
+
+                            <div
+                                class="mastery-ring"
+                                id="masteryRing"
+                            >
+
+                                <div
+                                    class="mastery-ring-content"
+                                >
+
+                                    <span
+                                        class="mastery-score"
+                                        id="masteryScore"
+                                    >
+                                        0
+                                    </span>
+
+                                    <span
+                                        class="mastery-percent"
+                                    >
+                                        %
+                                    </span>
+
+                                    <span
+                                        class="mastery-label"
+                                    >
+                                        Overall Mastery
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mastery-details">
+
+
+                            <div
+                                class="mastery-level-row"
+                            >
+
+                                <div
+                                    class="mastery-level-title"
+                                    id="masteryLevelTitle"
+                                >
+                                    Developing
+                                </div>
+
+
+                                <div
+                                    class="mastery-level"
+                                    id="masteryLevel"
+                                >
+                                    DEVELOPING
+                                </div>
+
+                            </div>
+
+
+                            <p
+                                class="mastery-description"
+                                id="masteryDescription"
+                            >
+                                Keep practicing to build stronger
+                                understanding across your subjects.
+                            </p>
+
+
+                            <div class="mastery-stats">
+
+
+                                <div class="mastery-stat">
+
+                                    <span
+                                        class="mastery-stat-label"
+                                    >
+                                        Subjects
+                                    </span>
+
+                                    <span
+                                        class="mastery-stat-value"
+                                        id="masterySubjectCount"
+                                    >
+                                        4
+                                    </span>
+
+                                </div>
+
+
+                                <div class="mastery-stat">
+
+                                    <span
+                                        class="mastery-stat-label"
+                                    >
+                                        Strongest
+                                    </span>
+
+                                    <span
+                                        class="mastery-stat-value"
+                                        id="masteryStrongest"
+                                    >
+                                        Python
+                                    </span>
+
+                                </div>
+
+
+                                <div class="mastery-stat">
+
+                                    <span
+                                        class="mastery-stat-label"
+                                    >
+                                        Focus Area
+                                    </span>
+
+                                    <span
+                                        class="mastery-stat-value"
+                                        id="masteryFocus"
+                                    >
+                                        DBMS
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div
+                                class="mastery-subjects"
+                                id="masterySubjects"
+                            ></div>
+
+
+                            <div class="mastery-focus">
+
+                                <div class="mastery-focus-icon">
+
+                                    <i data-lucide="target"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        Recommended focus
+                                    </strong>
+
+                                    <span
+                                        id="masteryFocusMessage"
+                                    >
+                                        Spend a little more practice
+                                        time on DBMS to improve your
+                                        overall mastery.
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     WEAK TOPICS
+                ================================================= -->
+
+                <div
+                    class="dashboard-card full"
+                    id="weakTopicsCard"
+                >
+
+                    <div class="card-title">
+
+                        <div class="card-title-icon">
+
+                            <i data-lucide="triangle-alert"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2>
+                                Weak Topics
+                            </h2>
+
+                            <p>
+                                Topics that need more practice and attention
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="weak-topics-header"
+                        id="weakTopicsHeader"
+                    >
+
+                        <span
+                            style="
+                                font-size:12px;
+                                color:#777;
+                            "
+                        >
+                            Focus on these areas to improve your mastery
+                        </span>
+
+
+                        <span
+                            class="weak-topic-count"
+                            id="weakTopicCount"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="weak-topics-grid"
+                        id="weakTopicsGrid"
+                    ></div>
+
+                </div>
+
+
+                <!-- =================================================
                      QUIZ PERFORMANCE
                 ================================================= -->
 
@@ -1432,8 +2532,6 @@
                     >
 
 
-                        <!-- AI ACTIVITY -->
-
                         <div class="activity">
 
                             <div class="activity-icon">
@@ -1458,8 +2556,6 @@
                         </div>
 
 
-                        <!-- QUIZ ACTIVITY -->
-
                         <div class="activity">
 
                             <div class="activity-icon">
@@ -1483,8 +2579,6 @@
 
                         </div>
 
-
-                        <!-- STUDY ACTIVITY -->
 
                         <div class="activity">
 
@@ -1549,8 +2643,6 @@
                     <div class="quick-actions">
 
 
-                        <!-- ASK AI -->
-
                         <button
                             class="quick-action"
                             type="button"
@@ -1576,8 +2668,6 @@
                         </button>
 
 
-                        <!-- QUIZ -->
-
                         <button
                             class="quick-action"
                             type="button"
@@ -1602,8 +2692,6 @@
 
                         </button>
 
-
-                        <!-- STUDY PLAN -->
 
                         <button
                             class="quick-action"
@@ -1740,10 +2828,12 @@
                 "studentName"
             );
 
+
         const welcome =
             document.getElementById(
                 "dashboardWelcome"
             );
+
 
         if (
             studentName &&
@@ -1780,6 +2870,7 @@
             "newChatButton"
         );
 
+
     if (newChatButton) {
 
         newChatButton.addEventListener(
@@ -1797,13 +2888,14 @@
 
 
     /* =====================================================
-       ASK AI QUICK ACTION
+       ASK AI
     ===================================================== */
 
     const askAIAction =
         document.getElementById(
             "askAIAction"
         );
+
 
     if (askAIAction) {
 
@@ -1821,14 +2913,11 @@
     }
 
 
-    /* =====================================================
-       ASK AI SIDEBAR
-    ===================================================== */
-
     const askAINav =
         document.getElementById(
             "askAINav"
         );
+
 
     if (askAINav) {
 
@@ -1847,13 +2936,14 @@
 
 
     /* =====================================================
-       QUIZ QUICK ACTION
+       QUIZ
     ===================================================== */
 
     const quizAction =
         document.getElementById(
             "quizAction"
         );
+
 
     if (quizAction) {
 
@@ -1871,14 +2961,11 @@
     }
 
 
-    /* =====================================================
-       QUIZ SIDEBAR
-    ===================================================== */
-
     const quizNav =
         document.getElementById(
             "quizNav"
         );
+
 
     if (quizNav) {
 
@@ -1897,13 +2984,14 @@
 
 
     /* =====================================================
-       STUDY PLAN QUICK ACTION
+       STUDY PLAN
     ===================================================== */
 
     const studyPlanAction =
         document.getElementById(
             "studyPlanAction"
         );
+
 
     if (studyPlanAction) {
 
@@ -1921,14 +3009,11 @@
     }
 
 
-    /* =====================================================
-       STUDY PLAN SIDEBAR
-    ===================================================== */
-
     const studyPlanNav =
         document.getElementById(
             "studyPlanNav"
         );
+
 
     if (studyPlanNav) {
 
@@ -1954,6 +3039,7 @@
         document.getElementById(
             "dashboardNav"
         );
+
 
     if (dashboardNav) {
 
@@ -1981,8 +3067,11 @@
     ) {
 
         if (!element) {
+
             return;
+
         }
+
 
         element.addEventListener(
             "keydown",
@@ -2063,6 +3152,7 @@
             document.getElementById(
                 "history"
             );
+
 
         if (!history) {
 
@@ -2188,8 +3278,6 @@
         );
 
 
-        /* Chat icon */
-
         const icon =
             document.createElement(
                 "i"
@@ -2260,10 +3348,646 @@
         );
 
 
+        lucide.createIcons();
+
+    }
+
+
+    /* =====================================================
+       MASTERY DATA
+    ===================================================== */
+
+    const masteryData = [
+
+        {
+            name: "Python",
+            score: 75,
+            icon: "code-2"
+        },
+
+        {
+            name: "Machine Learning",
+            score: 62,
+            icon: "brain"
+        },
+
+        {
+            name: "DBMS",
+            score: 58,
+            icon: "database"
+        },
+
+        {
+            name: "Artificial Intelligence",
+            score: 70,
+            icon: "cpu"
+        }
+
+    ];
+
+
+    /* =====================================================
+       MASTERY LEVEL
+    ===================================================== */
+
+    function getMasteryLevel(score) {
+
+        if (score >= 85) {
+
+            return {
+                title: "Excellent",
+                badge: "EXCELLENT",
+                description:
+                    "Excellent mastery! You are showing a strong understanding across your learning subjects."
+            };
+
+        }
+
+
+        if (score >= 70) {
+
+            return {
+                title: "Strong",
+                badge: "STRONG",
+                description:
+                    "You have a strong foundation. Keep practicing to make your knowledge more consistent."
+            };
+
+        }
+
+
+        if (score >= 50) {
+
+            return {
+                title: "Developing",
+                badge: "DEVELOPING",
+                description:
+                    "You are building a solid understanding. More focused practice will help improve your mastery."
+            };
+
+        }
+
+
+        return {
+            title: "Beginner",
+            badge: "BEGINNER",
+            description:
+                "Start with the basics and practice regularly to build your subject mastery."
+        };
+
+    }
+
+
+    /* =====================================================
+       RENDER MASTERY
+    ===================================================== */
+
+    function renderMastery() {
+
+        const ring =
+            document.getElementById(
+                "masteryRing"
+            );
+
+
+        const scoreElement =
+            document.getElementById(
+                "masteryScore"
+            );
+
+
+        const levelTitle =
+            document.getElementById(
+                "masteryLevelTitle"
+            );
+
+
+        const levelBadge =
+            document.getElementById(
+                "masteryLevel"
+            );
+
+
+        const description =
+            document.getElementById(
+                "masteryDescription"
+            );
+
+
+        const countElement =
+            document.getElementById(
+                "masterySubjectCount"
+            );
+
+
+        const strongestElement =
+            document.getElementById(
+                "masteryStrongest"
+            );
+
+
+        const focusElement =
+            document.getElementById(
+                "masteryFocus"
+            );
+
+
+        const focusMessage =
+            document.getElementById(
+                "masteryFocusMessage"
+            );
+
+
+        const subjectsContainer =
+            document.getElementById(
+                "masterySubjects"
+            );
+
+
+        if (
+            !ring ||
+            !scoreElement ||
+            !subjectsContainer
+        ) {
+
+            return;
+
+        }
+
+
+        const total =
+            masteryData.reduce(
+                function (
+                    sum,
+                    subject
+                ) {
+
+                    return (
+                        sum +
+                        subject.score
+                    );
+
+                },
+                0
+            );
+
+
+        const average =
+            Math.round(
+                total /
+                masteryData.length
+            );
+
+
+        const strongest =
+            masteryData.reduce(
+                function (
+                    best,
+                    current
+                ) {
+
+                    return current.score >
+                        best.score
+                        ? current
+                        : best;
+
+                }
+            );
+
+
+        const focus =
+            masteryData.reduce(
+                function (
+                    lowest,
+                    current
+                ) {
+
+                    return current.score <
+                        lowest.score
+                        ? current
+                        : lowest;
+
+                }
+            );
+
+
+        const level =
+            getMasteryLevel(
+                average
+            );
+
+
+        scoreElement.textContent =
+            average;
+
+
+        const degrees =
+            (
+                average /
+                100
+            ) *
+            360;
+
+
+        ring.style.background =
+            "conic-gradient(" +
+            "#6d28d9 0deg, " +
+            "#8b5cf6 " +
+            degrees +
+            "deg, " +
+            "#eeeaf7 " +
+            degrees +
+            "deg, " +
+            "#eeeaf7 360deg)";
+
+
+        levelTitle.textContent =
+            level.title;
+
+
+        levelBadge.textContent =
+            level.badge;
+
+
+        description.textContent =
+            level.description;
+
+
+        countElement.textContent =
+            masteryData.length;
+
+
+        strongestElement.textContent =
+            strongest.name;
+
+
+        focusElement.textContent =
+            focus.name;
+
+
+        focusMessage.textContent =
+            "Spend a little more practice time on " +
+            focus.name +
+            " to improve your overall mastery.";
+
+
+        subjectsContainer.innerHTML =
+            "";
+
+
+        masteryData.forEach(
+            function (subject) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "mastery-subject";
+
+
+                item.innerHTML = `
+
+                    <div class="mastery-subject-top">
+
+                        <div class="mastery-subject-name">
+
+                            <i
+                                data-lucide="${subject.icon}"
+                            ></i>
+
+                            <span>
+                                ${subject.name}
+                            </span>
+
+                        </div>
+
+
+                        <div class="mastery-subject-value">
+                            ${subject.score}%
+                        </div>
+
+                    </div>
+
+
+                    <div class="mastery-track">
+
+                        <div
+                            class="mastery-bar"
+                            style="width:${subject.score}%"
+                        ></div>
+
+                    </div>
+
+                `;
+
+
+                subjectsContainer.appendChild(
+                    item
+                );
+
+            }
+        );
+
+
+        lucide.createIcons();
+
+    }
+
+
+    /* =====================================================
+       RENDER WEAK TOPICS
+    ===================================================== */
+
+    function renderWeakTopics() {
+
+        const container =
+            document.getElementById(
+                "weakTopicsGrid"
+            );
+
+
+        const count =
+            document.getElementById(
+                "weakTopicCount"
+            );
+
+
+        if (
+            !container ||
+            !count
+        ) {
+
+            return;
+
+        }
+
+
         /*
-         * Convert the newly added
-         * Lucide icon.
+         * Subjects below 65% are treated
+         * as areas that need more practice.
          */
+
+        const weakTopics =
+            masteryData
+                .filter(
+                    function (subject) {
+
+                        return (
+                            subject.score <
+                            65
+                        );
+
+                    }
+                )
+                .sort(
+                    function (a, b) {
+
+                        return (
+                            a.score -
+                            b.score
+                        );
+
+                    }
+                );
+
+
+        count.textContent =
+            weakTopics.length;
+
+
+        container.innerHTML =
+            "";
+
+
+        /* =================================================
+           NO WEAK TOPICS
+        ================================================= */
+
+        if (
+            weakTopics.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div
+                    class="weak-topic-empty"
+                    style="grid-column:1 / -1;"
+                >
+
+                    <div class="weak-topic-empty-icon">
+
+                        <i
+                            data-lucide="circle-check"
+                        ></i>
+
+                    </div>
+
+
+                    <strong>
+                        Great job!
+                    </strong>
+
+
+                    <span>
+                        No major weak areas detected right now.
+                        Keep practicing to maintain your progress.
+                    </span>
+
+                </div>
+
+            `;
+
+
+            lucide.createIcons();
+
+            return;
+
+        }
+
+
+        /* =================================================
+           CREATE WEAK TOPIC CARDS
+        ================================================= */
+
+        weakTopics.forEach(
+            function (topic) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "weak-topic";
+
+
+                let priorityText =
+                    "Needs practice";
+
+
+                if (
+                    topic.score < 55
+                ) {
+
+                    priorityText =
+                        "High priority";
+
+                }
+                else if (
+                    topic.score < 60
+                ) {
+
+                    priorityText =
+                        "Priority area";
+
+                }
+
+
+                let descriptionText =
+                    "Practice more questions and review important concepts.";
+
+                
+                if (
+                    topic.name === "DBMS"
+                ) {
+
+                    descriptionText =
+                        "Review database concepts and practice more DBMS questions.";
+
+                }
+
+
+                if (
+                    topic.name === "Machine Learning"
+                ) {
+
+                    descriptionText =
+                        "Strengthen ML fundamentals with examples and practice questions.";
+
+                }
+
+
+                item.innerHTML = `
+
+                    <div class="weak-topic-top">
+
+                        <div class="weak-topic-icon">
+
+                            <i
+                                data-lucide="${topic.icon}"
+                            ></i>
+
+                        </div>
+
+
+                        <span class="weak-topic-score">
+                            ${topic.score}% mastery
+                        </span>
+
+                    </div>
+
+
+                    <div class="weak-topic-name">
+
+                        ${topic.name}
+
+                    </div>
+
+
+                    <div class="weak-topic-description">
+
+                        ${descriptionText}
+
+                    </div>
+
+
+                    <div class="weak-topic-progress">
+
+                        <div
+                            class="weak-topic-progress-fill"
+                            style="width:${topic.score}%"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="weak-topic-bottom">
+
+                        <div class="weak-topic-status">
+
+                            <span
+                                class="weak-topic-status-dot"
+                            ></span>
+
+                            ${priorityText}
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="weak-topic-action"
+                            data-topic="${topic.name}"
+                        >
+                            Practice →
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(
+                    item
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           PRACTICE BUTTONS
+        ================================================= */
+
+        const practiceButtons =
+            container.querySelectorAll(
+                ".weak-topic-action"
+            );
+
+
+        practiceButtons.forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const topic =
+                            button.getAttribute(
+                                "data-topic"
+                            );
+
+
+                        localStorage.setItem(
+                            "focusSubject",
+                            topic
+                        );
+
+
+                        goToPage(
+                            "chat.html"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
 
         lucide.createIcons();
 
@@ -2346,10 +4070,6 @@
                 await response.json();
 
 
-            /* =================================================
-               AI READY
-            ================================================= */
-
             if (
                 data.status === "ready" &&
                 data.groq_configured
@@ -2429,12 +4149,7 @@
             }
 
 
-            /* =================================================
-               CONFIGURATION PROBLEM
-            ================================================= */
-
             else {
-
 
                 if (dot) {
 
@@ -2509,12 +4224,7 @@
         }
 
 
-        /* =====================================================
-           BACKEND OFFLINE
-        ===================================================== */
-
         catch (error) {
-
 
             if (dot) {
 
@@ -2603,10 +4313,10 @@
 
             loadHistory();
 
-            /*
-             * Initialize all professional
-             * Lucide icons.
-             */
+            renderMastery();
+
+            renderWeakTopics();
+
 
             lucide.createIcons();
 
