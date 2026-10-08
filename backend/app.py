@@ -5,18 +5,30 @@ from groq import Groq
 from pypdf import PdfReader
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
 import os
 import re
 import json
 
+
+# ============================================================
+# LOAD ENVIRONMENT
+# ============================================================
+
 load_dotenv()
+
+
+# ============================================================
+# FLASK
+# ============================================================
 
 app = Flask(__name__)
 CORS(app)
 
-# ==============================
+
+# ============================================================
 # GROQ
-# ==============================
+# ============================================================
 
 API_KEY = os.getenv("GROQ_API_KEY", "").strip()
 
@@ -28,26 +40,149 @@ if API_KEY:
 GROQ_MODEL = "openai/gpt-oss-20b"
 
 
-# ==============================
-# FOLDERS & FILES
-# ==============================
+# ============================================================
+# FILES
+# ============================================================
 
 UPLOAD_FOLDER = "uploads"
+
 CHAT_HISTORY_FILE = "chat_history.json"
+LEARNER_MODEL_FILE = "learner_model.json"
+QUESTION_HISTORY_FILE = "question_history.json"
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
-# ==============================
+# ============================================================
 # MEMORY
-# ==============================
+# ============================================================
 
 knowledge_base = []
 
 
-# ==============================
-# CHAT HISTORY FUNCTIONS
-# ==============================
+# ============================================================
+# LEARNER MODEL
+# ============================================================
+
+def load_learner_model():
+
+    if not os.path.exists(LEARNER_MODEL_FILE):
+        return {}
+
+    try:
+
+        with open(
+            LEARNER_MODEL_FILE,
+            "r",
+            encoding="utf-8"
+        ) as file:
+
+            data = json.load(file)
+
+            if isinstance(data, dict):
+                return data
+
+            return {}
+
+    except Exception as error:
+
+        print(
+            f"Could not load learner model: {error}"
+        )
+
+        return {}
+
+
+learner_model = load_learner_model()
+
+
+def save_learner_model():
+
+    try:
+
+        with open(
+            LEARNER_MODEL_FILE,
+            "w",
+            encoding="utf-8"
+        ) as file:
+
+            json.dump(
+                learner_model,
+                file,
+                ensure_ascii=False,
+                indent=2
+            )
+
+    except Exception as error:
+
+        print(
+            f"Could not save learner model: {error}"
+        )
+
+
+# ============================================================
+# QUESTION HISTORY
+# ============================================================
+
+def load_question_history():
+
+    if not os.path.exists(QUESTION_HISTORY_FILE):
+        return []
+
+    try:
+
+        with open(
+            QUESTION_HISTORY_FILE,
+            "r",
+            encoding="utf-8"
+        ) as file:
+
+            data = json.load(file)
+
+            if isinstance(data, list):
+                return data
+
+            return []
+
+    except Exception as error:
+
+        print(
+            f"Could not load question history: {error}"
+        )
+
+        return []
+
+
+question_history = load_question_history()
+
+
+def save_question_history():
+
+    try:
+
+        with open(
+            QUESTION_HISTORY_FILE,
+            "w",
+            encoding="utf-8"
+        ) as file:
+
+            json.dump(
+                question_history[-500:],
+                file,
+                ensure_ascii=False,
+                indent=2
+            )
+
+    except Exception as error:
+
+        print(
+            f"Could not save question history: {error}"
+        )
+
+
+# ============================================================
+# CHAT HISTORY
+# ============================================================
 
 def load_chat_history():
 
@@ -78,11 +213,12 @@ def load_chat_history():
         return []
 
 
+chat_history = load_chat_history()
+
+
 def save_chat_history():
 
     try:
-
-        history_to_save = chat_history[-100:]
 
         with open(
             CHAT_HISTORY_FILE,
@@ -91,7 +227,7 @@ def save_chat_history():
         ) as file:
 
             json.dump(
-                history_to_save,
+                chat_history[-100:],
                 file,
                 ensure_ascii=False,
                 indent=2
@@ -104,12 +240,9 @@ def save_chat_history():
         )
 
 
-chat_history = load_chat_history()
-
-
-# ==============================
+# ============================================================
 # TEXT CLEANING
-# ==============================
+# ============================================================
 
 def clean_text(text):
 
@@ -124,9 +257,32 @@ def clean_text(text):
     return text.strip()
 
 
-# ==============================
+# ============================================================
+# NORMALIZE QUESTION
+# ============================================================
+
+def normalize_question(text):
+
+    text = text.lower()
+
+    text = re.sub(
+        r"[^a-z0-9\s]",
+        "",
+        text
+    )
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        text
+    )
+
+    return text.strip()
+
+
+# ============================================================
 # PDF CHUNKING
-# ==============================
+# ============================================================
 
 def create_chunks(
     text,
@@ -166,9 +322,9 @@ def create_chunks(
     return chunks
 
 
-# ==============================
+# ============================================================
 # INDEX PDF
-# ==============================
+# ============================================================
 
 def index_pdf(
     file_path,
@@ -215,9 +371,9 @@ def index_pdf(
     return added_chunks
 
 
-# ==============================
-# LOAD SAVED PDFs
-# ==============================
+# ============================================================
+# LOAD EXISTING PDFs
+# ============================================================
 
 def load_existing_pdfs():
 
@@ -274,9 +430,9 @@ def load_existing_pdfs():
     print()
 
 
-# ==============================
+# ============================================================
 # RAG SEARCH
-# ==============================
+# ============================================================
 
 def retrieve_context(
     question,
@@ -342,9 +498,184 @@ def retrieve_context(
     return results
 
 
-# ==============================
+# ============================================================
+# FIND TOPIC MASTERY
+# ============================================================
+
+def get_topic_mastery(topic):
+
+    if topic not in learner_model:
+        return 0
+
+    return learner_model[topic].get(
+        "mastery",
+        0
+    )
+
+
+# ============================================================
+# GET WEAK TOPICS
+# ============================================================
+
+def find_weak_topics():
+
+    weak_topics = []
+
+    for topic, data in learner_model.items():
+
+        mastery = data.get(
+            "mastery",
+            0
+        )
+
+        if mastery < 60:
+
+            weak_topics.append({
+
+                "topic": topic,
+
+                "mastery": mastery,
+
+                "attempts": data.get(
+                    "attempts",
+                    0
+                ),
+
+                "correct": data.get(
+                    "correct",
+                    0
+                ),
+
+                "total": data.get(
+                    "total",
+                    0
+                )
+
+            })
+
+    weak_topics.sort(
+        key=lambda item: item["mastery"]
+    )
+
+    return weak_topics
+
+
+# ============================================================
+# CHOOSE ADAPTIVE DIFFICULTY
+# ============================================================
+
+def choose_adaptive_difficulty(mastery):
+
+    if mastery < 40:
+
+        return "Beginner"
+
+    elif mastery < 70:
+
+        return "Intermediate"
+
+    else:
+
+        return "Advanced"
+
+
+# ============================================================
+# QUESTION HISTORY CHECK
+# ============================================================
+
+def get_previous_questions(topic):
+
+    normalized_topic = topic.lower().strip()
+
+    previous = []
+
+    for item in question_history:
+
+        if item.get(
+            "topic",
+            ""
+        ).lower().strip() == normalized_topic:
+
+            previous.append(
+                item.get(
+                    "question",
+                    ""
+                )
+            )
+
+    return previous
+
+
+# ============================================================
+# SAVE GENERATED QUESTIONS
+# ============================================================
+
+def save_generated_questions(
+    topic,
+    questions
+):
+
+    for question in questions:
+
+        question_text = question.get(
+            "question",
+            ""
+        ).strip()
+
+        if not question_text:
+            continue
+
+        normalized = normalize_question(
+            question_text
+        )
+
+        already_exists = False
+
+        for item in question_history:
+
+            old_question = normalize_question(
+                item.get(
+                    "question",
+                    ""
+                )
+            )
+
+            if normalized == old_question:
+
+                already_exists = True
+                break
+
+        if not already_exists:
+
+            question_history.append({
+
+                "topic": topic,
+
+                "question": question_text,
+
+                "difficulty": question.get(
+                    "difficulty",
+                    "Intermediate"
+                ),
+
+                "source": question.get(
+                    "source",
+                    ""
+                ),
+
+                "page": question.get(
+                    "page",
+                    0
+                )
+
+            })
+
+    save_question_history()
+
+
+# ============================================================
 # HOME
-# ==============================
+# ============================================================
 
 @app.route("/")
 def home():
@@ -352,9 +683,9 @@ def home():
     return "EduNova AI Backend is Running"
 
 
-# ==============================
+# ============================================================
 # STATUS
-# ==============================
+# ============================================================
 
 @app.route("/status")
 def status():
@@ -375,7 +706,9 @@ def status():
 
         "status": "ready",
 
-        "groq_configured": bool(API_KEY),
+        "groq_configured": bool(
+            API_KEY
+        ),
 
         "model": GROQ_MODEL,
 
@@ -387,14 +720,22 @@ def status():
 
         "chat_count": len(
             chat_history
+        ),
+
+        "learner_topics": len(
+            learner_model
+        ),
+
+        "saved_questions": len(
+            question_history
         )
 
     })
 
 
-# ==============================
+# ============================================================
 # ASK AI
-# ==============================
+# ============================================================
 
 @app.route(
     "/ask",
@@ -427,20 +768,10 @@ def ask():
 
         }), 500
 
-
-    # ==============================
-    # SEARCH UPLOADED MATERIAL
-    # ==============================
-
     retrieved = retrieve_context(
         question,
         top_k=5
     )
-
-
-    # ==============================
-    # IF COURSE MATERIAL FOUND
-    # ==============================
 
     if retrieved:
 
@@ -465,33 +796,26 @@ CONTENT:
             context_parts
         )
 
-
         prompt = f"""
 You are EduNova AI,
 a personalized learning tutor.
 
-The student has asked a question.
-
-Relevant uploaded course material
-is provided below.
-
 Use the uploaded course material
-when it is relevant to the question.
+when it is relevant.
 
-If the course material does not contain
-enough information, you may answer using
-your general knowledge.
+If the material does not contain
+enough information, you may use
+general knowledge.
 
-Explain the answer simply and clearly
-for a college student.
+Explain clearly for a college student.
 
 Do not invent information.
 
-If you use the uploaded course material,
-include a Sources section at the end
-with the filename and page number.
+If uploaded material is used,
+include a Sources section with
+filename and page number.
 
-UPLOADED COURSE MATERIAL:
+UPLOADED MATERIAL:
 
 {context}
 
@@ -504,33 +828,15 @@ STUDENT QUESTION:
 
     else:
 
-        # ==============================
-        # GENERAL AI MODE
-        # ==============================
-
         prompt = f"""
 You are EduNova AI,
 a helpful personalized learning tutor.
 
-There is no relevant uploaded course
-material available for this question.
+There is no relevant uploaded material.
 
-Answer the student's question using
-your general knowledge.
+Answer using general knowledge.
 
-Explain the concept in simple,
-student-friendly language.
-
-For programming, data structures,
-AI, machine learning, mathematics,
-DBMS and other academic topics:
-
-- Give a clear definition
-- Explain the concept simply
-- Give an example when useful
-- Use bullet points when helpful
-- Keep the answer easy to understand
-- Avoid unnecessary complexity
+Explain simply for a college student.
 
 Student question:
 
@@ -538,11 +844,6 @@ Student question:
 """
 
         grounded = False
-
-
-    # ==============================
-    # GROQ REQUEST
-    # ==============================
 
     try:
 
@@ -554,7 +855,6 @@ Student question:
 
                 {
                     "role": "system",
-
                     "content":
                     "You are EduNova AI, "
                     "a helpful personalized "
@@ -563,7 +863,6 @@ Student question:
 
                 {
                     "role": "user",
-
                     "content": prompt
                 }
 
@@ -573,18 +872,12 @@ Student question:
 
         )
 
-
         answer = (
             response
             .choices[0]
             .message
             .content
         )
-
-
-        # ==============================
-        # SOURCES
-        # ==============================
 
         sources = []
 
@@ -610,11 +903,6 @@ Student question:
 
                 sources.append(source)
 
-
-        # ==============================
-        # SAVE CHAT
-        # ==============================
-
         chat_history.append({
 
             "question":
@@ -632,11 +920,6 @@ Student question:
         })
 
         save_chat_history()
-
-
-        # ==============================
-        # RESPONSE
-        # ==============================
 
         return jsonify({
 
@@ -656,7 +939,6 @@ Student question:
             sources
 
         })
-
 
     except Exception as error:
 
@@ -685,9 +967,9 @@ Student question:
         }), 500
 
 
-# ==============================
+# ============================================================
 # UPLOAD PDF
-# ==============================
+# ============================================================
 
 @app.route(
     "/upload",
@@ -698,51 +980,48 @@ def upload():
     if "file" not in request.files:
 
         return jsonify({
+
             "success": False,
-            "error": "No file uploaded"
+
+            "error":
+            "No file uploaded"
+
         }), 400
 
-
     file = request.files["file"]
-
 
     if file.filename == "":
 
         return jsonify({
+
             "success": False,
-            "error": "No file selected"
+
+            "error":
+            "No file selected"
+
         }), 400
 
-
     filename = file.filename
-
 
     if not filename.lower().endswith(".pdf"):
 
         return jsonify({
-            "success": False,
-            "error": "Please upload a PDF file."
-        }), 400
 
+            "success": False,
+
+            "error":
+            "Please upload a PDF file."
+
+        }), 400
 
     file_path = os.path.join(
         UPLOAD_FOLDER,
         filename
     )
 
-
     try:
 
-        # ==============================
-        # SAVE PDF
-        # ==============================
-
         file.save(file_path)
-
-
-        # ==============================
-        # REMOVE OLD CHUNKS
-        # ==============================
 
         global knowledge_base
 
@@ -756,29 +1035,10 @@ def upload():
 
         ]
 
-
-        # ==============================
-        # READ AND INDEX PDF
-        # ==============================
-
         chunks_added = index_pdf(
             file_path,
             filename
         )
-
-
-        print(
-            f"PDF uploaded successfully: {filename}"
-        )
-
-        print(
-            f"Chunks added: {chunks_added}"
-        )
-
-
-        # ==============================
-        # SUCCESS RESPONSE
-        # ==============================
 
         return jsonify({
 
@@ -797,7 +1057,6 @@ def upload():
             len(knowledge_base)
 
         }), 200
-
 
     except Exception as error:
 
@@ -819,9 +1078,9 @@ def upload():
         }), 500
 
 
-# ==============================
+# ============================================================
 # CHAT HISTORY
-# ==============================
+# ============================================================
 
 @app.route(
     "/history",
@@ -837,84 +1096,25 @@ def history():
     })
 
 
-# ==============================
-# QUIZ
-# ==============================
+# ============================================================
+# GENERATE QUIZ
+# ============================================================
 
-@app.route(
-    "/quiz",
-    methods=["POST"]
-)
-def quiz():
-
-    data = request.get_json() or {}
-
-    topic = data.get(
-        "topic",
-        ""
-    ).strip()
-
-    try:
-
-        count = int(
-            data.get(
-                "count",
-                5
-            )
-        )
-
-    except (TypeError, ValueError):
-
-        count = 5
-
-
-    if count < 1:
-        count = 1
-
-    if count > 10:
-        count = 10
-
-
-    if not topic:
-
-        return jsonify({
-
-            "error":
-            "Please enter a topic."
-
-        }), 400
-
-
-    if client is None:
-
-        return jsonify({
-
-            "error":
-            "Groq API key is not configured."
-
-        }), 500
-
-
-    # ==============================
-    # SEARCH COURSE MATERIAL
-    # ==============================
+def generate_quiz(
+    topic,
+    count,
+    difficulty=None,
+    adaptive=False
+):
 
     retrieved = retrieve_context(
         topic,
         top_k=8
     )
 
-
     if not retrieved:
 
-        return jsonify({
-
-            "error":
-            "I couldn't find this topic "
-            "in the uploaded course material."
-
-        }), 404
-
+        return None, "Topic not found in uploaded material."
 
     context_parts = []
 
@@ -928,25 +1128,60 @@ CONTENT: {item['text']}
 """
         )
 
-
     context = "\n".join(
         context_parts
     )
 
+    previous_questions = get_previous_questions(
+        topic
+    )
 
-    # ==============================
-    # QUIZ PROMPT
-    # ==============================
+    previous_text = "\n".join(
+        previous_questions[-30:]
+    )
+
+    if not previous_text:
+
+        previous_text = "No previous questions."
+
+    difficulty_instruction = ""
+
+    if difficulty:
+
+        difficulty_instruction = f"""
+Generate questions primarily at this difficulty:
+
+{difficulty}
+"""
+
+    if adaptive:
+
+        adaptive_instruction = """
+This is an adaptive quiz.
+
+Adjust the difficulty according to
+the learner's mastery.
+
+The requested difficulty has already
+been calculated by EduNova AI.
+"""
+
+    else:
+
+        adaptive_instruction = ""
 
     prompt = f"""
 You are EduNova AI,
 an adaptive learning assessment generator.
 
-Create {count} multiple-choice questions
-about:
+Create {count} multiple-choice questions.
 
 TOPIC:
 {topic}
+
+{difficulty_instruction}
+
+{adaptive_instruction}
 
 Use ONLY the uploaded course material.
 
@@ -965,6 +1200,15 @@ Difficulty must be one of:
 Beginner
 Intermediate
 Advanced
+
+IMPORTANT:
+
+Do not repeat or closely rephrase
+previously asked questions.
+
+Previous questions:
+
+{previous_text}
 
 Return ONLY valid JSON.
 
@@ -995,11 +1239,6 @@ UPLOADED COURSE MATERIAL:
 {context}
 """
 
-
-    # ==============================
-    # GENERATE QUIZ
-    # ==============================
-
     try:
 
         response = client.chat.completions.create(
@@ -1010,16 +1249,13 @@ UPLOADED COURSE MATERIAL:
 
                 {
                     "role": "system",
-
                     "content":
-                    "You generate "
-                    "source-grounded "
+                    "You generate source-grounded "
                     "educational quizzes."
                 },
 
                 {
                     "role": "user",
-
                     "content": prompt
                 }
 
@@ -1029,7 +1265,6 @@ UPLOADED COURSE MATERIAL:
 
         )
 
-
         answer = (
             response
             .choices[0]
@@ -1037,11 +1272,6 @@ UPLOADED COURSE MATERIAL:
             .content
             .strip()
         )
-
-
-        # ==============================
-        # REMOVE MARKDOWN CODE BLOCK
-        # ==============================
 
         answer = re.sub(
             r"^```json\s*",
@@ -1062,48 +1292,32 @@ UPLOADED COURSE MATERIAL:
             answer
         )
 
-
-        # ==============================
-        # PARSE JSON
-        # ==============================
-
         quiz_data = json.loads(
             answer
         )
 
-
-        return jsonify({
-
-            "success": True,
-
-            "quiz":
-            quiz_data,
-
-            "grounded":
-            True
-
-        }), 200
-
-
-    except json.JSONDecodeError as error:
-
-        print(
-            "\nQUIZ JSON ERROR:",
-            repr(error)
+        questions = quiz_data.get(
+            "questions",
+            []
         )
 
-        return jsonify({
+        if not isinstance(
+            questions,
+            list
+        ):
 
-            "success": False,
+            return None, "Invalid quiz format."
 
-            "error":
-            "AI returned an invalid quiz format.",
+        save_generated_questions(
+            topic,
+            questions
+        )
 
-            "details":
-            str(error)
+        return quiz_data, None
 
-        }), 500
+    except json.JSONDecodeError:
 
+        return None, "AI returned invalid quiz JSON."
 
     except Exception as error:
 
@@ -1112,6 +1326,670 @@ UPLOADED COURSE MATERIAL:
             repr(error)
         )
 
+        return None, str(error)
+
+
+# ============================================================
+# NORMAL QUIZ
+# ============================================================
+
+@app.route(
+    "/quiz",
+    methods=["POST"]
+)
+def quiz():
+
+    data = request.get_json() or {}
+
+    topic = data.get(
+        "topic",
+        ""
+    ).strip()
+
+    try:
+
+        count = int(
+            data.get(
+                "count",
+                5
+            )
+        )
+
+    except:
+
+        count = 5
+
+    count = max(
+        1,
+        min(count, 10)
+    )
+
+    if not topic:
+
+        return jsonify({
+
+            "success": False,
+
+            "error":
+            "Please enter a topic."
+
+        }), 400
+
+    if client is None:
+
+        return jsonify({
+
+            "success": False,
+
+            "error":
+            "Groq API key is not configured."
+
+        }), 500
+
+    quiz_data, error = generate_quiz(
+        topic,
+        count
+    )
+
+    if error:
+
+        return jsonify({
+
+            "success": False,
+
+            "error":
+            error
+
+        }), 500
+
+    return jsonify({
+
+        "success": True,
+
+        "quiz":
+        quiz_data,
+
+        "grounded":
+        True
+
+    })
+
+
+# ============================================================
+# LEARNER MODEL UPDATE
+# ============================================================
+
+@app.route(
+    "/learner/update",
+    methods=["POST"]
+)
+def update_learner():
+
+    data = request.get_json() or {}
+
+    topic = data.get(
+        "topic",
+        ""
+    ).strip()
+
+    try:
+
+        score = int(
+            data.get(
+                "score",
+                0
+            )
+        )
+
+        total = int(
+            data.get(
+                "total",
+                0
+            )
+        )
+
+    except:
+
+        return jsonify({
+
+            "success": False,
+
+            "message":
+            "Score and total must be numbers."
+
+        }), 400
+
+    if not topic:
+
+        return jsonify({
+
+            "success": False,
+
+            "message":
+            "Topic is required."
+
+        }), 400
+
+    if total <= 0:
+
+        return jsonify({
+
+            "success": False,
+
+            "message":
+            "Total questions must be greater than 0."
+
+        }), 400
+
+    if score < 0 or score > total:
+
+        return jsonify({
+
+            "success": False,
+
+            "message":
+            "Invalid score."
+
+        }), 400
+
+    if topic not in learner_model:
+
+        learner_model[topic] = {
+
+            "attempts": 0,
+
+            "correct": 0,
+
+            "total": 0,
+
+            "mastery": 0
+
+        }
+
+    learner_model[topic]["attempts"] += 1
+
+    learner_model[topic]["correct"] += score
+
+    learner_model[topic]["total"] += total
+
+    mastery = (
+
+        learner_model[topic]["correct"]
+
+        /
+
+        learner_model[topic]["total"]
+
+    ) * 100
+
+    learner_model[topic]["mastery"] = round(
+        mastery
+    )
+
+    save_learner_model()
+
+    return jsonify({
+
+        "success": True,
+
+        "topic":
+        topic,
+
+        "mastery":
+        learner_model[topic]["mastery"],
+
+        "attempts":
+        learner_model[topic]["attempts"],
+
+        "correct":
+        learner_model[topic]["correct"],
+
+        "total":
+        learner_model[topic]["total"]
+
+    })
+
+
+# ============================================================
+# LEARNER PROGRESS
+# ============================================================
+
+@app.route(
+    "/learner/progress",
+    methods=["GET"]
+)
+def learner_progress():
+
+    return jsonify({
+
+        "success": True,
+
+        "learner_model":
+        learner_model
+
+    })
+
+
+# ============================================================
+# WEAK TOPICS
+# ============================================================
+
+@app.route(
+    "/learner/weak-topics",
+    methods=["GET"]
+)
+def get_weak_topics():
+
+    weak_topics = find_weak_topics()
+
+    return jsonify({
+
+        "success": True,
+
+        "weak_topics":
+        weak_topics
+
+    })
+
+
+# ============================================================
+# ADAPTIVE QUIZ
+# ============================================================
+
+@app.route(
+    "/adaptive-quiz",
+    methods=["POST"]
+)
+def adaptive_quiz():
+
+    data = request.get_json() or {}
+
+    topic = data.get(
+        "topic",
+        ""
+    ).strip()
+
+    try:
+
+        count = int(
+            data.get(
+                "count",
+                5
+            )
+        )
+
+    except:
+
+        count = 5
+
+    count = max(
+        1,
+        min(count, 10)
+    )
+
+    if not topic:
+
+        return jsonify({
+
+            "success": False,
+
+            "error":
+            "Please enter a topic."
+
+        }), 400
+
+    if client is None:
+
+        return jsonify({
+
+            "success": False,
+
+            "error":
+            "Groq API key is not configured."
+
+        }), 500
+
+    mastery = get_topic_mastery(
+        topic
+    )
+
+    difficulty = choose_adaptive_difficulty(
+        mastery
+    )
+
+    quiz_data, error = generate_quiz(
+
+        topic,
+
+        count,
+
+        difficulty,
+
+        adaptive=True
+
+    )
+
+    if error:
+
+        return jsonify({
+
+            "success": False,
+
+            "error":
+            error
+
+        }), 500
+
+    return jsonify({
+
+        "success": True,
+
+        "adaptive": True,
+
+        "topic":
+        topic,
+
+        "mastery":
+        mastery,
+
+        "selected_difficulty":
+        difficulty,
+
+        "quiz":
+        quiz_data
+
+    })
+
+
+# ============================================================
+# PERSONALIZED RECOMMENDATIONS
+# ============================================================
+
+@app.route(
+    "/learner/recommendations",
+    methods=["GET"]
+)
+def learner_recommendations():
+
+    weak_topics = find_weak_topics()
+
+    recommendations = []
+
+    for item in weak_topics:
+
+        mastery = item["mastery"]
+
+        if mastery < 40:
+
+            action = "Start with basic concepts and examples."
+
+        elif mastery < 60:
+
+            action = "Revise the topic and take an adaptive quiz."
+
+        else:
+
+            action = "Practice more questions to improve mastery."
+
+        recommendations.append({
+
+            "topic":
+            item["topic"],
+
+            "mastery":
+            mastery,
+
+            "recommendation":
+            action
+
+        })
+
+    if not recommendations:
+
+        recommendations.append({
+
+            "topic":
+            "All current topics",
+
+            "mastery":
+            100,
+
+            "recommendation":
+            "Keep practicing and try advanced questions."
+
+        })
+
+    return jsonify({
+
+        "success": True,
+
+        "recommendations":
+        recommendations
+
+    })
+
+
+# ============================================================
+# QUESTION HISTORY
+# ============================================================
+
+@app.route(
+    "/learner/questions",
+    methods=["GET"]
+)
+def learner_questions():
+
+    return jsonify({
+
+        "success": True,
+
+        "questions":
+        question_history
+
+    })
+
+
+# ============================================================
+# DIAGNOSTIC QUIZ
+# ============================================================
+
+@app.route(
+    "/diagnostic-quiz",
+    methods=["POST"]
+)
+def diagnostic_quiz():
+
+    data = request.get_json() or {}
+
+    try:
+
+        count = int(
+            data.get(
+                "count",
+                5
+            )
+        )
+
+    except:
+
+        count = 5
+
+    count = max(
+        1,
+        min(count, 10)
+    )
+
+    if client is None:
+
+        return jsonify({
+
+            "success": False,
+
+            "error":
+            "Groq API key is not configured."
+
+        }), 500
+
+    if not knowledge_base:
+
+        return jsonify({
+
+            "success": False,
+
+            "error":
+            "No learning material is available."
+
+        }), 404
+
+    context_parts = []
+
+    selected_chunks = knowledge_base[:10]
+
+    for item in selected_chunks:
+
+        context_parts.append(
+            f"""
+SOURCE: {item['source']}
+PAGE: {item['page']}
+CONTENT: {item['text']}
+"""
+        )
+
+    context = "\n".join(
+        context_parts
+    )
+
+    prompt = f"""
+You are EduNova AI.
+
+Create {count} diagnostic multiple-choice
+questions for a new learner.
+
+The questions should cover different
+concepts from the uploaded material.
+
+Do not assume that the learner has
+previous knowledge.
+
+Each question must contain:
+
+question
+options
+correct_answer
+explanation
+difficulty
+topic
+source
+page
+
+Difficulty must be:
+
+Beginner
+Intermediate
+Advanced
+
+Return ONLY valid JSON.
+
+Format:
+
+{{
+    "questions": [
+        {{
+            "question": "Question",
+            "options": [
+                "A",
+                "B",
+                "C",
+                "D"
+            ],
+            "correct_answer": "A",
+            "explanation": "Explanation",
+            "difficulty": "Beginner",
+            "topic": "Topic",
+            "source": "file.pdf",
+            "page": 1
+        }}
+    ]
+}}
+
+UPLOADED MATERIAL:
+
+{context}
+"""
+
+    try:
+
+        response = client.chat.completions.create(
+
+            model=GROQ_MODEL,
+
+            messages=[
+
+                {
+                    "role": "system",
+                    "content":
+                    "You create source-grounded "
+                    "diagnostic assessments."
+                },
+
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+
+            ],
+
+            temperature=0.2
+
+        )
+
+        answer = (
+            response
+            .choices[0]
+            .message
+            .content
+            .strip()
+        )
+
+        answer = re.sub(
+            r"^```json\s*",
+            "",
+            answer,
+            flags=re.IGNORECASE
+        )
+
+        answer = re.sub(
+            r"^```\s*",
+            "",
+            answer
+        )
+
+        answer = re.sub(
+            r"\s*```$",
+            "",
+            answer
+        )
+
+        diagnostic_data = json.loads(
+            answer
+        )
+
+        return jsonify({
+
+            "success": True,
+
+            "diagnostic":
+            diagnostic_data
+
+        })
+
+    except Exception as error:
+
+        print(
+            "\nDIAGNOSTIC ERROR:",
+            repr(error)
+        )
+
         return jsonify({
 
             "success": False,
@@ -1122,9 +2000,9 @@ UPLOADED COURSE MATERIAL:
         }), 500
 
 
-# ==============================
+# ============================================================
 # STARTUP
-# ==============================
+# ============================================================
 
 print()
 print("==============================")
@@ -1139,12 +2017,36 @@ print("==============================")
 print()
 
 
+print("==============================")
+print("LOADING LEARNER MODEL")
+print("==============================")
+
+print(
+    f"Loaded learner topics: {len(learner_model)}"
+)
+
+print("==============================")
+print()
+
+
+print("==============================")
+print("LOADING QUESTION HISTORY")
+print("==============================")
+
+print(
+    f"Loaded questions: {len(question_history)}"
+)
+
+print("==============================")
+print()
+
+
 load_existing_pdfs()
 
 
-# ==============================
+# ============================================================
 # RUN SERVER
-# ==============================
+# ============================================================
 
 if __name__ == "__main__":
 

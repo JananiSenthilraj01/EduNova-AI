@@ -264,5 +264,172 @@
         "score": 0.2224
       }
     ]
+  },
+  {
+    "question": "What is DBMS?",
+    "answer": "A **Database Management System (DBMS)** is software that lets you store, organize, retrieve, and manage data in a database. It provides tools for creating tables, inserting and updating records, and running queries to get the information you need.  \n\n**Sources**  \n- EduNova_DBMS_Test_Material.pdf, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "What is Machine Learning?",
+    "answer": "**Machine Learning (ML)** is a subset of Artificial Intelligence (AI) that enables computers to learn patterns and make decisions from data, rather than being explicitly programmed with every rule.\n\n- **How it works**: An ML model is trained on a dataset that contains examples of the task you want it to perform. During training, the model adjusts its internal parameters to minimize the difference between its predictions and the known correct answers (labels). Once trained, it can generalize to new, unseen data.\n\n- **Key idea**: Instead of writing out every possible rule, we let the computer discover the rules by itself from the data.\n\n- **Common example**: A spam filter learns from many emails labeled as “spam” or “not spam.” By analyzing features such as word frequency, sender address, and email structure, the filter learns to predict whether a new email is spam.\n\n- **Relation to AI**: ML is one of the main techniques used to build AI systems. While AI is the broader field that aims to create intelligent behavior, ML provides the practical methods for achieving that behavior through data-driven learning.\n\n> **Source**  \n> EduNova_AI_Learning_Material.pdf – Page 1 (Sections 1–2)",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.5353
+      },
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 2,
+        "chunk": 1,
+        "score": 0.3991
+      }
+    ]
+  },
+  {
+    "question": "Give me five technical interview questions for an AI and Data Science student",
+    "answer": "**Technical Interview Questions for an AI & Data Science Candidate**\n\n1. **Explain the difference between supervised, unsupervised, and reinforcement learning.**  \n   *Why it matters:* Demonstrates understanding of core machine‑learning paradigms and how they are applied in real‑world problems.  \n   *Reference:* EduNova_AI_Learning_Material.pdf, page 1 (Types of Machine Learning).\n\n2. **Describe how Retrieval‑Augmented Generation (RAG) works and give an example of a scenario where it would be advantageous over a pure generative model.**  \n   *Why it matters:* Tests knowledge of modern AI architectures that combine retrieval with generation, a key concept in many current AI systems.  \n   *Reference:* EduNova_AI_Learning_Material.pdf, page 1 (Retrieval‑Augmented Generation).\n\n3. **What is source grounding in an AI system, and why is it important for responsible AI?**  \n   *Why it matters:* Evaluates awareness of transparency, traceability, and accountability—critical aspects of responsible AI design.  \n   *Reference:* EduNova_AI_Learning_Material.pdf, page 2 (Source Grounding).\n\n4. **How does adaptive learning modify the learning experience for a student who consistently struggles with a particular concept?**  \n   *Why it matters:* Assesses understanding of personalized learning strategies and their implementation in AI‑driven tutoring systems.  \n   *Reference:* EduNova_AI_Learning_Material.pdf, page 2 (Adaptive Learning).\n\n5. **In the context of a database management system, explain the purpose of query optimization and the role of selection pushdown.**  \n   *Why it matters:* Checks knowledge of data‑management fundamentals that are often relevant for data‑science pipelines.  \n   *Reference:* EduNova_DBMS_Test_Material.pdf, page 1 (Query Optimization & Selection Pushdown).",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 2,
+        "chunk": 1,
+        "score": 0.2136
+      },
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.1217
+      },
+      {
+        "source": "EduNova_AI_Learning_Material.pdf",
+        "page": 1,
+        "chunk": 2,
+        "score": 0.0653
+      },
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.0308
+      }
+    ]
+  },
+  {
+    "question": "what is DBMS?",
+    "answer": "A **Database Management System (DBMS)** is a software application that lets you create, store, organize, retrieve, and manage data in a structured database. It provides the tools and interfaces (often SQL) for users and applications to add, modify, query, and maintain data while ensuring consistency, security, and efficient access.\n\n**Key points**\n\n- **Storage** – Keeps data on disk or other storage media.  \n- **Organization** – Structures data into tables, indexes, and relationships.  \n- **Retrieval** – Allows you to fetch data quickly using queries.  \n- **Management** – Handles updates, deletes, backups, and concurrency control.\n\nIn short, a DBMS is the software layer that sits between raw data and the applications that need to use that data.\n\n**Source**\n\n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "what is DBMS?",
+    "answer": "**What is a DBMS?**\n\nA **Database Management System (DBMS)** is a software application that lets you create, store, organize, retrieve, and manage data in a structured database. Think of it as a sophisticated filing cabinet that not only keeps your data safe but also allows you to:\n\n1. **Store** data in tables (rows and columns) that can be related to one another.  \n2. **Organize** the data so it’s easy to find and maintain.  \n3. **Retrieve** information quickly using queries (e.g., SQL statements).  \n4. **Manage** the data by handling tasks such as backup, recovery, security, and concurrency control.\n\nIn addition to these core functions, a DBMS handles **query processing**—converting user queries into efficient execution plans—and **query optimization**, which selects the most cost‑effective way to run those queries.\n\n---\n\n### Key Points for a College Student\n\n| Feature | What It Means | Why It Matters |\n|---------|---------------|----------------|\n| **Storage** | Keeps data on disk or in memory. | Ensures data persists across sessions. |\n| **Organization** | Uses tables, indexes, and relationships. | Makes data retrieval fast and logical. |\n| **Retrieval** | Supports SQL (SELECT, INSERT, UPDATE, DELETE). | Lets you ask complex questions in a readable way. |\n| **Management** | Handles backup, recovery, security, and multi‑user access. | Protects data integrity and availability. |\n| **Query Optimization** | Chooses the best execution plan based on cost estimates. | Improves performance, especially for large datasets. |\n\n---\n\n### Quick Example\n\nSuppose you have a database for a university. A DBMS lets you:\n\n- Store student records in a `Students` table.\n- Store course information in a `Courses` table.\n- Link them with an `Enrollments` table.\n- Run a query like `SELECT * FROM Students WHERE major = 'Computer Science';` and get the results instantly.\n\n---\n\n**Sources**\n\n- *EduNova_DBMS_Test_Material.pdf*, page 1 – definition of DBMS and brief overview of query processing and optimization.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "what is DBMS?",
+    "answer": "**Answer**\n\nA Database Management System (DBMS) is software that lets you store, organize, retrieve, and manage data in a database. It provides a structured way to create, read, update, and delete data, while ensuring data integrity, security, and efficient access.\n\n**Key points**\n\n- **Storage & organization** – The DBMS keeps data in a structured format (tables, indexes, etc.) so it can be accessed quickly.  \n- **Data manipulation** – Users interact with the data through a query language (most commonly SQL).  \n- **Management features** – It handles tasks such as concurrency control, backup and recovery, and access control.\n\n**Source**\n\n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "WHAT IS DBMS?",
+    "answer": "**Answer**\n\nA Database Management System (DBMS) is a software application that allows you to create, store, organize, retrieve, and manage data in a structured database. It provides the tools and interfaces needed to:\n\n1. **Define** the structure of the data (tables, relationships, constraints).  \n2. **Store** the data efficiently on disk or other storage media.  \n3. **Retrieve** data quickly using queries (e.g., SQL).  \n4. **Maintain** data integrity, security, and concurrency control so multiple users can work with the data safely.\n\nIn short, a DBMS is the engine that handles all the behind‑the‑scenes work of keeping data organized and accessible.\n\n**Sources**\n\n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "what is dbms?",
+    "answer": "**What is a DBMS?**\n\nA **Database Management System (DBMS)** is a software application that lets you create, store, organize, retrieve, and manage data in a structured way. Think of it as a sophisticated filing cabinet that not only holds your files (data) but also keeps them sorted, lets you look up specific pieces quickly, and ensures that everyone who needs the data can access it safely and consistently.\n\nKey functions of a DBMS:\n\n1. **Data Storage** – Keeps data on disk or other storage media in a format that can be efficiently accessed.\n2. **Data Organization** – Structures data into tables, records, or other logical units, often following a schema that defines the relationships between different data items.\n3. **Data Retrieval** – Provides a query language (most commonly SQL) so users can ask for exactly the information they need.\n4. **Data Management** – Handles tasks such as backup, recovery, concurrency control, and security to keep the data reliable and protected.\n\nIn short, a DBMS is the bridge between raw data and the applications or users that need to use that data.\n\n---\n\n### Sources\n\n- *EduNova_DBMS_Test_Material.pdf*, page 1 – “A DBMS is software used to store, organize, retrieve, and manage data in a database.”",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "what is dbms?",
+    "answer": "**What is a DBMS?**  \nA Database Management System (DBMS) is software that lets you create, store, organize, retrieve, and manage data in a structured database. It provides a set of tools and interfaces (often SQL) so that users and applications can add, modify, query, and maintain data without having to handle the low‑level details of file storage and data integrity.\n\nKey functions of a DBMS include:\n\n1. **Data storage** – physically keeps data on disk or other storage media.  \n2. **Data organization** – defines tables, relationships, indexes, and constraints.  \n3. **Data retrieval** – processes queries (e.g., SQL) to fetch the requested information.  \n4. **Data manipulation** – supports inserting, updating, and deleting records.  \n5. **Concurrency control** – manages simultaneous access by multiple users.  \n6. **Security and backup** – enforces access rights and protects data integrity.\n\nIn the course material, a DBMS is described as “software used to store, organize, retrieve, and manage data in a database.” It also mentions that query processing (parsing, translation, optimization, execution) is a core part of how a DBMS efficiently handles user requests.\n\n**Source**  \n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "what is dbms?",
+    "answer": "**Answer**\n\nA Database Management System (DBMS) is software that lets you create, store, organize, retrieve, and manage data in a structured database. It handles tasks such as:\n\n- **Storing** data in tables or other structures.\n- **Organizing** the data so it can be accessed efficiently.\n- **Retrieving** data through queries (e.g., SQL).\n- **Managing** concurrent access, security, backups, and recovery.\n\nIn short, a DBMS is the tool that turns raw data into a usable, reliable, and secure information system.\n\n**Sources**\n\n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
+  },
+  {
+    "question": "what is dbms?",
+    "answer": "A **Database Management System (DBMS)** is a software application that lets you create, store, organize, retrieve, and manage data in a structured database. It provides a set of tools and interfaces (often SQL) so that users and applications can add, update, delete, and query data without having to handle the low‑level details of file storage and data integrity.\n\nKey functions of a DBMS include:\n\n1. **Data storage** – physically saving records on disk or other media.  \n2. **Data organization** – arranging data in tables, indexes, and relationships.  \n3. **Data retrieval** – allowing efficient searches and queries (e.g., via SQL).  \n4. **Data manipulation** – supporting insert, update, delete, and transaction operations.  \n5. **Concurrency control** – managing simultaneous access by multiple users.  \n6. **Security and backup** – protecting data and ensuring recoverability.\n\nIn the context of the course material, a DBMS is defined as:\n\n> “A DBMS is software used to store, organize, retrieve, and manage data in a database.” (EduNova_DBMS_Test_Material.pdf, page 1)\n\nThis definition captures the core purpose of a DBMS: to provide a reliable, efficient, and user‑friendly environment for working with data.\n\n---\n\n**Sources**\n\n- *EduNova_DBMS_Test_Material.pdf*, page 1.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "chunk": 1,
+        "score": 0.2224
+      }
+    ]
   }
 ]

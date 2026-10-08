@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNova AI - Quiz</title>
+
+    <title>EduNova AI - Adaptive Quiz</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -21,9 +24,11 @@
             height: 70px;
             background: white;
             border-bottom: 1px solid #e5e9f2;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             padding: 0 30px;
         }
 
@@ -31,6 +36,11 @@
             font-size: 22px;
             font-weight: 700;
             color: #2563eb;
+        }
+
+        .header-title {
+            color: #667085;
+            font-size: 15px;
         }
 
         .container {
@@ -52,13 +62,13 @@
             color: #667085;
         }
 
-        .setup-card,
-        .quiz-card,
-        .result-card {
+        .card {
             background: white;
             border-radius: 18px;
             padding: 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.06);
         }
 
         label {
@@ -71,18 +81,29 @@
         select {
             width: 100%;
             padding: 14px;
+
             border: 1px solid #d7dce5;
             border-radius: 10px;
+
             font-size: 16px;
             margin-bottom: 20px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2563eb;
         }
 
         button {
             border: none;
             border-radius: 10px;
+
             padding: 13px 22px;
+
             font-size: 15px;
             font-weight: 600;
+
             cursor: pointer;
         }
 
@@ -96,26 +117,72 @@
             background: #1d4ed8;
         }
 
+        .primary-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .quiz-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
         .question-number {
             color: #2563eb;
             font-weight: 700;
-            margin-bottom: 12px;
+        }
+
+        .topic-name {
+            color: #667085;
+            font-size: 14px;
+        }
+
+        .progress {
+            height: 8px;
+            background: #e5e7eb;
+
+            border-radius: 10px;
+
+            margin-bottom: 25px;
+
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+
+            background: #2563eb;
+
+            transition: width 0.3s;
         }
 
         .question {
             font-size: 22px;
             line-height: 1.5;
+
             margin-bottom: 25px;
         }
 
         .option {
             display: block;
+
             width: 100%;
+
             text-align: left;
+
             background: #f8faff;
+
             border: 1px solid #dce3f0;
+
             margin-bottom: 12px;
+
             color: #172033;
+
+            transition: 0.2s;
         }
 
         .option:hover {
@@ -130,190 +197,456 @@
 
         .next-btn {
             margin-top: 15px;
+
             background: #2563eb;
+
             color: white;
+
             width: 100%;
         }
 
-        .progress {
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            overflow: hidden;
+        .next-btn:disabled {
+            background: #aab4c5;
+            cursor: not-allowed;
         }
 
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: #2563eb;
-            transition: width 0.3s;
+        .result-card {
+            text-align: center;
         }
 
         .score {
-            font-size: 42px;
+            font-size: 48px;
             font-weight: 700;
-            text-align: center;
+
             color: #2563eb;
-            margin: 20px 0;
+
+            margin: 20px 0 5px;
+        }
+
+        .percentage {
+            font-size: 20px;
+            font-weight: 600;
+
+            color: #475467;
+
+            margin-bottom: 20px;
         }
 
         .result-text {
-            text-align: center;
             color: #667085;
             margin-bottom: 25px;
+        }
+
+        .mastery-box {
+            margin: 25px 0;
+
+            padding: 22px;
+
+            background: #f8faff;
+
+            border-radius: 14px;
+
+            text-align: left;
+        }
+
+        .mastery-title {
+            font-size: 14px;
+            color: #667085;
+
+            margin-bottom: 8px;
+        }
+
+        .mastery-value {
+            font-size: 30px;
+            font-weight: 700;
+
+            color: #2563eb;
+
+            margin-bottom: 12px;
+        }
+
+        .mastery-bar {
+            height: 10px;
+
+            background: #e5e7eb;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+        .mastery-progress {
+            height: 100%;
+
+            width: 0%;
+
+            background: #2563eb;
+
+            transition: width 0.5s;
+        }
+
+        .mastery-status {
+            margin-top: 12px;
+
+            font-weight: 600;
+
+            color: #344054;
+        }
+
+        .error {
+            color: #dc2626;
+
+            margin-top: 15px;
+
+            text-align: center;
+        }
+
+        .success {
+            color: #16a34a;
+
+            margin-top: 12px;
+
+            text-align: center;
+        }
+
+        .loading {
+            color: #2563eb;
+
+            margin-top: 15px;
+
+            text-align: center;
         }
 
         .hidden {
             display: none;
         }
 
-        .error {
-            color: #dc2626;
-            margin-top: 15px;
-            text-align: center;
-        }
     </style>
 </head>
 
+
 <body>
 
-    <header class="header">
-        <div class="logo">EduNova AI</div>
-        <div>Quiz</div>
-    </header>
 
-    <main class="container">
+<header class="header">
 
-        <!-- SETUP -->
-        <section id="setupSection">
+    <div class="logo">
+        EduNova AI
+    </div>
+
+    <div class="header-title">
+        Adaptive Assessment
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- SETUP -->
+
+    <section id="setupSection">
+
+        <div class="title">
+
+            <h1>
+                Adaptive Quiz
+            </h1>
+
+            <p>
+                Test your understanding using the uploaded learning material.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <label for="topic">
+                Topic
+            </label>
+
+            <input
+                type="text"
+                id="topic"
+                placeholder="Example: Query Processing"
+            >
+
+
+            <label for="count">
+                Number of Questions
+            </label>
+
+            <select id="count">
+
+                <option value="5">
+                    5 Questions
+                </option>
+
+                <option value="10">
+                    10 Questions
+                </option>
+
+            </select>
+
+
+            <button
+                id="generateButton"
+                class="primary-btn"
+                onclick="startQuiz()"
+            >
+                Generate Quiz
+            </button>
+
+
+            <div
+                id="errorMessage"
+                class="error"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ -->
+
+    <section
+        id="quizSection"
+        class="hidden"
+    >
+
+        <div class="card">
+
+
+            <div class="quiz-top">
+
+                <div
+                    id="questionNumber"
+                    class="question-number"
+                ></div>
+
+                <div
+                    id="topicName"
+                    class="topic-name"
+                ></div>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+
+            <div
+                id="questionText"
+                class="question"
+            ></div>
+
+
+            <div
+                id="optionsContainer"
+            ></div>
+
+
+            <button
+                id="nextButton"
+                class="next-btn"
+                onclick="nextQuestion()"
+                disabled
+            >
+                Next
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section
+        id="resultSection"
+        class="hidden"
+    >
+
+        <div class="card result-card">
+
 
             <div class="title">
-                <h1>Adaptive Quiz</h1>
-                <p>Test your understanding from the uploaded learning material.</p>
-            </div>
 
-            <div class="setup-card">
-
-                <label for="topic">Topic</label>
-
-                <input
-                    type="text"
-                    id="topic"
-                    placeholder="Example: Query Processing"
-                >
-
-                <label for="count">Number of Questions</label>
-
-                <select id="count">
-                    <option value="5">5 Questions</option>
-                    <option value="10">10 Questions</option>
-                </select>
-
-                <button class="primary-btn" onclick="startQuiz()">
-                    Generate Quiz
-                </button>
-
-                <div id="errorMessage" class="error"></div>
+                <h1>
+                    Quiz Complete
+                </h1>
 
             </div>
 
-        </section>
+
+            <div
+                id="scoreText"
+                class="score"
+            >
+                0 / 0
+            </div>
 
 
-        <!-- QUIZ -->
-        <section id="quizSection" class="hidden">
+            <div
+                id="percentageText"
+                class="percentage"
+            >
+                0%
+            </div>
 
-            <div class="quiz-card">
 
-                <div class="progress">
-                    <div id="progressBar" class="progress-bar"></div>
+            <div
+                id="resultMessage"
+                class="result-text"
+            ></div>
+
+
+            <!-- MASTERY -->
+
+            <div
+                id="masteryBox"
+                class="mastery-box hidden"
+            >
+
+                <div class="mastery-title">
+                    Topic Mastery
                 </div>
 
-                <div id="questionNumber" class="question-number"></div>
 
-                <div id="questionText" class="question"></div>
-
-                <div id="optionsContainer"></div>
-
-                <button
-                    id="nextButton"
-                    class="next-btn"
-                    onclick="nextQuestion()"
-                    disabled
+                <div
+                    id="masteryValue"
+                    class="mastery-value"
                 >
-                    Next
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- RESULT -->
-        <section id="resultSection" class="hidden">
-
-            <div class="result-card">
-
-                <div class="title">
-                    <h1>Quiz Complete</h1>
+                    0%
                 </div>
 
-                <div id="scoreText" class="score"></div>
 
-                <div id="resultMessage" class="result-text"></div>
+                <div class="mastery-bar">
 
-                <button
-                    class="primary-btn"
-                    onclick="restartQuiz()"
-                >
-                    Try Another Quiz
-                </button>
+                    <div
+                        id="masteryProgress"
+                        class="mastery-progress"
+                    ></div>
+
+                </div>
+
+
+                <div
+                    id="masteryStatus"
+                    class="mastery-status"
+                ></div>
 
             </div>
 
-        </section>
 
-    </main>
+            <div
+                id="learnerMessage"
+                class="success"
+            ></div>
+
+
+            <button
+                class="primary-btn"
+                onclick="restartQuiz()"
+            >
+                Try Another Quiz
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+</main>
 
 
 <script>
 
+
+/* =========================
+   API
+========================= */
+
 const API_URL = "http://127.0.0.1:5000";
 
+
+/* =========================
+   QUIZ VARIABLES
+========================= */
+
 let quizQuestions = [];
+
+let topic = "";
+
 let currentQuestion = 0;
+
 let selectedAnswer = null;
+
 let score = 0;
 
 
+/* =========================
+   START QUIZ
+========================= */
+
 async function startQuiz() {
 
-    const topic = document
+    topic = document
         .getElementById("topic")
         .value
         .trim();
 
+
     const count = Number(
-        document.getElementById("count").value
+        document
+            .getElementById("count")
+            .value
     );
 
+
     const errorMessage =
-        document.getElementById("errorMessage");
+        document.getElementById(
+            "errorMessage"
+        );
+
+
+    const generateButton =
+        document.getElementById(
+            "generateButton"
+        );
+
 
     errorMessage.textContent = "";
 
+
     if (!topic) {
+
         errorMessage.textContent =
             "Please enter a topic.";
 
         return;
     }
 
+
     try {
 
-        errorMessage.textContent =
-            "Generating quiz...";
+        generateButton.disabled = true;
+
+        generateButton.textContent =
+            "Generating Quiz...";
+
 
         const response = await fetch(
             API_URL + "/quiz",
@@ -332,53 +665,116 @@ async function startQuiz() {
             }
         );
 
-        const data = await response.json();
+
+        const data =
+            await response.json();
+
 
         if (!response.ok) {
+
             throw new Error(
-                data.error || "Quiz generation failed."
+                data.error ||
+                "Quiz generation failed."
             );
         }
 
-        quizQuestions =
-            data.quiz.questions || [];
 
-        if (quizQuestions.length === 0) {
+        if (
+            !data.quiz ||
+            !Array.isArray(data.quiz.questions)
+        ) {
+
+            throw new Error(
+                "Invalid quiz data received from the server."
+            );
+        }
+
+
+        quizQuestions =
+            data.quiz.questions;
+
+
+        if (
+            quizQuestions.length === 0
+        ) {
+
             throw new Error(
                 "No questions were generated."
             );
         }
 
+
         currentQuestion = 0;
+
         score = 0;
+
+        selectedAnswer = null;
+
 
         document
             .getElementById("setupSection")
-            .classList.add("hidden");
+            .classList
+            .add("hidden");
+
 
         document
             .getElementById("quizSection")
-            .classList.remove("hidden");
+            .classList
+            .remove("hidden");
+
+
+        document
+            .getElementById("topicName")
+            .textContent = topic;
+
 
         showQuestion();
 
+
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Quiz Error:",
+            error
+        );
+
 
         errorMessage.textContent =
             error.message;
 
+
+    } finally {
+
+        generateButton.disabled = false;
+
+        generateButton.textContent =
+            "Generate Quiz";
+
     }
+
 }
 
+
+/* =========================
+   SHOW QUESTION
+========================= */
 
 function showQuestion() {
 
     const question =
         quizQuestions[currentQuestion];
 
+
+    if (!question) {
+
+        showResult();
+
+        return;
+    }
+
+
     selectedAnswer = null;
+
 
     document
         .getElementById("questionNumber")
@@ -388,90 +784,138 @@ function showQuestion() {
         " of " +
         quizQuestions.length;
 
+
     document
         .getElementById("questionText")
         .textContent =
-        question.question;
+        question.question || "";
+
 
     const optionsContainer =
         document.getElementById(
             "optionsContainer"
         );
 
+
     optionsContainer.innerHTML = "";
 
-    question.options.forEach(function(option) {
+
+    const options =
+        Array.isArray(question.options)
+            ? question.options
+            : [];
+
+
+    options.forEach(function(option) {
 
         const button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
+
+
+        button.type = "button";
 
         button.className = "option";
 
         button.textContent = option;
+
 
         button.onclick = function() {
 
             document
                 .querySelectorAll(".option")
                 .forEach(function(item) {
+
                     item.classList.remove(
                         "selected"
                     );
+
                 });
 
-            button.classList.add("selected");
+
+            button.classList.add(
+                "selected"
+            );
+
 
             selectedAnswer = option;
 
+
             document
-                .getElementById("nextButton")
+                .getElementById(
+                    "nextButton"
+                )
                 .disabled = false;
+
         };
 
-        optionsContainer.appendChild(button);
+
+        optionsContainer.appendChild(
+            button
+        );
 
     });
 
+
     const progress =
-        ((currentQuestion) /
-        quizQuestions.length) * 100;
+        (
+            currentQuestion /
+            quizQuestions.length
+        ) * 100;
+
 
     document
         .getElementById("progressBar")
         .style.width =
         progress + "%";
 
+
     document
         .getElementById("nextButton")
         .textContent =
         currentQuestion ===
         quizQuestions.length - 1
-        ? "Submit Quiz"
-        : "Next";
+            ? "Submit Quiz"
+            : "Next";
+
 
     document
         .getElementById("nextButton")
         .disabled = true;
+
 }
 
+
+/* =========================
+   NEXT QUESTION
+========================= */
 
 function nextQuestion() {
 
     if (selectedAnswer === null) {
+
         return;
     }
+
 
     const question =
         quizQuestions[currentQuestion];
 
+
     if (
+        question &&
         selectedAnswer ===
         question.correct_answer
     ) {
+
         score++;
+
     }
 
+
     currentQuestion++;
+
 
     if (
         currentQuestion >=
@@ -485,31 +929,68 @@ function nextQuestion() {
         showQuestion();
 
     }
+
 }
 
 
-function showResult() {
+/* =========================
+   SHOW RESULT
+========================= */
 
-    document
-        .getElementById("quizSection")
-        .classList.add("hidden");
-
-    document
-        .getElementById("resultSection")
-        .classList.remove("hidden");
+async function showResult() {
 
     const total =
         quizQuestions.length;
+
+
+    if (total === 0) {
+
+        return;
+    }
+
+
+    /* HIDE QUIZ */
+
+    document
+        .getElementById("quizSection")
+        .classList
+        .add("hidden");
+
+
+    /* SHOW RESULT */
+
+    document
+        .getElementById("resultSection")
+        .classList
+        .remove("hidden");
+
+
+    /* SCORE */
 
     document
         .getElementById("scoreText")
         .textContent =
         score + " / " + total;
 
-    let message = "";
+
+    /* PERCENTAGE */
 
     const percentage =
-        (score / total) * 100;
+        Math.round(
+            (score / total) * 100
+        );
+
+
+    document
+        .getElementById("percentageText")
+        .textContent =
+        percentage + "%";
+
+
+    /* MESSAGE */
+
+    let message = "";
+
 
     if (percentage >= 80) {
 
@@ -519,25 +1000,167 @@ function showResult() {
     } else if (percentage >= 60) {
 
         message =
-            "Good work! Review the questions you missed.";
+            "Good work! A little more revision can improve your mastery.";
 
     } else {
 
         message =
-            "Keep practicing. EduNova recommends revising this topic.";
+            "This topic needs more revision. EduNova recommends practicing it again.";
 
     }
+
 
     document
         .getElementById("resultMessage")
         .textContent =
         message;
+
+
+    /* UPDATE LEARNER MODEL */
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/learner/update",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        topic: topic,
+                        score: score,
+                        total: total
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Learner Model Response:",
+            data
+        );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                data.error ||
+                data.message ||
+                "Learner model update failed."
+            );
+        }
+
+
+        if (data.success) {
+
+            const mastery =
+                Number(data.mastery);
+
+
+            /* SHOW MASTERY */
+
+            document
+                .getElementById("masteryBox")
+                .classList
+                .remove("hidden");
+
+
+            document
+                .getElementById("masteryValue")
+                .textContent =
+                mastery + "%";
+
+
+            document
+                .getElementById("masteryProgress")
+                .style.width =
+                Math.min(
+                    Math.max(mastery, 0),
+                    100
+                ) + "%";
+
+
+            let status = "";
+
+
+            if (mastery >= 80) {
+
+                status =
+                    "Strong mastery — you are doing well in this topic.";
+
+            } else if (mastery >= 60) {
+
+                status =
+                    "Developing mastery — continue practicing this topic.";
+
+            } else {
+
+                status =
+                    "Needs revision — review the learning material and try again.";
+
+            }
+
+
+            document
+                .getElementById("masteryStatus")
+                .textContent =
+                status;
+
+
+            document
+                .getElementById("learnerMessage")
+                .textContent =
+                "Your learner progress has been updated.";
+
+        } else {
+
+            document
+                .getElementById("learnerMessage")
+                .textContent =
+                "Quiz completed, but learner progress could not be updated.";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Learner Model Error:",
+            error
+        );
+
+
+        document
+            .getElementById("learnerMessage")
+            .textContent =
+            "Quiz completed. Learner progress could not be updated.";
+
+    }
+
 }
 
+
+/* =========================
+   RESTART QUIZ
+========================= */
 
 function restartQuiz() {
 
     quizQuestions = [];
+
+    topic = "";
 
     currentQuestion = 0;
 
@@ -545,19 +1168,73 @@ function restartQuiz() {
 
     selectedAnswer = null;
 
+
+    /* HIDE RESULT */
+
     document
         .getElementById("resultSection")
-        .classList.add("hidden");
+        .classList
+        .add("hidden");
+
+
+    /* SHOW SETUP */
 
     document
         .getElementById("setupSection")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
+
+
+    /* CLEAR TOPIC */
 
     document
         .getElementById("topic")
         .value = "";
 
+
+    /* RESET MASTERY */
+
+    document
+        .getElementById("masteryBox")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("masteryValue")
+        .textContent =
+        "0%";
+
+
+    document
+        .getElementById("masteryProgress")
+        .style.width =
+        "0%";
+
+
+    document
+        .getElementById("masteryStatus")
+        .textContent = "";
+
+
+    document
+        .getElementById("learnerMessage")
+        .textContent = "";
+
+
+    document
+        .getElementById("percentageText")
+        .textContent =
+        "0%";
+
+
+    document
+        .getElementById("scoreText")
+        .textContent =
+        "0 / 0";
+
 }
+
 
 </script>
 
