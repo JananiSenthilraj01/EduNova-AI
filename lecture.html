@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNova AI | Lectures</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fc;
+            color: #202747;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 20px 7%;
+            box-shadow: 0 2px 12px #0000000d;
+        }
+
+        header h2 {
+            margin: 0;
+            color: #6558d3;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            margin-bottom: 25px;
+        }
+
+        .intro h1 {
+            margin-bottom: 8px;
+        }
+
+        .intro p {
+            color: #69718a;
+        }
+
+        .lecture-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 22px;
+        }
+
+        .video-card,
+        .playlist {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 5px 20px #2027470b;
+        }
+
+        .video-frame {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 0;
+            border-radius: 12px;
+            background: #111827;
+        }
+
+        .video-card h2 {
+            font-size: 21px;
+        }
+
+        .video-card p {
+            color: #69718a;
+            line-height: 1.6;
+        }
+
+        .playlist h3 {
+            margin-top: 0;
+        }
+
+        .lesson {
+            width: 100%;
+            display: block;
+            text-align: left;
+            padding: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #e5e7f2;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            color: #202747;
+        }
+
+        .lesson.active {
+            background: #eeecff;
+            border-color: #7668e8;
+        }
+
+        .lesson strong,
+        .lesson span {
+            display: block;
+        }
+
+        .lesson span {
+            margin-top: 6px;
+            color: #69718a;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            .lecture-layout {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                margin-top: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>EduNova AI</h2>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h1>Lecture Videos 🎬</h1>
+            <p>Learn at your own pace, one lesson at a time.</p>
+        </section>
+
+        <section class="lecture-layout">
+            <div class="video-card">
+                <iframe
+                    id="lecturePlayer"
+                    class="video-frame"
+                    src="https://www.youtube.com/embed/8hly31xKli0"
+                    title="Programming lecture video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+
+                <h2 id="lectureTitle">Introduction to Programming</h2>
+
+                <p id="lectureDescription">
+                    Start learning programming concepts with this introductory lesson.
+                </p>
+            </div>
+
+            <aside class="playlist">
+                <h3>📚 Your Lessons</h3>
+
+                <button class="lesson active"
+                    data-video="8hly31xKli0"
+                    data-title="Introduction to Programming"
+                    data-description="Learn the basics of programming.">
+                    <strong>Lesson 1</strong>
+                    <span>Introduction to Programming</span>
+                </button>
+
+                <button class="lesson"
+                    data-video="rfscVS0vtbw"
+                    data-title="Python for Beginners"
+                    data-description="Explore Python fundamentals in this beginner-friendly lesson.">
+                    <strong>Lesson 2</strong>
+                    <span>Python for Beginners</span>
+                </button>
+
+                <button class="lesson"
+                    data-video="kqtD5dpn9C8"
+                    data-title="Python Tutorial"
+                    data-description="Continue learning Python with a practical tutorial.">
+                    <strong>Lesson 3</strong>
+                    <span>Python Tutorial</span>
+                </button>
+            </aside>
+        </section>
+    </main>
+
+    <script>
+        const player = document.getElementById("lecturePlayer");
+        const title = document.getElementById("lectureTitle");
+        const description = document.getElementById("lectureDescription");
+        const lessons = document.querySelectorAll(".lesson");
+
+        lessons.forEach(function (lesson) {
+            lesson.addEventListener("click", function () {
+                player.src = "https://www.youtube.com/embed/" +
+                    lesson.dataset.video;
+
+                title.textContent = lesson.dataset.title;
+                description.textContent = lesson.dataset.description;
+
+                lessons.forEach(function (item) {
+                    item.classList.remove("active");
+                });
+
+                lesson.classList.add("active");
+            });
+        });
+    </script>
+</body>
+</html>

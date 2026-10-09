@@ -1,0 +1,72 @@
+[
+  {
+    "topic": "Query Processing",
+    "question": "Which stage of query processing is responsible for transforming the SQL query into an intermediate representation that can be analyzed for optimization?",
+    "difficulty": "Advanced",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "During query optimization, which of the following cost components is NOT typically considered?",
+    "difficulty": "Advanced",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "Selection pushdown is most beneficial when applied to which type of relational operation?",
+    "difficulty": "Advanced",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "Which statement best describes the primary goal of query optimization?",
+    "difficulty": "Advanced",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "Query Processing",
+    "question": "During which stage of query processing does the optimizer typically generate multiple execution plans and evaluate them?",
+    "difficulty": "Advanced",
+    "source": "EduNova_DBMS_Test_Material.pdf",
+    "page": 1
+  },
+  {
+    "topic": "tree",
+    "question": "Which of the following best describes a leaf node in a tree?",
+    "difficulty": "Beginner",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
+  },
+  {
+    "topic": "tree",
+    "question": "A binary tree is defined as a tree where each node has at most how many children?",
+    "difficulty": "Beginner",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
+  },
+  {
+    "topic": "tree",
+    "question": "In a standard BST, values smaller than a node are stored in which subtree?",
+    "difficulty": "Beginner",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
+  },
+  {
+    "topic": "tree",
+    "question": "What is the time complexity of inserting an element into a binary heap?",
+    "difficulty": "Intermediate",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
+  },
+  {
+    "topic": "tree",
+    "question": "Which tree traversal of a BST yields the keys in sorted order?",
+    "difficulty": "Intermediate",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
+  }
+]
