@@ -138,5 +138,40 @@
     "difficulty": "Advanced",
     "source": "EduNova_DBMS_Test_Material.pdf",
     "page": 1
+  },
+  {
+    "topic": "tree",
+    "question": "Which of the following best describes a leaf node in a tree?",
+    "difficulty": "Beginner",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
+  },
+  {
+    "topic": "tree",
+    "question": "A binary tree is defined as a tree where each node has at most how many children?",
+    "difficulty": "Beginner",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
+  },
+  {
+    "topic": "tree",
+    "question": "In a standard BST, values smaller than a node are stored in which subtree?",
+    "difficulty": "Beginner",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
+  },
+  {
+    "topic": "tree",
+    "question": "What is the time complexity of inserting an element into a binary heap?",
+    "difficulty": "Intermediate",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
+  },
+  {
+    "topic": "tree",
+    "question": "Which tree traversal of a BST yields the keys in sorted order?",
+    "difficulty": "Intermediate",
+    "source": "Data_Structures_in_Java_Study_Notes.pdf",
+    "page": 5
   }
 ]
