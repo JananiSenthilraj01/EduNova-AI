@@ -528,5 +528,152 @@
         "score": 0.2824
       }
     ]
+  },
+  {
+    "question": "Explain query processing in DBMS",
+    "answer": "**Query processing in a DBMS**  \nA DBMS turns a user’s SQL statement into a set of low‑level operations that can be executed efficiently on the underlying data. The process is usually broken into three main stages:\n\n| Stage | What happens | Why it matters |\n|-------|--------------|----------------|\n| **1. Parsing & translation** | The SQL text is checked for syntax errors, then converted into an internal representation (often a tree of relational algebra operators). | Ensures the query is valid and gives the optimizer a structure to work with. |\n| **2. Query optimization** | The optimizer examines many possible execution plans (different join orders, indexes, etc.) and estimates their costs (disk I/O, CPU, memory, network). It then selects the plan with the lowest estimated cost. | Guarantees that the DBMS will run the query as fast and resource‑efficiently as possible. |\n| **3. Query evaluation (execution)** | The chosen plan is executed: data is read, joined, filtered, aggregated, etc., producing the final result set. | Produces the correct answer for the user. |\n\n> **Sources (uploaded material)**  \n> - DBMS_Query_Processing_Lecture.pptx — Slide 2 (definition of query processing)  \n> - DBMS_Query_Processing_Lecture.pptx — Slide 3 (main steps)  \n> - EduNova_DBMS_Test_Material.pdf — Page 1 (stages and purpose of optimization)  \n> - DBMS_Query_Processing_Lecture.pptx — Slide 10 (summary)\n\n---\n\n### How the optimizer works (briefly)\n\n1. **Cost estimation** – For each possible plan the optimizer calculates an estimated cost based on statistics about the data (e.g., number of rows, index selectivity).  \n2. **Plan enumeration** – It generates alternative plans (different join orders, use of indexes, etc.).  \n3. **Selection** – The plan with the lowest estimated cost is chosen.\n\n> **Sources**  \n> - EduNova_DBMS_Test_Material.pdf — Page 1 (mentions disk I/O, CPU cost, memory usage, communication cost)  \n\n---\n\n### Why query processing matters\n\n- **Correctness**: The parsing stage guarantees that the query is syntactically valid and that the result will be accurate.  \n- **Performance**: Optimization reduces the amount of work the DBMS has to do, which can mean the difference between a query that runs in milliseconds and one that takes minutes.  \n- **Resource efficiency**: By choosing the right indexes and join algorithms, the DBMS uses CPU, memory, and disk I/O more effectively.\n\n> **Sources**  \n> - DBMS_Query_Processing_Lecture.pptx — Slide 10 (summary of cost reduction and join algorithms)\n\n---\n\n### Key concepts you’ll encounter\n\n- **Selection pushdown** – Applying `WHERE` clauses as early as possible to reduce the number of tuples processed later.  \n- **Join algorithms** – Nested‑loop, hash join, merge join, etc., each suited to different data sizes and index availability.  \n- **Materialized views** – Pre‑computed results that can speed up repeated queries.\n\n> **Sources**  \n> - EduNova_DBMS_Test_Material.pdf — Page 1 (selection pushdown)  \n> - DBMS_Query_Processing_Lecture.pptx — Slide 10 (materialized views)\n\n---\n\n**In short:** Query processing is the pipeline that takes an SQL statement, validates it, figures out the most efficient way to get the data, and then runs that plan to return the correct results. It’s the core of what makes a DBMS fast and reliable.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 2,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.5323
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 1,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.4555
+      },
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "slide": 0,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.4121
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 10,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1441
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 3,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1435
+      }
+    ]
+  },
+  {
+    "question": "Explain how photosynthesis works in plants",
+    "answer": "**Note:** The uploaded learning material does not cover the topic of photosynthesis, so the following explanation is based on general knowledge.\n\n---\n\n## How Photosynthesis Works in Plants\n\nPhotosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy stored in sugars. It occurs mainly in the chloroplasts of plant cells, specifically in the thylakoid membranes and the surrounding stroma.\n\n### 1. Light‑Dependent Reactions (Occurs in the Thylakoid Membranes)\n\n1. **Absorption of Light**  \n   - Chlorophyll pigments (mainly chlorophyll‑a and chlorophyll‑b) absorb sunlight, exciting electrons to a higher energy state.\n2. **Water Splitting (Photolysis)**  \n   - The excited chlorophyll molecules transfer the high‑energy electrons to the photosystem II (PSII) electron transport chain.  \n   - To replace the lost electrons, water molecules are split into oxygen, protons (H⁺), and electrons.  \n   - **O₂** is released as a by‑product into the atmosphere.\n3. **Electron Transport Chain (ETC)**  \n   - Electrons travel through a series of carriers (plastoquinone, cytochrome b₆f complex, plastocyanin) to photosystem I (PSI).\n   - As electrons move, their energy is used to pump protons into the thylakoid lumen, creating a proton gradient.\n4. **ATP Synthesis**  \n   - The proton gradient drives ATP synthase to produce ATP from ADP + Pi (chemiosmosis).\n5. **NADPH Formation**  \n   - At PSI, electrons are re‑excited by light and ultimately reduce NADP⁺ to NADPH, a high‑energy electron carrier.\n\n**Result of Light‑Dependent Reactions:**  \n- **ATP** (energy currency)  \n- **NADPH** (reducing power)  \n- **O₂** (by‑product)\n\n### 2. Light‑Independent Reactions (Calvin Cycle, Occurs in the Stroma)\n\nThe Calvin cycle uses the ATP and NADPH produced above to fix atmospheric CO₂ into organic sugars.\n\n1. **Carbon Fixation**  \n   - The enzyme **RuBisCO** catalyzes the addition of CO₂ to ribulose‑1,5‑bisphosphate (RuBP), forming two molecules of 3‑phosphoglycerate (3‑PGA).\n2. **Reduction Phase**  \n   - ATP and NADPH convert 3‑PGA into glyceraldehyde‑3‑phosphate (G3P).  \n   - One G3P molecule can exit the cycle to contribute to glucose and other carbohydrates.\n3. **Regeneration of RuBP**  \n   - The remaining G3P molecules are used (with ATP) to regenerate RuBP, allowing the cycle to continue.\n\n**Overall Outcome of the Calvin Cycle:**  \n- Conversion of CO₂ + H₂O → glucose (or other sugars) + O₂ (the O₂ is already released earlier).\n\n### 3. Summary Flow\n\n| Step | Process | Key Products |\n|------|---------|--------------|\n| 1 | Light absorption & water splitting | O₂, excited electrons |\n| 2 | Electron transport & ATP synthesis | ATP, proton gradient |\n| 3 | NADPH formation | NADPH |\n| 4 | CO₂ fixation (Calvin cycle) | G3P → sugars |\n| 5 | Regeneration of RuBP | Continuation of cycle |\n\n### 4. Why It Matters\n\n- **Energy Source:** Plants store energy in sugars, which are the primary food source for most organisms, including humans.  \n- **Oxygen Production:** Photosynthesis is the main source of atmospheric oxygen.  \n- **Carbon Cycle:** It removes CO₂ from the atmosphere, helping regulate global climate.\n\n---\n\n**Key Takeaway:**  \nPhotosynthesis is a two‑stage process: light‑dependent reactions capture sunlight to produce ATP, NADPH, and O₂; the Calvin cycle uses those energy carriers to fix CO₂ into sugars, providing the plant’s energy and building blocks while releasing oxygen.",
+    "grounded": false,
+    "sources": []
+  },
+  {
+    "question": "Explain query processing using my uploaded DBMS PowerPoint in simple English. Include the relevant slide number.",
+    "answer": "**Query processing** is the way a database turns a SQL question into a set of steps that can be carried out quickly and correctly.  \nAccording to the PowerPoint you uploaded, this happens in three main parts:\n\n1. **Parsing** – the DBMS checks that the SQL syntax is correct and turns it into an internal representation.  \n2. **Optimizing** – the system looks at many possible ways to execute the query and picks the one that will use the least resources (disk reads, CPU time, memory, etc.).  \n3. **Executing** – the chosen plan is run, producing the final result.\n\nThe goal is to get the right answer while spending as little time and resources as possible.  \nThis is all described on **Slide 2** of your DBMS Query Processing PowerPoint.  \n\n[Source: DBMS_Query_Processing_Lecture.pptx, slide 2]",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "DBMS_Query_Processing_Lecture.pdf",
+        "page": 2,
+        "slide": 0,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.2115
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 2,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.2115
+      },
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "slide": 0,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1983
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pdf",
+        "page": 1,
+        "slide": 0,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1701
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 1,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1701
+      }
+    ]
+  },
+  {
+    "question": "Explain the content of slide 5 in my uploaded DBMS Query Processing PowerPoint. Use only information from that slide and cite the slide number.",
+    "answer": "I don’t have the content of slide 5 from your DBMS Query Processing PowerPoint. The uploaded material only includes slides 1 and 2, so I can’t provide a description of slide 5 or cite it.\n\n---\n\n**General knowledge (outside the uploaded material)**  \nIn many DBMS query‑processing lectures, a slide numbered 5 might cover one of the following topics:\n\n- **Query optimization techniques** (e.g., cost‑based optimization, rule‑based optimization).  \n- **Physical query plans** and how the optimizer selects operators such as nested‑loop joins, hash joins, or merge joins.  \n- **Cost estimation** for I/O, CPU, and memory usage.  \n- **Index usage** and how indexes can be leveraged to speed up query execution.  \n\nThese are common subjects that often appear early in a query‑processing presentation, but without the actual slide I can’t confirm what your slide 5 contains.",
+    "grounded": true,
+    "sources": [
+      {
+        "source": "DBMS_Query_Processing_Lecture.pdf",
+        "page": 1,
+        "slide": 0,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1689
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 1,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1689
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pptx",
+        "page": 0,
+        "slide": 2,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1339
+      },
+      {
+        "source": "DBMS_Query_Processing_Lecture.pdf",
+        "page": 2,
+        "slide": 0,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1339
+      },
+      {
+        "source": "EduNova_DBMS_Test_Material.pdf",
+        "page": 1,
+        "slide": 0,
+        "timestamp": "",
+        "chunk": 1,
+        "score": 0.1092
+      }
+    ]
   }
 ]
